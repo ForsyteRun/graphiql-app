@@ -1,10 +1,20 @@
 // abstract
+@import 'abstracts/variables.scss';
+@import 'abstracts/mixins';
 
 /* Base */
 @import 'base/reset';
+@import 'base/basic';
 
 /* Components */
+@import 'components/authorization';
+@import 'components/buttons';
+@import 'components/navigation';
 
 /* Layout */
+@import 'layout/header';
+@import 'layout/footer';
 
 /* Pages */
+@import 'pages/main';
+@import 'pages/notFound';
