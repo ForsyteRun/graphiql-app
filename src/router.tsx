@@ -1,18 +1,24 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import { AUTH_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE } from './constants/route';
-import { Login, Main, NotFound, Registration } from './pages';
+import PrivateWrapper from './components/PrivateWrapper';
+import {
+  AUTH_ROUTE,
+  MAIN_ROUTE,
+  REGISTRATION_ROUTE,
+  WELCOME_ROUTE,
+} from './constants/route';
+import { Login, Main, NotFound, Registration, Welcome } from './pages';
 
 export const router = createBrowserRouter([
   {
-    path: MAIN_ROUTE,
+    path: WELCOME_ROUTE,
     element: <App />,
     errorElement: <NotFound />,
     children: [
       {
         index: true,
-        path: MAIN_ROUTE,
-        element: <Main />,
+        path: WELCOME_ROUTE,
+        element: <Welcome />,
       },
       {
         path: REGISTRATION_ROUTE,
@@ -21,6 +27,14 @@ export const router = createBrowserRouter([
       {
         path: AUTH_ROUTE,
         element: <Login />,
+      },
+      {
+        path: MAIN_ROUTE,
+        element: (
+          <PrivateWrapper>
+            <Main />,
+          </PrivateWrapper>
+        ),
       },
     ],
   },
