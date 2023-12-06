@@ -2,12 +2,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import { DataForm } from '../types/types';
 import { schema } from '../utils/schema';
 import { registerWithEmailAndPassword } from '../firebase/firebase';
-//import { useNavigate } from 'react-router-dom';
-//import { MAIN_ROUTE } from '../constants/route';
 import { toastForNoConnection, toastSignUp } from '../utils/toasts';
 import {
   TOAST_INTERNAL_SERVER_ERROR,
