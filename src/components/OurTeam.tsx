@@ -4,10 +4,12 @@ import TeamMember from './TeamMember';
 const OurTeam = () => {
   return (
     <div>
-      <div>OurTeam</div>;
-      {developersData.map((developer) => (
-        <TeamMember key={developer.name} developer={developer} />
-      ))}
+      <h2 className="ourTeam-title">OurTeam</h2>
+      <div className="ourTeam-container">
+        {developersData.map((developer) => (
+          <TeamMember key={developer.name} developer={developer} />
+        ))}
+      </div>
     </div>
   );
 };
