@@ -1,12 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { RegistrationForm } from '../components';
 import { AUTH_ROUTE } from '../constants/route';
-import { Header, Footer } from '../layout';
 
 const Registration = () => {
   return (
     <div className="tygh">
-      <Header />
       <main className="main container page">
         <div className="authorization">
           <div className="authorization__container">
@@ -22,7 +20,6 @@ const Registration = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
