@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { Logo } from '../components/Logo';
 import { AUTH_ROUTE, REGISTRATION_ROUTE } from '../constants/route';
+import { LogOut } from '../components/Logout';
 
 const Header = () => {
   return (
@@ -17,6 +18,8 @@ const Header = () => {
           <NavLink to={AUTH_ROUTE}>
             <button className="button">Вход</button>
           </NavLink>
+
+          <LogOut />
         </div>
       </div>
     </header>
