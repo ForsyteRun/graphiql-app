@@ -32,5 +32,4 @@ export default {
       "statements": 50
     }
   }, 
-  setupFilesAfterEnv: ['./jest-setup.ts'],
 };
