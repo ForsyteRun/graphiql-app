@@ -4,10 +4,7 @@ import {
   REGISTRATION_ROUTE,
   AUTH_ROUTE,
 } from './constants/route';
-import { Main } from './pages/Main';
-import { Login } from './pages/Login';
-import { Registration } from './pages/Registration';
-import { NotFound } from './pages/NotFound';
+import { Main, Login, Registration, NotFound } from './pages';
 
 export const routes = [
   {

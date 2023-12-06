@@ -2,4 +2,4 @@ const RegistrationForm = () => {
   return <></>;
 };
 
-export { RegistrationForm };
+export default RegistrationForm;

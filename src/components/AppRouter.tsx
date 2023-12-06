@@ -13,4 +13,4 @@ const AppRouter = () => {
   );
 };
 
-export { AppRouter };
+export default AppRouter;
