@@ -1,12 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { REGISTRATION_ROUTE } from '../constants/route';
 import { LoginForm } from '../components';
-import { Header } from '../layout';
 
 const Login = () => {
   return (
     <>
-      <Header />
       <div className="main page container">
         <div className="authorization">
           <div className="authorization__container">

@@ -1,5 +1,17 @@
+import { Outlet } from 'react-router-dom';
+import { Footer } from '../layout';
+
 const Main = () => {
-  return <div>MainPage</div>;
+  return (
+    <>
+      <main>
+        <div className="tygh">
+          <Outlet />
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
 };
 
 export default Main;
