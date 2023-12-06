@@ -1,3 +1,5 @@
+import { OurTeam } from '../components';
+
 const Welcome = () => {
   return (
     <div className="welcome-container">
@@ -22,6 +24,7 @@ const Welcome = () => {
           <span>Strongly Typed:</span>Type checking at the query level
         </li>
       </ul>
+      <OurTeam />
     </div>
   );
 };
