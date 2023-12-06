@@ -1,3 +1,4 @@
+
 import { GraphiQL } from '../components';
 
 const Welcome = () => {

@@ -28,15 +28,6 @@
   box-sizing: border-box;
 }
 
-body {
-  @include flexColumn();
-  margin: 0;
-  color: $text-color;
-  min-width: 320px;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
 main {
   flex-grow: 1;
   border-top: $border;
@@ -199,14 +190,17 @@ input[type='checkbox']:checked {
 }
 
 #root {
-  margin: 0 auto;
-  text-align: center;
+  @include flexColumn();
+  margin: 0;
+  color: $text-color;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .tygh {
   @include flexColumn($align: inherit);
   width: 100vw;
-  min-height: 100vh;
   box-sizing: border-box;
 }
 
