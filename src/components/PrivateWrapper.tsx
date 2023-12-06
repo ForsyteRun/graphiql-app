@@ -9,9 +9,7 @@ interface PrivateWrapperProps {
 const PrivateWrapper = ({ children }: PrivateWrapperProps) => {
   const isAuth = true; //TODO: Replace with your authentication logic
 
-  return (
-    <div>{isAuth ? <>{children}</> : <Navigate to={WELCOME_ROUTE} />}</div>
-  );
+  return <>{isAuth ? <>{children}</> : <Navigate to={WELCOME_ROUTE} />}</>;
 };
 
 export default PrivateWrapper;

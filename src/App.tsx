@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import { Footer } from './layout';
+import { Header, Footer } from './layout';
 
 function App() {
   return (
     <>
+      <Header />
       <main>
         <div className="tygh">
           <Outlet />
