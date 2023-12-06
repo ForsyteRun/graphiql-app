@@ -27,19 +27,13 @@ export const router = createBrowserRouter([
         path: AUTH_ROUTE,
         element: <Login />,
       },
-    ],
-  },
-  {
-    path: MAIN_ROUTE,
-    element: (
-      <PrivateWrapper>
-        <Main />
-      </PrivateWrapper>
-    ),
-    children: [
       {
-        index: true,
-        element: <div>MainComponent</div>,
+        path: MAIN_ROUTE,
+        element: (
+          <PrivateWrapper>
+            <Main />
+          </PrivateWrapper>
+        ),
       },
     ],
   },
