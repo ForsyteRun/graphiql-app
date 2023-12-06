@@ -16,6 +16,8 @@ import {
 import { FirebaseError } from 'firebase/app';
 import { MAIN_ROUTE } from '../constants/route';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../store/types';
+import { setIsLogin } from '../store/slice/userSlice';
 
 const onRenderError = (error: FirebaseError) => {
   if (error.code === 'auth/email-already-in-use') {
@@ -36,6 +38,7 @@ const RegistrationForm: React.FC = () => {
   });
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSubmit = async (data: DataForm) => {
     try {
@@ -45,12 +48,15 @@ const RegistrationForm: React.FC = () => {
       await toastSignUp(onRenderError, () =>
         registerWithEmailAndPassword(data.email, data.password)
       );
+      dispatch(setIsLogin(true));
       navigate(MAIN_ROUTE);
     } catch (error) {
-      const apiError = error as FirebaseError;
-      console.error(apiError);
+      dispatch(setIsLogin(false));
     }
   };
+
+  const { isLogin } = useAppSelector((state) => state.user);
+  console.log(isLogin);
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <label>Email </label>
