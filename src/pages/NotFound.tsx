@@ -1,11 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { MAIN_ROUTE } from '../constants/route';
-import { Header, Footer } from '../layout';
 
 const NotFound = () => {
   return (
     <div className="tygh">
-      <Header />
       <main className="main container">
         <div className="exception">
           <div className="exception__code">
@@ -33,7 +31,6 @@ const NotFound = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

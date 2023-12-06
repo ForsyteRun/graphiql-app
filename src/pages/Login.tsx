@@ -1,12 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { REGISTRATION_ROUTE } from '../constants/route';
-import { Header, Footer } from '../layout';
 import { LoginForm } from '../components';
 
 const Login = () => {
   return (
     <div className="tygh">
-      <Header />
       <main className="main page container">
         <div className="authorization">
           <div className="authorization__container">
@@ -20,7 +18,6 @@ const Login = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
