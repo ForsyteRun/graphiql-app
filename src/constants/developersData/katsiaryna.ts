@@ -1,11 +1,11 @@
 import { DevelopersData, Role } from '../../types';
-import photo from './../../../src/assets/img/forsyte.jpg';
+import photo from './../../../src/assets/img/Kate.jpg';
 
-export const forsyte: DevelopersData = {
-  name: 'Forsyte Alex',
+export const Katsiaryna: DevelopersData = {
+  name: 'Katsiaryna',
   image: photo,
-  role: Role.lead,
-  github: 'forsyterun',
+  role: Role.developer,
+  github: 'Katsiaryna',
   about:
     'I`m is a Ukrainian singer, producer, and DJ known for his contributions to the pop and electronic music scenes. Born on October 17, 1988, in Chelyabinsk, Russia,',
   contribution: [
