@@ -1,8 +1,7 @@
 // Main.tsx
 
-import GraphiQL from '../components/GraphiQL';
-import { Footer } from '../layout/Footer';
-import { Header } from '../layout/Header';
+import { GraphiQL } from '../components';
+import { Header, Footer } from '../layout';
 
 const Main = () => {
   return (
@@ -14,4 +13,4 @@ const Main = () => {
   );
 };
 
-export { Main };
+export default Main;

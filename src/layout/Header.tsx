@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Logo } from '../components/Logo';
+import { Logo } from '../components';
 import { AUTH_ROUTE, REGISTRATION_ROUTE } from '../constants/route';
 
 const Header = () => {
@@ -23,4 +23,4 @@ const Header = () => {
   );
 };
 
-export { Header };
+export default Header;

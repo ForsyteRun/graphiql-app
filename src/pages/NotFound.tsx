@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { MAIN_ROUTE } from '../constants/route';
-import { Header } from '../layout/Header';
-import { Footer } from '../layout/Footer';
+import { Header, Footer } from '../layout';
 
 const NotFound = () => {
   return (
@@ -39,4 +38,4 @@ const NotFound = () => {
   );
 };
 
-export { NotFound };
+export default NotFound;

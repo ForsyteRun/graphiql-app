@@ -1,8 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { RegistrationForm } from '../components/RegistrationForm';
+import { RegistrationForm } from '../components';
 import { AUTH_ROUTE } from '../constants/route';
-import { Header } from '../layout/Header';
-import { Footer } from '../layout/Footer';
+import { Header, Footer } from '../layout';
 
 const Registration = () => {
   return (
@@ -28,4 +27,4 @@ const Registration = () => {
   );
 };
 
-export { Registration };
+export default Registration;
