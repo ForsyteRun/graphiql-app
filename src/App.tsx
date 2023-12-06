@@ -5,7 +5,11 @@ function App() {
   return (
     <>
       <Header />
-      <Outlet />
+      <main>
+        <div className="tygh">
+          <Outlet />
+        </div>
+      </main>
       <Footer />
     </>
   );
