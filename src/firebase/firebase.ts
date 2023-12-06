@@ -30,23 +30,18 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
     }
   }
 };
+
 const registerWithEmailAndPassword = async (
   email: string,
   password: string
 ) => {
-  try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
-    await addDoc(collection(db, 'users'), {
-      uid: user.uid,
-      authProvider: 'local',
-      email,
-    });
-  } catch (err) {
-    if (err instanceof FirebaseError) {
-      console.error(err.code);
-    }
-  }
+  const res = await createUserWithEmailAndPassword(auth, email, password);
+  const user = res.user;
+  await addDoc(collection(db, 'users'), {
+    uid: user.uid,
+    authProvider: 'local',
+    email,
+  });
 };
 
 const logout = () => {

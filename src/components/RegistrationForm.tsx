@@ -6,8 +6,24 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { DataForm } from '../types/types';
 import { schema } from '../utils/schema';
 import { registerWithEmailAndPassword } from '../firebase/firebase';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
+//import { MAIN_ROUTE } from '../constants/route';
+import { toastForNoConnection, toastSignUp } from '../utils/toasts';
+import {
+  TOAST_INTERNAL_SERVER_ERROR,
+  TOAST_SIGN_UP_ERROR,
+} from '../constants/toastsConst';
+import { FirebaseError } from 'firebase/app';
 import { MAIN_ROUTE } from '../constants/route';
+import { useNavigate } from 'react-router-dom';
+
+const onRenderError = (error: FirebaseError) => {
+  if (error.code === 'auth/email-already-in-use') {
+    return TOAST_INTERNAL_SERVER_ERROR;
+  } else {
+    return TOAST_SIGN_UP_ERROR;
+  }
+};
 
 const RegistrationForm: React.FC = () => {
   const {
@@ -21,12 +37,20 @@ const RegistrationForm: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const onSubmit = (data: DataForm) => {
-    console.log(data);
-    registerWithEmailAndPassword(data.email, data.password);
-    navigate(MAIN_ROUTE);
+  const onSubmit = async (data: DataForm) => {
+    try {
+      if (toastForNoConnection()) {
+        return;
+      }
+      await toastSignUp(onRenderError, () =>
+        registerWithEmailAndPassword(data.email, data.password)
+      );
+      navigate(MAIN_ROUTE);
+    } catch (error) {
+      const apiError = error as FirebaseError;
+      console.error(apiError);
+    }
   };
-
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <label>Email </label>
