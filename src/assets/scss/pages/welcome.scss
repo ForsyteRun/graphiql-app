@@ -1,0 +1,14 @@
+.welcome-container {
+  max-width: 1440px; //TODO
+  @include flexColumn(space-between);
+  gap: 10rem;
+}
+
+.welcome-list li {
+  font-size: 1.5rem;
+  span {
+    display: inline-block;
+    font-weight: 700;
+    margin: 1rem;
+  }
+}
