@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
             <Main />
           </PrivateWrapper>
         ),
-      }.
+      },
     ],
   },
 ]);
