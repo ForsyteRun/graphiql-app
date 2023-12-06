@@ -4,6 +4,7 @@ import PrivateWrapper from './components/PrivateWrapper';
 import {
   AUTH_ROUTE,
   MAIN_ROUTE,
+  NOTFOUND_ROUTE,
   REGISTRATION_ROUTE,
   WELCOME_ROUTE,
 } from './constants/route';
@@ -13,7 +14,6 @@ export const router = createBrowserRouter([
   {
     path: WELCOME_ROUTE,
     element: <App />,
-    errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -27,19 +27,17 @@ export const router = createBrowserRouter([
         path: AUTH_ROUTE,
         element: <Login />,
       },
-    ],
-  },
-  {
-    path: MAIN_ROUTE,
-    element: (
-      <PrivateWrapper>
-        <Main />
-      </PrivateWrapper>
-    ),
-    children: [
       {
-        index: true,
-        element: <div>MainComponent</div>,
+        path: NOTFOUND_ROUTE,
+        element: <NotFound />,
+      },
+      {
+        path: MAIN_ROUTE,
+        element: (
+          <PrivateWrapper>
+            <Main />
+          </PrivateWrapper>
+        ),
       },
     ],
   },

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { MAIN_ROUTE } from '../constants/route';
+import { WELCOME_ROUTE } from '../constants/route';
 
 const NotFound = () => {
   return (
@@ -16,7 +16,11 @@ const NotFound = () => {
           <p className="exception__info">Запрашиваемая страница не найдена.</p>
           <div className="exception__links">
             <div className="exception__links-item">
-              <NavLink to={MAIN_ROUTE} title="" className="exception__links-a">
+              <NavLink
+                to={WELCOME_ROUTE}
+                title=""
+                className="exception__links-a"
+              >
                 Перейти на главную страницу
               </NavLink>
             </div>

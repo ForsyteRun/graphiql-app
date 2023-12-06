@@ -3,15 +3,13 @@ import { Header, Footer } from './layout';
 
 function App() {
   return (
-    <>
+    <div className="tygh">
       <Header />
-      <main>
-        <div className="tygh">
-          <Outlet />
-        </div>
+      <main className="content">
+        <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
