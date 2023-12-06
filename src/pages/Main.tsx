@@ -3,11 +3,7 @@
 import { GraphiQL } from '../components';
 
 const Main = () => {
-  return (
-    <div className="tygh">
-      <GraphiQL />
-    </div>
-  );
+  return <GraphiQL />;
 };
 
 export default Main;
