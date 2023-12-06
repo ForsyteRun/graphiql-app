@@ -1,5 +1,3 @@
-// WelcomePage.tsx
-
 import { GraphiQL } from '../components';
 
 const Welcome = () => {
