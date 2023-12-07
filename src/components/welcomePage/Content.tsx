@@ -5,7 +5,9 @@ const Content = () => {
     <ul className="welcome-list">
       {Object.entries(welcomePageContentList).map(([key, value]) => (
         <li key={key}>
-          <span>{key}:</span> {value}
+          {key}
+          <span>:</span>
+          <span>{value}</span>
         </li>
       ))}
     </ul>
