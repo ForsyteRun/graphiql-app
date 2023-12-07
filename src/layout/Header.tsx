@@ -2,8 +2,10 @@ import { NavLink } from 'react-router-dom';
 import { Logo } from '../components/Logo';
 import { AUTH_ROUTE, REGISTRATION_ROUTE } from '../constants/route';
 import { LogOut } from '../components/Logout';
+import { AuthState } from '../utils/authState';
 
 const Header = () => {
+  AuthState();
   return (
     <header className="header container">
       <div className="row">
