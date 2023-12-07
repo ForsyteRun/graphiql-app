@@ -1,8 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { Logo } from '../components';
 import { AUTH_ROUTE, REGISTRATION_ROUTE } from '../constants/route';
+import { LogOut } from '../components/Logout';
+import { AuthState } from '../utils/AuthState';
 
 const Header = () => {
+  AuthState();
   return (
     <header className="header container">
       <div className="row">
@@ -17,6 +20,8 @@ const Header = () => {
           <NavLink to={AUTH_ROUTE}>
             <button className="button">Вход</button>
           </NavLink>
+
+          <LogOut />
         </div>
       </div>
     </header>
