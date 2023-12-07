@@ -1,4 +1,4 @@
-.container-team {
+.team {
   background-color: #fff;
   border-radius: 5px;
   box-shadow:
@@ -30,8 +30,8 @@
   &__photo {
     border-radius: 50%;
     margin-left: 1rem;
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 150px;
+    max-width: 150px;
 
     @include media('s') {
       margin-left: 0;
