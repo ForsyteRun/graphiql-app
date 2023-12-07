@@ -1,0 +1,13 @@
+.welcome-list {
+  align-self: flex-end;
+
+  & li {
+    align-self: flex-end;
+    font-size: 1.5rem;
+    span {
+      display: inline-block;
+      font-weight: 700;
+      margin: 1rem;
+    }
+  }
+}
