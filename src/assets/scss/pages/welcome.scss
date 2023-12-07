@@ -3,8 +3,31 @@
   @include flexColumn(space-between);
   gap: 10rem;
   padding: 0 20px;
+  @include media('xl') {
+    gap: clamp(2rem, 16vw, 10rem);
+    padding: 0 10px;
+  }
 }
 
 .welcome-title {
   align-self: flex-start;
+  @include media('xl+') {
+    align-self: center;
+    overflow-wrap: break-word;
+  }
+
+  & h1 {
+    @include media('xl') {
+      font-size: clamp(14px, 3vw, 28px);
+    }
+  }
+  & span {
+    color: $top-links;
+    font-style: italic;
+    @include media('xl') {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+  }
 }
