@@ -1,17 +1,17 @@
-// Main.tsx
-
-import GraphiQL from '../components/GraphiQL';
-import { Footer } from '../layout/Footer';
-import { Header } from '../layout/Header';
+import { Outlet } from 'react-router-dom';
+import { Footer } from '../layout';
 
 const Main = () => {
   return (
-    <div className="tygh">
-      <Header />
-      <GraphiQL />
+    <>
+      <main>
+        <div className="tygh">
+          <Outlet />
+        </div>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 };
 
-export { Main };
+export default Main;

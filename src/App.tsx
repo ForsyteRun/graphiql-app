@@ -1,12 +1,18 @@
-import { BrowserRouter } from 'react-router-dom';
-import { AppRouter } from './components/AppRouter';
+import { Outlet } from 'react-router-dom';
+import { Header, Footer } from './layout';
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppRouter />
-    </BrowserRouter>
+    <div className="tygh">
+      <Header />
+      <main className="content">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
 }
+
+export default App;
 
 export { App };

@@ -13,7 +13,7 @@ import {
 import { FirebaseError } from 'firebase/app';
 import { MAIN_ROUTE } from '../constants/route';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../store/types';
+import { useAppDispatch } from '../store/types';
 import { setIsLogin } from '../store/slice/userSlice';
 
 const onRenderError = (error: FirebaseError) => {
@@ -28,6 +28,7 @@ const LoginForm: React.FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<DataLogin>({
     mode: 'onChange',
@@ -49,11 +50,10 @@ const LoginForm: React.FC = () => {
       navigate(MAIN_ROUTE);
     } catch (error) {
       dispatch(setIsLogin(false));
+      reset();
     }
   };
 
-  const { isLogin } = useAppSelector((state) => state.user);
-  console.log(isLogin);
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <label>Email </label>
@@ -85,4 +85,4 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export { LoginForm };
+export default LoginForm;

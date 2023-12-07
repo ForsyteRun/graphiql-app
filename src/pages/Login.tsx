@@ -1,14 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { REGISTRATION_ROUTE } from '../constants/route';
-import { Header } from '../layout/Header';
-import { Footer } from '../layout/Footer';
-import { LoginForm } from '../components/LoginForm';
+import { LoginForm } from '../components';
 
 const Login = () => {
   return (
-    <div className="tygh">
-      <Header />
-      <main className="main page container">
+    <>
+      <div className="main page container">
         <div className="authorization">
           <div className="authorization__container">
             <h1>Войти</h1>
@@ -20,10 +17,9 @@ const Login = () => {
             <NavLink to={REGISTRATION_ROUTE}>Создать учетную запись</NavLink>
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 
-export { Login };
+export default Login;
