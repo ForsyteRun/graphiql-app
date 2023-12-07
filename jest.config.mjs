@@ -3,9 +3,8 @@ export default {
   rootDir: './',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/src/__tests__/__mocks__/fileMock.ts',
+    '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/src/__mocks__/fileMock.ts',
     '\\.(css|less)$': 'identity-obj-proxy',
-    '\\.(mp4)$': '<rootDir>/src/__tests__/__mocks__/fileMock.ts',
   },
   coverageProvider: 'v8',
   collectCoverage: true,
