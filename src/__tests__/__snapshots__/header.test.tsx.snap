@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component should be equal Welcome Page snapshot 1`] = `
+<DocumentFragment>
+  <header
+    class="header container"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="top-logo"
+      >
+        <div
+          class="logo-container"
+        >
+          <a
+            aria-current="page"
+            class="active"
+            href="/"
+            title=""
+          >
+            <img
+              alt="logo"
+              class="logo-container__image"
+              title=""
+            />
+          </a>
+        </div>
+      </div>
+      <div
+        class="nav-bar__block"
+      >
+        <a
+          class=""
+          href="/registration"
+        >
+          <button
+            class="button button-second"
+          >
+            Регистрация
+          </button>
+        </a>
+        <a
+          class=""
+          href="/login"
+        >
+          <button
+            class="button"
+          >
+            Вход
+          </button>
+        </a>
+      </div>
+    </div>
+  </header>
+</DocumentFragment>
+`;
