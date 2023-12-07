@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component should be equal Welcome Page snapshot 1`] = `
+<DocumentFragment>
+  <footer
+    class="footer container"
+  >
+    <div
+      class="row"
+    >
+      2023
+    </div>
+  </footer>
+</DocumentFragment>
+`;
