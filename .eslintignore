@@ -1,7 +1,6 @@
 vite.config.ts
 jest.config.js
 jest.config.mjs
-jest-setup.ts
 commitlint.config.js
 node_modules/
 dist/
