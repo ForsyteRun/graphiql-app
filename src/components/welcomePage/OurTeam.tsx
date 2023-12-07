@@ -1,4 +1,4 @@
-import { developersData } from '../constants/developersData';
+import { developersData } from '../../constants/developersData';
 import TeamMember from './TeamMember';
 
 const OurTeam = () => {
