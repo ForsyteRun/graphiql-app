@@ -253,3 +253,8 @@ input[type='checkbox']:checked {
     @include font($family: $font-family-title, $size: $font-size-14);
   }
 }
+
+.closeModal {
+  left: 100%;
+  transition: all 1s ease;
+}
