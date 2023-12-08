@@ -1,14 +1,18 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import { Header } from '../layout';
-import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import store from '../store/store';
+import Header from '../layout/Header';
 
 describe('Header component', () => {
-  it('should be equal Welcome Page snapshot', () => {
+  it('should match Welcome Page snapshot', () => {
     const { asFragment } = render(
-      <MemoryRouter>
-        <Header />
-      </MemoryRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header />
+        </BrowserRouter>
+      </Provider>
     );
 
     expect(asFragment()).toMatchSnapshot();

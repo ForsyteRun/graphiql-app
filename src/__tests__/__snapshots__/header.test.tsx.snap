@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header component should be equal Welcome Page snapshot 1`] = `
+exports[`Header component should match Welcome Page snapshot 1`] = `
 <DocumentFragment>
   <header
     class="header container"
@@ -32,6 +32,27 @@ exports[`Header component should be equal Welcome Page snapshot 1`] = `
         class="nav-bar__block"
       >
         <a
+          aria-current="page"
+          class="active"
+          href="/"
+        >
+          <button
+            class="button button-second"
+          >
+            Приветствие
+          </button>
+        </a>
+        <a
+          class=""
+          href="/main"
+        >
+          <button
+            class="button button-second"
+          >
+            Главная
+          </button>
+        </a>
+        <a
           class=""
           href="/registration"
         >
@@ -51,6 +72,11 @@ exports[`Header component should be equal Welcome Page snapshot 1`] = `
             Вход
           </button>
         </a>
+        <button
+          class="button"
+        >
+          Выход
+        </button>
       </div>
     </div>
   </header>

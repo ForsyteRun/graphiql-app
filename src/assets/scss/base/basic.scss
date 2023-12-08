@@ -1,17 +1,17 @@
 /* basic */
 
 @font-face {
-  font-family: MuseoSans;
+  font-family: Futura;
   font-display: swap;
-  src: url(/src/assets/fonts/museo-sans/MuseoSans-500.woff);
+  src: url(/src/assets/fonts/futura/Futura-Maxi.otf);
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: MuseoSansBlack;
+  font-family: FuturaBold;
   font-display: swap;
-  src: url(/src/assets/fonts/museo-sans/MuseoSans-900.woff);
+  src: url(/src/assets/fonts/futura/Futura-Maxi-Bold.otf);
   font-weight: 900;
   font-style: normal;
 }
@@ -26,6 +26,15 @@
 :after,
 :before {
   box-sizing: border-box;
+}
+
+body {
+  @include flexColumn();
+  margin: 0;
+  color: $text-color;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 main {
@@ -190,17 +199,16 @@ input[type='checkbox']:checked {
 }
 
 #root {
-  @include flexColumn();
-  margin: 0;
-  color: $text-color;
-  min-width: 320px;
-  min-height: 100vh;
-  overflow-x: hidden;
+  margin: 0 auto;
+  text-align: center;
+  background: $background2;
+  background: $links1;
 }
 
 .tygh {
   @include flexColumn($align: inherit);
   width: 100vw;
+  min-height: 100vh;
   box-sizing: border-box;
 }
 
