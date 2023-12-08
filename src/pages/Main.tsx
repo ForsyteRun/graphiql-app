@@ -1,4 +1,3 @@
-import { Docs } from '../components';
 import Api from '../components/Editor/Api';
 import Editor from '../components/Editor/Editor';
 import Headers from '../components/Editor/Headers';
@@ -12,7 +11,6 @@ const Main = () => {
       <Headers />
       <Variables />
       <Editor />
-      <Docs />
     </div>
   );
 };
