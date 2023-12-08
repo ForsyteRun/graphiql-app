@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import PrivateWrapper from './components/PrivateWrapper';
+// import PrivateWrapper from './components/PrivateWrapper';
 import {
   AUTH_ROUTE,
   MAIN_ROUTE,
@@ -34,9 +34,9 @@ export const router = createBrowserRouter([
       {
         path: MAIN_ROUTE,
         element: (
-          <PrivateWrapper>
-            <Main />
-          </PrivateWrapper>
+          // <PrivateWrapper>
+          <Main />
+          // </PrivateWrapper>
         ),
       },
     ],
