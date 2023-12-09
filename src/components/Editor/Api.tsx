@@ -1,4 +1,14 @@
+import React, { useState } from 'react';
+
 const Api = () => {
+  const [apiTitle, setApiTitle] = useState<string>(
+    'https://rickandmortyapi.com/apiql'
+  );
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setApiTitle(event.target.value);
+  };
+
   return (
     <div className="api">
       <div className="api__content">
@@ -7,10 +17,11 @@ const Api = () => {
           className="api__input"
           placeholder="введите api"
           name="api"
-          value="https://rickandmortyapi.com/apiql"
+          value={apiTitle}
+          onChange={handleChange}
         />
       </div>
-      <div className="button">Отправить</div>
+      <button className="button">Отправить</button>
     </div>
   );
 };
