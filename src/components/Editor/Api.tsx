@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Api = () => {
   const [apiTitle, setApiTitle] = useState<string>(
-    'https://rickandmortyapi.com/apiql'
+    'https://rickandmortyapi.com/graphql'
   );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

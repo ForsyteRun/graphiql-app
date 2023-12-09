@@ -9,13 +9,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import store from './store/store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ToastContainer />
-      <RouterProvider
-        router={router}
-        // fallbackElement={<div className="lds-dual-ring"></div>}
-      />
-    </Provider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
+    <ToastContainer />
+    <RouterProvider
+      router={router}
+      // fallbackElement={<div className="lds-dual-ring"></div>}
+    />
+  </Provider>
+  // </React.StrictMode>
 );
