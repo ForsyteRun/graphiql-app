@@ -1,16 +1,11 @@
 import classNames from 'classnames';
-import useOpen from '../../hooks/useOpen';
+import useGetDocsFromApi from '../../hooks/useGetDocsFromApi';
 import { Button } from './components';
-import { useEffect } from 'react';
 
 const Docs = () => {
-  const { setOpen, open } = useOpen();
+  const { data, open, setOpen } = useGetDocsFromApi();
 
-  useEffect(() => {
-    if (open) {
-      console.log(111);
-    }
-  }, [open]);
+  console.log(data);
 
   return (
     <aside className={classNames('docs-container', { openModal: open })}>
