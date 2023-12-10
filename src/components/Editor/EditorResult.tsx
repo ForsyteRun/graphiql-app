@@ -6,8 +6,8 @@ interface EditorSectionProps {
 }
 
 const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
-  const { query, response } = useAppSelector((state) => state.request);
-  useGraphqlRequest(query);
+  const { response } = useAppSelector((state) => state.request);
+  useGraphqlRequest();
 
   return (
     <>
