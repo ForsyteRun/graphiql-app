@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAppSelector } from '../../store/types';
 import { useGraphqlRequest } from '../../utils/graphqlRequest';
-
 interface EditorSectionProps {
   title: string;
 }
@@ -9,7 +8,7 @@ interface EditorSectionProps {
 const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const { query, response } = useAppSelector((state) => state.request);
   useGraphqlRequest(query);
-  const result = JSON.stringify(JSON.parse(response), null, 2);
+
   return (
     <>
       <div className="editor__header">
@@ -17,7 +16,7 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
       </div>
       <div className="editor__content">
         <div className="editor__text">
-          <pre>{result}</pre>
+          <pre style={{ textAlign: 'left' }}> {response} </pre>
         </div>
       </div>
     </>
