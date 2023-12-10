@@ -1,4 +1,15 @@
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/types';
+import { setApi } from '../../store/slice/requestSlice';
+
 const Api = () => {
+  const { api } = useAppSelector((state) => state.request);
+  const dispatch = useAppDispatch();
+  const [value, setValue] = useState(api);
+
+  const handleSubmit = () => {
+    dispatch(setApi(value));
+  };
   return (
     <div className="api">
       <div className="api__content">
@@ -7,10 +18,13 @@ const Api = () => {
           className="api__input"
           placeholder="введите api"
           name="api"
-          value="https://rickandmortyapi.com/apiql"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
       </div>
-      <div className="button">Отправить</div>
+      <div className="button" onClick={handleSubmit}>
+        Отправить
+      </div>
     </div>
   );
 };

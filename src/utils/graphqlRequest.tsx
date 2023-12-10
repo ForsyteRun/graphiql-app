@@ -19,7 +19,7 @@ export const useGraphqlRequest = (query: string) => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     getData(query).then((response) => {
-      dispatch(setResponse(JSON.stringify(response)));
+      dispatch(setResponse(JSON.stringify(response, null, 2)));
     });
   }, [dispatch, getData, query]);
 };
