@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { sectionData } from '../../constants/editor';
+import { useAppDispatch, useAppSelector } from '../../store/types';
+import { setQuery } from '../../store/slice/requestSlice';
 
 interface EditorSectionProps {
   title: string;
@@ -9,6 +11,8 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const countLines = (text: string) => {
     return text.split('\n').length;
   };
+
+  const { query } = useAppSelector((state) => state.request);
 
   const initialQuery = `query {
   characters(page: 2, filter: { name: "rick" }) {
@@ -27,9 +31,12 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   }
 }`;
 
+  const dispatch = useAppDispatch();
+
   const handleQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const lines = countLines(event.target.value);
     setNumLines(lines);
+    dispatch(setQuery(event.target.value));
   };
 
   const [numLines, setNumLines] = useState(countLines(initialQuery));
@@ -49,8 +56,8 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
           {sectionData.query.label === title && (
             <textarea
               className="editor__query"
-              value={initialQuery}
               onChange={handleQueryChange}
+              value={query}
               rows={numLines}
             />
           )}
