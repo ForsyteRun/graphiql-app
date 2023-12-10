@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { introspectionQuery } from '../constants/introspectionQuery';
-import useOpen from './useOpen';
 
 const useGetDocsFromApi = () => {
-  const [data, setData] = useState<string>('');
-  const { setOpen, open } = useOpen();
+  const [data, setData] = useState<string | null>(null);
+  const [hoverButton, setHoverButton] = useState(false);
 
   const getDocsData = useCallback(
     async <T extends string>(query: T): Promise<T> => {
@@ -23,7 +22,7 @@ const useGetDocsFromApi = () => {
   );
 
   useEffect(() => {
-    if (open) {
+    if (hoverButton && !data) {
       const fetchDocs = async () => {
         try {
           const res = await getDocsData(introspectionQuery);
@@ -35,9 +34,9 @@ const useGetDocsFromApi = () => {
       fetchDocs();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  }, [hoverButton]);
 
-  return { data, open, setOpen };
+  return { data, setHoverButton };
 };
 
 export default useGetDocsFromApi;
