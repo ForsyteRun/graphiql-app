@@ -1,13 +1,20 @@
 import classNames from 'classnames';
 import useGetDocsFromApi from '../../hooks/useGetDocsFromApi';
 import { useEffect, useState } from 'react';
+import { buildClientSchema } from 'graphql';
 
 const Docs = () => {
-  const { data, setHoverButton } = useGetDocsFromApi();
-  const [open, setOpen] = useState(false);
+  const {
+    query: { data },
+    setHoverButton,
+  } = useGetDocsFromApi();
+  const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(data);
+    if (data) {
+      const response = buildClientSchema(data);
+      console.log(response);
+    }
   }, [data]);
 
   return (
