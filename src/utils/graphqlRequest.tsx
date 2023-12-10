@@ -6,6 +6,7 @@ export const useGraphqlRequest = () => {
   const { api, variables, headers, query } = useAppSelector(
     (state) => state.request
   );
+
   const requestHeaders = headers as Headers;
   const getData = useCallback(
     async (
@@ -17,7 +18,7 @@ export const useGraphqlRequest = () => {
       return await fetch(api, {
         method: 'POST',
         headers: requestHeaders as Headers,
-        body: JSON.stringify({ query: query, variables: variables }),
+        body: JSON.stringify({ query, variables: JSON.parse(variables) }),
       }).then((data) => data.json());
     },
     []
