@@ -2,26 +2,47 @@ import classNames from 'classnames';
 import useGetDocsFromApi from '../../hooks/useGetDocsFromApi';
 import { useEffect, useState } from 'react';
 import { buildClientSchema } from 'graphql';
+import useSchema from '../../hooks/useSchema';
 
 const Docs = () => {
+  const [open, setOpen] = useState<boolean>(false);
   const {
     query: { data },
     setHoverButton,
   } = useGetDocsFromApi();
-  const [open, setOpen] = useState<boolean>(false);
+  const { rootTypes, fieldsTypes, setSchema } = useSchema();
 
   useEffect(() => {
     if (data) {
       const response = buildClientSchema(data);
-      console.log(response);
+      setSchema(response);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   return (
-    <aside className={classNames('docs-container', { openModal: open })}>
-      qqqscscscscscscscscs qqqscscscscscscscscs qqqscscscscscscscscs
-      qqqscscscscscscscscs qqqscscscscscscscscs qqqscscscscscscscscs
-      qqqscscscscscscscscs
+    <aside className={classNames({ openModal: open })}>
+      <div className="docs-container">
+        <ul>
+          <li>{rootTypes && rootTypes.name}</li>
+        </ul>
+        <ul
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          {fieldsTypes &&
+            Object.keys(fieldsTypes).map(
+              (value) =>
+                !value.includes('_') && (
+                  <li key={value} style={{ margin: '2rem' }}>
+                    {value}
+                  </li>
+                )
+            )}
+        </ul>
+      </div>
       <button
         className="docs-button"
         onMouseEnter={() => setHoverButton(true)}
