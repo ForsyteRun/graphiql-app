@@ -1,18 +1,28 @@
 import classNames from 'classnames';
 import useGetDocsFromApi from '../../hooks/useGetDocsFromApi';
-import { Button } from './components';
+import { useEffect, useState } from 'react';
 
 const Docs = () => {
-  const { data, open, setOpen } = useGetDocsFromApi();
+  const { data, setHoverButton } = useGetDocsFromApi();
+  const [open, setOpen] = useState(false);
 
-  console.log(data);
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <aside className={classNames('docs-container', { openModal: open })}>
       qqqscscscscscscscscs qqqscscscscscscscscs qqqscscscscscscscscs
       qqqscscscscscscscscs qqqscscscscscscscscs qqqscscscscscscscscs
       qqqscscscscscscscscs
-      <Button setOpen={setOpen} open={open} />
+      <button
+        className="docs-button"
+        onMouseEnter={() => setHoverButton(true)}
+        onMouseLeave={() => setHoverButton(false)}
+        onClick={() => setOpen(!open)}
+      >
+        Docs
+      </button>
     </aside>
   );
 };
