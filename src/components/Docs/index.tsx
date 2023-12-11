@@ -13,6 +13,11 @@ const Docs = memo(() => {
   } = useGetDocsFromApi();
   const { rootSchema, setSchema, setRootSchema } = useSchema();
 
+  const handleChangeField = (data: GraphQLNamedType) => {
+    setFieldsTypes({ [data.name]: data });
+    setRootTypes(data as GraphQLObjectType);
+  };
+
   useEffect(() => {
     if (data) {
       const response = buildClientSchema(data);
