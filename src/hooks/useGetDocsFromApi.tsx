@@ -5,7 +5,8 @@ import { introspectionQuery } from '../constants/introspectionQuery';
 interface IQuery {
   data: IntrospectionQuery | null;
 }
-
+// https://beta.pokeapi.co/graphql/v1beta
+// 'https://rickandmortyapi.com/graphql'
 const useGetDocsFromApi = () => {
   const [query, setQuery] = useState<IQuery>({ data: null });
   const [hoverButton, setHoverButton] = useState<boolean>(false);
