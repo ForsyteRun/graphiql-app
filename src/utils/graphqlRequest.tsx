@@ -32,7 +32,9 @@ export const useGraphqlRequest = () => {
         return data;
       } catch (error) {
         error &&
-          dispatch(setErrorMessage('Response not successful: check your API'));
+          dispatch(
+            setErrorMessage('Response not successful: check your request')
+          );
       }
     },
     [dispatch]
