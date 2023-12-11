@@ -32,11 +32,16 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
 }`;
 
   const dispatch = useAppDispatch();
+  const [value, setValue] = useState(query);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const lines = countLines(event.target.value);
     setNumLines(lines);
-    dispatch(setQuery(event.target.value));
+    setValue(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    dispatch(setQuery(value));
   };
 
   const [numLines, setNumLines] = useState(countLines(initialQuery));
@@ -57,10 +62,13 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
             <textarea
               className="editor__query"
               onChange={handleQueryChange}
-              value={query}
+              value={value}
               rows={numLines}
             />
           )}
+        </div>
+        <div className="button" onClick={handleSubmit}>
+          Применить
         </div>
       </div>
     </>
