@@ -13,15 +13,27 @@ const FieldSchema = ({ schema, setRootSchema }: IFieldSchema) => {
 
   const handleClick = useCallback(
     (value: GraphQLObjectType | GraphQLFieldMap<object, object>) => {
-      console.log(value);
-
-      if (typeof value === 'object' && typeof value.getFields === 'function') {
+      if (typeof value === 'string' || typeof value === 'undefined') {
+        return;
+      } else if (
+        typeof value === 'object' &&
+        value instanceof GraphQLObjectType
+      ) {
         const data = value.getFields();
 
         const modiFyData: IRootSchema = {
           fields: { ...data } as unknown as FieldsType,
         };
 
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (
+        typeof value === 'object' &&
+        !(value instanceof GraphQLObjectType)
+      ) {
+        const modiFyData: IRootSchema = {
+          fields: { ...value } as unknown as FieldsType,
+        };
         setRootSchema(modiFyData);
         setIsDescription(false);
       } else {
