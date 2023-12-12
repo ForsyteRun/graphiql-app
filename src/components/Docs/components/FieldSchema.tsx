@@ -53,6 +53,30 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
         const modiFyData: IRootSchema = {
           fields: { [value.name]: { ...value } } as unknown as FieldsType,
         };
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (isLeafType(value)) {
+        const modiFyData: IRootSchema = {
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+        };
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (isLeafType(value)) {
+        const modiFyData: IRootSchema = {
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+        };
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (isLeafType(value)) {
+        const modiFyData: IRootSchema = {
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+        };
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (isLeafType(value)) {
+        const modiFyData: IRootSchema = {
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+        };
 
         setRootSchema(modiFyData);
         setIsDescription(true);
