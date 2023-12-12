@@ -13,10 +13,16 @@ const Docs = memo(() => {
   } = useGetDocsFromApi();
   const { rootSchema, setSchema, setRootSchema } = useSchema();
 
-  const handleChangeField = (data: GraphQLNamedType) => {
-    setFieldsTypes({ [data.name]: data });
-    setRootTypes(data as GraphQLObjectType);
-  };
+  // const [selectFfield, setSelectField] =
+  //   useState<GraphQLFieldMap<object, object>>();
+
+  // const handleChangeField = (data: IRootSchema) => {
+  //   // const modiFyData: IRootSchema = {
+  //   //   fields: { ...data } as unknown as FieldsType,
+  //   // };
+
+  //   setRootSchema(data);
+  // };
 
   useEffect(() => {
     if (data) {
@@ -26,6 +32,15 @@ const Docs = memo(() => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  // useEffect(() => {
+  //   if (rootSchema) {
+  //     const fieldsSchema = Object.entries(rootSchema.fields as FieldsType);
+  //     setFields(fieldsSchema);
+  //   }
+  // }, [rootSchema]);
+
+  // console.log(rootSchema, fields);
 
   return (
     <aside className={classNames({ openModal: open })}>
