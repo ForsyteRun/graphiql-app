@@ -15,3 +15,4 @@ export const TOAST_SIGN_UP_ERROR =
 export const TOAST_REQUEST_PENDING = 'Request in...';
 export const TOAST_REQUEST_SUCCESS = 'Request in successful!';
 export const TOAST_REQUSET_ERROR = 'Incorrect requset. Please try again!';
+export const TOAST_API_ERROR = 'Incorrect API. Please try again!';

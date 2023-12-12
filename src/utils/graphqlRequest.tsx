@@ -2,18 +2,15 @@ import { useCallback, useEffect } from 'react';
 import { setResponse } from '../store/slice/requestSlice';
 import { useAppDispatch, useAppSelector } from '../store/types';
 import { checkVariables } from './checkVariables';
-import {
-  TOAST_INTERNAL_SERVER_ERROR,
-  TOAST_REQUSET_ERROR,
-} from '../constants/toastsConst';
+import { TOAST_API_ERROR, TOAST_REQUSET_ERROR } from '../constants/toastsConst';
 import { toastForNoConnection, toastRequest } from './toasts';
 import { ToastContentProps } from 'react-toastify';
 
 const onRenderError = (error: Partial<ToastContentProps>) => {
-  if (error.data) {
-    return TOAST_REQUSET_ERROR;
+  if (error.data instanceof TypeError) {
+    return TOAST_API_ERROR;
   } else {
-    return TOAST_INTERNAL_SERVER_ERROR;
+    return TOAST_REQUSET_ERROR;
   }
 };
 
@@ -60,7 +57,7 @@ export const useGraphqlRequest = () => {
         );
         return response.json();
       } catch (error) {
-        console.log(error);
+        return;
       }
     },
     [getData]
