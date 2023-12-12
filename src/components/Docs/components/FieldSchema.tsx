@@ -1,70 +1,136 @@
-import { ObjMap } from 'graphql/jsutils/ObjMap';
-import { GraphQLNamedType, GraphQLObjectType } from 'graphql/type';
-import { memo } from 'react';
-import DetailFieldSchema from './DetailFieldSchema';
+import { GraphQLFieldMap, GraphQLObjectType } from 'graphql/type';
+import { useCallback, useEffect, useState } from 'react';
+import { FieldsType, IRootSchema, Maybe } from '../../../hooks/useSchema';
+import DetailedField from './DetailedField';
 
 interface IFieldSchema {
-  root?: boolean;
-  data: ObjMap<GraphQLNamedType>;
-  isRootSchema: boolean;
-  handleChangeField: (value: GraphQLObjectType) => void;
+  schema: Maybe<IRootSchema>;
+  setRootSchema: (value: IRootSchema) => void;
 }
-const FieldSchema = memo(
-  ({ data, isRootSchema, handleChangeField }: IFieldSchema) => {
-    const handleClick = (key: string) => {
-      handleChangeField(data[key] as GraphQLObjectType);
-    };
+const FieldSchema = ({ schema, setRootSchema }: IFieldSchema) => {
+  const [fields, setFields] = useState<[string, GraphQLObjectType][]>();
+  const [isDescription, setIsDescription] = useState(false);
 
-    const rootSchema = Object.entries(data) as [string, GraphQLObjectType][];
-    let rootKeys: string[] = [];
+  const handleClick = useCallback(
+    (value: GraphQLObjectType | GraphQLFieldMap<object, object>) => {
+      console.log(value);
 
-    rootSchema.forEach((obj: [string, GraphQLObjectType]) => {
-      const [key] = obj;
-      if (key.includes('_')) {
-        return;
+      if (typeof value === 'object' && typeof value.getFields === 'function') {
+        const data = value.getFields();
+
+        const modiFyData: IRootSchema = {
+          fields: { ...data } as unknown as FieldsType,
+        };
+
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else {
+        const modiFyData: IRootSchema = {
+          fields: { ...value } as unknown as FieldsType,
+        };
+
+        setRootSchema(modiFyData);
+        setIsDescription(true);
       }
-      rootKeys = [...rootKeys, key];
-    });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [schema]
+  );
 
-    return (
-      <>
+  useEffect(() => {
+    if (schema) {
+      const fieldsSchema = Object.entries(schema.fields as FieldsType);
+      setFields(fieldsSchema);
+    }
+  }, [schema]);
+
+  // let rootKeys: string[] = [];
+
+  // rootSchema.forEach((obj: [string, GraphQLObjectType]) => {
+  //   const [key] = obj;
+  //   if (key.includes('_')) {
+  //     return;
+  //   }
+  //   rootKeys = [...rootKeys, key];
+  // });
+
+  return (
+    <>
+      {schema?.queries && (
         <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.5rem',
-            justifyContent: 'flex-start',
+          onClick={() => {
+            if (!schema.queries) return;
+            const { fields } = schema.queries;
+            handleClick(fields);
           }}
         >
-          {/* {!root && <div>Field name: {data?.name}2</div>}
-          {!root && <div>Field description: {data?.description}</div>} */}
-          {/* {!root && typeof value?.getFields === 'function' && (
-            <>
-              <span>Fields:</span>
-              <ul>
-                {Object.entries(value.getFields()).map(([key, value]) => (
-                  <li key={key}>{key}</li>
-                ))}
-              </ul>
-            </>
-          )} */}
-          {rootKeys.map((key) => (
-            <button key={key} onClick={() => handleClick(key)}>
-              {key}
-            </button>
-          ))}
-          {!isRootSchema &&
-            rootKeys.map((key: string) => (
-              <DetailFieldSchema
-                key={key}
-                value={data[key] as GraphQLObjectType}
-                handleChangeField={handleChangeField}
-              />
-            ))}
+          Main query: {schema?.queries.name}
         </div>
-      </>
-    );
-  }
-);
+      )}
+      <ul>
+        {fields &&
+          fields.map(([key, value]: [string, GraphQLObjectType]) => (
+            <li
+              key={key}
+              onClick={
+                isDescription
+                  ? undefined
+                  : () => handleClick(value as GraphQLObjectType)
+              }
+            >
+              {isDescription ? (
+                typeof value !== 'object' ? (
+                  <>
+                    <DetailedField value={value} />
+                  </>
+                ) : null
+              ) : (
+                <span>{key}</span>
+              )}
+            </li>
+          ))}
+      </ul>
+    </>
+  );
+
+  // return (
+  //   <>
+  //     <div
+  //       style={{
+  //         display: 'flex',
+  //         flexDirection: 'column',
+  //         gap: '0.5rem',
+  //         justifyContent: 'flex-start',
+  //       }}
+  //     >
+  //       {/* {!root && <div>Field name: {data?.name}2</div>}
+  //       {!root && <div>Field description: {data?.description}</div>} */}
+  //       {/* {!root && typeof value?.getFields === 'function' && (
+  //         <>
+  //           <span>Fields:</span>
+  //           <ul>
+  //             {Object.entries(value.getFields()).map(([key, value]) => (
+  //               <li key={key}>{key}</li>
+  //             ))}
+  //           </ul>
+  //         </>
+  //       )} */}
+  //       {rootKeys.map((key) => (
+  //         <button key={key} onClick={() => handleClick(key)}>
+  //           {key}
+  //         </button>
+  //       ))}
+  //       {!isRootSchema &&
+  //         rootKeys.map((key: string) => (
+  //           <DetailFieldSchema
+  //             key={key}
+  //             value={data[key] as GraphQLObjectType}
+  //             handleChangeField={handleChangeField}
+  //           />
+  //         ))}
+  //     </div>
+  //   </>
+  // );
+};
 
 export default FieldSchema;

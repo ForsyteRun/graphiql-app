@@ -1,62 +1,87 @@
-import { GraphQLNamedType, GraphQLObjectType, GraphQLSchema } from 'graphql';
-import { Maybe } from 'graphql/jsutils/Maybe';
+import {
+  GraphQLFieldMap,
+  GraphQLNamedType,
+  GraphQLObjectType,
+  GraphQLSchema,
+} from 'graphql';
 import { ObjMap } from 'graphql/jsutils/ObjMap';
 import { useEffect, useState } from 'react';
 
+export interface IRootSchema {
+  queries?: IQueries;
+  fields: FieldsType;
+}
+
+interface IQueries {
+  name: GraphQLObjectType['name'];
+  description: GraphQLObjectType['description'];
+  fields: GraphQLFieldMap<object, object>;
+}
+
+export type FieldsType = Record<string, GraphQLObjectType>;
+export type Maybe<T> = undefined | T;
+
 const useSchema = () => {
   const [schema, setSchema] = useState<Maybe<GraphQLSchema>>();
-  const [rootTypes, setRootTypes] = useState<GraphQLObjectType | null>(null);
+  const [rootSchema, setRootSchema] = useState<Maybe<IRootSchema>>();
+
   const [fieldsTypes, setFieldsTypes] =
     useState<ObjMap<GraphQLNamedType> | null>(null);
 
-  const [isRootSchema, setIsRootSchema] = useState<boolean>(false);
+  // const getMatchField = (
+  //   globalFields: ObjMap<GraphQLNamedType> | null | undefined,
+  //   field: ObjMap<GraphQLNamedType> | null
+  //   // deep = 0
+  // ) => {
+  //   if (!globalFields || !field) {
+  //     return;
+  //   }
 
-  const getMatchField = (
-    globalFields: ObjMap<GraphQLNamedType> | null | undefined,
-    field: ObjMap<GraphQLNamedType> | null
-    // deep = 0
-  ) => {
-    if (!globalFields || !field) {
-      return;
-    }
+  //   const rootState = Object.is(globalFields, field);
 
-    const rootState = Object.is(globalFields, field);
+  //   setIsRootSchema(rootState);
 
-    setIsRootSchema(rootState);
+  //   if (rootState) {
+  //     return;
+  //   }
 
-    if (rootState) {
-      return;
-    }
-
-    for (const key in globalFields) {
-      if (Object.is(globalFields[key], field[key])) {
-      }
-    }
-  };
+  //   for (const key in globalFields) {
+  //     if (Object.is(globalFields[key], field[key])) {
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     if (schema) {
-      const mainTypes = schema.getQueryType()!;
-      const fieldsTypes = schema.getTypeMap()!;
+      const queryType = schema.getQueryType()!;
+      const namedTypes = schema.getTypeMap();
 
-      setRootTypes(mainTypes);
-      setFieldsTypes(fieldsTypes);
+      const rootSchema: IRootSchema = {
+        queries: {
+          name: queryType.name,
+          description: queryType.description,
+          fields: queryType.getFields(),
+        },
+        fields: namedTypes as FieldsType,
+      };
+      //
+      setRootSchema(rootSchema);
+      // setFieldsTypes(namedTypes);
     }
   }, [schema]);
 
-  useEffect(() => {
-    const mainTypes = schema && schema.getTypeMap()!;
+  // useEffect(() => {
+  //   const mainTypes = schema && schema.getTypeMap()!;
 
-    getMatchField(mainTypes, fieldsTypes);
-  }, [fieldsTypes, schema]);
+  //   getMatchField(mainTypes, fieldsTypes);
+  // }, [fieldsTypes, schema]);
 
   return {
-    rootTypes,
-    isRootSchema,
+    rootSchema,
     fieldsTypes,
     setSchema,
-    setRootTypes,
     setFieldsTypes,
+    setRootSchema,
   };
 };
 
