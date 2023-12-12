@@ -25,6 +25,8 @@ const onRenderError = (error: FirebaseError) => {
 };
 
 const RegistrationForm: React.FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -34,9 +36,6 @@ const RegistrationForm: React.FC = () => {
     mode: 'onChange',
     resolver: yupResolver(schema),
   });
-
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const onSubmit = async (data: DataForm) => {
     try {
