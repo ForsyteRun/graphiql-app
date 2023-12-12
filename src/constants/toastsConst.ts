@@ -12,3 +12,6 @@ export const TOAST_INTERNAL_SERVER_ERROR =
   'Internal server error. Please try again!';
 export const TOAST_SIGN_UP_ERROR =
   'This email already exists. Please log in or use another email address!';
+export const TOAST_REQUEST_PENDING = 'Request in...';
+export const TOAST_REQUEST_SUCCESS = 'Request in successful!';
+export const TOAST_REQUSET_ERROR = 'Incorrect requset. Please try again!';
