@@ -1,6 +1,15 @@
-import { GraphQLFieldMap, GraphQLObjectType } from 'graphql/type';
+import {
+  GraphQLObjectType,
+  GraphQLOutputType,
+  isObjectType,
+} from 'graphql/type';
 import { useCallback, useEffect, useState } from 'react';
-import { FieldsType, IRootSchema, Maybe } from '../../../hooks/useSchema';
+import {
+  FieldsType,
+  IQueries,
+  IRootSchema,
+  Maybe,
+} from '../../../hooks/useSchema';
 import DetailedField from './DetailedField';
 
 interface IFieldSchema {
@@ -12,13 +21,10 @@ const FieldSchema = ({ schema, setRootSchema }: IFieldSchema) => {
   const [isDescription, setIsDescription] = useState(false);
 
   const handleClick = useCallback(
-    (value: GraphQLObjectType | GraphQLFieldMap<object, object>) => {
+    (value: { [key: string]: GraphQLOutputType } | GraphQLObjectType) => {
       if (typeof value === 'string' || typeof value === 'undefined') {
         return;
-      } else if (
-        typeof value === 'object' &&
-        value instanceof GraphQLObjectType
-      ) {
+      } else if (isObjectType(value)) {
         const data = value.getFields();
 
         const modiFyData: IRootSchema = {
@@ -66,41 +72,73 @@ const FieldSchema = ({ schema, setRootSchema }: IFieldSchema) => {
   //   rootKeys = [...rootKeys, key];
   // });
 
+  const modifyType = (
+    schemaObj: IQueries | FieldsType
+  ): { [key: string]: GraphQLOutputType } => {
+    const { fields } = schemaObj;
+
+    const data = Object.entries(fields);
+
+    const queries = data.map(([queryKey, queryValue]) => {
+      return {
+        [queryKey]: { ...queryValue },
+      } as unknown as GraphQLOutputType;
+    });
+
+    const combinedObject = queries.reduce(
+      (acc, curr) => {
+        const [key, innerObject] = Object.entries(curr)[0] as [
+          string,
+          GraphQLOutputType,
+        ];
+        acc[key] = innerObject;
+        return acc;
+      },
+      {} as { [key: string]: GraphQLOutputType }
+    );
+
+    return combinedObject;
+  };
+
   return (
     <>
       {schema?.queries && (
         <div
           onClick={() => {
-            if (!schema.queries) return;
-            const { fields } = schema.queries;
-            handleClick(fields);
+            if (schema.queries) {
+              const value = modifyType(schema.queries);
+              handleClick(value);
+            }
           }}
         >
           Main query: {schema?.queries.name}
         </div>
       )}
       <ul>
+        {/* Assuming 'fields' is defined somewhere in your code */}
         {fields &&
-          fields.map(([key, value]: [string, GraphQLObjectType]) => (
-            <li
-              key={key}
-              onClick={
-                isDescription
-                  ? undefined
-                  : () => handleClick(value as GraphQLObjectType)
-              }
-            >
-              {isDescription ? (
-                typeof value !== 'object' ? (
+          fields.map(
+            (
+              [fieldName, fieldType]: [string, GraphQLObjectType],
+              index: number
+            ) => (
+              <li key={index}>
+                {isDescription ? (
                   <>
-                    <DetailedField value={value} />
+                    <DetailedField value={fieldType} />
                   </>
-                ) : null
-              ) : (
-                <span>{key}</span>
-              )}
-            </li>
-          ))}
+                ) : (
+                  <span
+                    onClick={() => {
+                      handleClick(fieldType);
+                    }}
+                  >
+                    {fieldName}
+                  </span>
+                )}
+              </li>
+            )
+          )}
       </ul>
     </>
   );
