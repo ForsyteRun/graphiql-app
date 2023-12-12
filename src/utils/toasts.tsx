@@ -1,9 +1,11 @@
-import { toast } from 'react-toastify';
+import { ToastContentProps, toast } from 'react-toastify';
 import { FirebaseError } from 'firebase/app';
 import {
   TOAST_LOG_OUT_PENDING,
   TOAST_LOG_OUT_SUCCESS,
   TOAST_NO_CONNECTION,
+  TOAST_REQUEST_PENDING,
+  TOAST_REQUEST_SUCCESS,
   TOAST_SIGN_IN_PENDING,
   TOAST_SIGN_IN_SUCCESS,
   TOAST_SIGN_UP_PENDING,
@@ -67,5 +69,21 @@ export const toastLogout = async (
     },
   });
 
+  return response;
+};
+
+export const toastRequest = async (
+  onRenderError: (error: Partial<ToastContentProps>) => string,
+  getData: () => Promise<Response> | (() => Promise<Response>)
+) => {
+  const response = await toast.promise(getData(), {
+    pending: TOAST_REQUEST_PENDING,
+    success: TOAST_REQUEST_SUCCESS,
+    error: {
+      render(error) {
+        return onRenderError(error as Partial<ToastContentProps>);
+      },
+    },
+  });
   return response;
 };

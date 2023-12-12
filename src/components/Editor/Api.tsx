@@ -4,7 +4,6 @@ import { setApi } from '../../store/slice/requestSlice';
 
 const Api = () => {
   const { api } = useAppSelector((state) => state.request);
-  const { errorMessage } = useAppSelector((state) => state.error);
 
   const dispatch = useAppDispatch();
   const [value, setValue] = useState(api);
@@ -24,7 +23,6 @@ const Api = () => {
           onChange={(e) => setValue(e.target.value)}
         />
       </div>
-      {errorMessage}
       <div className="button" onClick={handleSubmit}>
         Отправить
       </div>
