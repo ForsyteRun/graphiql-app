@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import { IFormLogin } from '../utils/schema';
 import { DataLogin } from '../types/types';
 import { schemaLogin } from '../utils/schema';
 import { logInWithEmailAndPassword } from '../firebase/firebase';
@@ -29,8 +30,8 @@ const LoginForm: React.FC = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid },
-  } = useForm<DataLogin>({
+    formState: { errors },
+  } = useForm<IFormLogin>({
     mode: 'onChange',
     resolver: yupResolver(schemaLogin),
   });
@@ -78,7 +79,7 @@ const LoginForm: React.FC = () => {
         className="form__input"
       />
 
-      <button className="form__btn" type="submit" disabled={!isValid}>
+      <button className="form__btn" type="submit">
         Submit
       </button>
     </form>
