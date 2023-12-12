@@ -8,7 +8,6 @@ interface EditorSectionProps {
 const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const { response } = useAppSelector((state) => state.request);
   useGraphqlRequest();
-
   return (
     <>
       <div className="editor__header">
