@@ -119,4 +119,44 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   // );
 };
 
+  // return (
+  //   <>
+  //     <div
+  //       style={{
+  //         display: 'flex',
+  //         flexDirection: 'column',
+  //         gap: '0.5rem',
+  //         justifyContent: 'flex-start',
+  //       }}
+  //     >
+  //       {/* {!root && <div>Field name: {data?.name}2</div>}
+  //       {!root && <div>Field description: {data?.description}</div>} */}
+  //       {/* {!root && typeof value?.getFields === 'function' && (
+  //         <>
+  //           <span>Fields:</span>
+  //           <ul>
+  //             {Object.entries(value.getFields()).map(([key, value]) => (
+  //               <li key={key}>{key}</li>
+  //             ))}
+  //           </ul>
+  //         </>
+  //       )} */}
+  //       {rootKeys.map((key) => (
+  //         <button key={key} onClick={() => handleClick(key)}>
+  //           {key}
+  //         </button>
+  //       ))}
+  //       {!isRootSchema &&
+  //         rootKeys.map((key: string) => (
+  //           <DetailFieldSchema
+  //             key={key}
+  //             value={data[key] as GraphQLObjectType}
+  //             handleChangeField={handleChangeField}
+  //           />
+  //         ))}
+  //     </div>
+  //   </>
+  // );
+};
+
 export default FieldSchema;
