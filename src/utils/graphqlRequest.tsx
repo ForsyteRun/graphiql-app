@@ -18,11 +18,11 @@ const onRenderError = (error: Partial<ToastContentProps>) => {
 };
 
 export const useGraphqlRequest = () => {
+  const dispatch = useAppDispatch();
   const { api, variables, headers, query } = useAppSelector(
     (state) => state.request
   );
   const requestHeaders = headers as Headers;
-  const dispatch = useAppDispatch();
 
   const getData = useCallback(
     async (

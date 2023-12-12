@@ -26,6 +26,9 @@ const onRenderError = (error: FirebaseError) => {
 };
 
 const LoginForm: React.FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const {
     register,
     handleSubmit,
@@ -35,9 +38,6 @@ const LoginForm: React.FC = () => {
     mode: 'onChange',
     resolver: yupResolver(schemaLogin),
   });
-
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const onSubmit = async (data: DataLogin) => {
     try {
