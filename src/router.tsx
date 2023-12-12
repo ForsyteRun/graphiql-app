@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-// import PrivateWrapper from './components/PrivateWrapper';
 import {
   AUTH_ROUTE,
   MAIN_ROUTE,
@@ -9,6 +8,7 @@ import {
   WELCOME_ROUTE,
 } from './constants/route';
 import { Login, Main, NotFound, Registration, Welcome } from './pages';
+import AuthRequired from './components/AuthRequired';
 
 export const router = createBrowserRouter([
   {
@@ -34,9 +34,9 @@ export const router = createBrowserRouter([
       {
         path: MAIN_ROUTE,
         element: (
-          // <PrivateWrapper>
-          <Main />
-          // </PrivateWrapper>
+          <AuthRequired>
+            <Main />
+          </AuthRequired>
         ),
       },
     ],
