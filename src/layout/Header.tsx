@@ -8,9 +8,11 @@ import {
 } from '../constants/route';
 import { LogOut } from '../components/Logout';
 import { AuthState } from '../utils/AuthState';
+import { useAppSelector } from '../store/types';
 
 const Header = () => {
   AuthState();
+  const { isAuth } = useAppSelector((state) => state.user);
   return (
     <header className="header container">
       <div className="row">
@@ -21,16 +23,23 @@ const Header = () => {
           <NavLink to={WELCOME_ROUTE}>
             <button className="button button-second">Приветствие</button>
           </NavLink>
-          <NavLink to={MAIN_ROUTE}>
-            <button className="button button-second">Главная</button>
-          </NavLink>
-          <NavLink to={REGISTRATION_ROUTE}>
-            <button className="button button-second">Регистрация</button>
-          </NavLink>
-          <NavLink to={AUTH_ROUTE}>
-            <button className="button">Вход</button>
-          </NavLink>
-          <LogOut />
+          {isAuth ? (
+            <>
+              <NavLink to={MAIN_ROUTE}>
+                <button className="button button-second">Главная</button>
+              </NavLink>
+              <LogOut />
+            </>
+          ) : (
+            <>
+              <NavLink to={REGISTRATION_ROUTE}>
+                <button className="button button-second">Регистрация</button>
+              </NavLink>
+              <NavLink to={AUTH_ROUTE}>
+                <button className="button">Вход</button>
+              </NavLink>
+            </>
+          )}
         </div>
       </div>
     </header>
