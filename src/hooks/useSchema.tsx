@@ -12,7 +12,7 @@ export interface IRootSchema {
   fields: FieldsType;
 }
 
-interface IQueries {
+export interface IQueries {
   name: GraphQLObjectType['name'];
   description: GraphQLObjectType['description'];
   fields: GraphQLFieldMap<object, object>;
