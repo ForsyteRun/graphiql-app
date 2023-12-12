@@ -1,11 +1,7 @@
 import classNames from 'classnames';
+import { buildClientSchema } from 'graphql';
+import { memo, useEffect, useState } from 'react';
 import useGetDocsFromApi from '../../hooks/useGetDocsFromApi';
-import { useEffect, useState, memo } from 'react';
-import {
-  GraphQLNamedType,
-  GraphQLObjectType,
-  buildClientSchema,
-} from 'graphql';
 import useSchema from '../../hooks/useSchema';
 import { FieldSchema } from './components';
 
@@ -15,19 +11,18 @@ const Docs = memo(() => {
     query: { data },
     setHoverButton,
   } = useGetDocsFromApi();
-  const {
-    // rootTypes,
-    isRootSchema,
-    fieldsTypes,
-    setSchema,
-    setRootTypes,
-    setFieldsTypes,
-  } = useSchema();
+  const { rootSchema, setSchema, setRootSchema } = useSchema();
 
-  const handleChangeField = (data: GraphQLNamedType) => {
-    setFieldsTypes({ [data.name]: data });
-    setRootTypes(data as GraphQLObjectType);
-  };
+  // const [selectFfield, setSelectField] =
+  //   useState<GraphQLFieldMap<object, object>>();
+
+  // const handleChangeField = (data: IRootSchema) => {
+  //   // const modiFyData: IRootSchema = {
+  //   //   fields: { ...data } as unknown as FieldsType,
+  //   // };
+
+  //   setRootSchema(data);
+  // };
 
   useEffect(() => {
     if (data) {
@@ -38,29 +33,25 @@ const Docs = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
+  // useEffect(() => {
+  //   if (rootSchema) {
+  //     const fieldsSchema = Object.entries(rootSchema.fields as FieldsType);
+  //     setFields(fieldsSchema);
+  //   }
+  // }, [rootSchema]);
+
+  // console.log(rootSchema, fields);
+
   return (
     <aside className={classNames({ openModal: open })}>
       <div className="docs-container">
-        {/* <ul style={{ color: 'red' }}>
-          <FieldSchema
-            root
-            data={rootTypes}
-            handleChangeField={handleChangeField}
-          />
-        </ul> */}
         <ul
           style={{
             display: 'flex',
             flexDirection: 'column',
           }}
         >
-          {fieldsTypes && (
-            <FieldSchema
-              data={fieldsTypes}
-              isRootSchema={isRootSchema}
-              handleChangeField={handleChangeField}
-            />
-          )}
+          {<FieldSchema schema={rootSchema} setRootSchema={setRootSchema} />}
         </ul>
       </div>
       <button

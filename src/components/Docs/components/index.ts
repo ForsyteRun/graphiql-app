@@ -1,2 +1,2 @@
 export { default as FieldSchema } from './FieldSchema';
-export { default as DetailFieldSchema } from './DetailFieldSchema';
+export { default as DetailedField } from './DetailedField';
