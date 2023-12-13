@@ -7,10 +7,8 @@ import {
   isObjectType,
 } from 'graphql/type';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { memo, useCallback, useEffect, useState } from 'react';
 import { FieldsType, IRootSchema, Maybe } from '../../../hooks/useSchema';
 import DetailedField from './DetailedField';
-import NextField from './NextField';
 import NextField from './NextField';
 
 interface IFieldSchema {
@@ -18,7 +16,6 @@ interface IFieldSchema {
   setRootSchema: (value: IRootSchema) => void;
 }
 
-const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
 const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   const [fields, setFields] = useState<[string, GraphQLOutputType][]>();
   const [isDescription, setIsDescription] = useState(false);
@@ -67,70 +64,43 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
     <>
       <ul>
         {fields &&
-          fields.map(
-            (
-              [fieldName, fieldType]: [string, GraphQLObjectType],
-              index: number
-            ) => (
-              <li key={index}>
-                {isDescription ? (
-                  <>
-                    <DetailedField value={fieldType} />
-                  </>
-                ) : (
-                  <span
+          fields.map(([fieldName, fieldType]: [string, GraphQLOutputType]) => (
+            <>
+              {isDescription ? (
+                <DetailedField value={fieldType as GraphQLLeafType} />
+              ) : (
+                <li key={fieldName} style={{ cursor: 'pointer' }}>
+                  <NextField
+                    handleClick={handleClick}
+                    fieldName={fieldName}
+                    fieldType={fieldType}
+                  />
+                  {/* <span
                     onClick={() => {
                       handleClick(fieldType);
                     }}
                   >
                     {fieldName}
                   </span>
-                )}
-              </li>
-            )
-          )}
+                  {'type' in fieldType && fieldType.type ? (
+                    <span
+                      style={{ color: 'blue' }}
+                      onClick={() => {
+                        handleClick(fieldType.type as GraphQLNamedType);
+                      }}
+                    >
+                      :{(fieldType.type as GraphQLNamedType).name}
+                    </span>
+                  ) : (
+                    ''
+                  )} */}
+                </li>
+              )}
+            </>
+          ))}
       </ul>
     </>
   );
-
-  // return (
-  //   <>
-  //     <div
-  //       style={{
-  //         display: 'flex',
-  //         flexDirection: 'column',
-  //         gap: '0.5rem',
-  //         justifyContent: 'flex-start',
-  //       }}
-  //     >
-  //       {/* {!root && <div>Field name: {data?.name}2</div>}
-  //       {!root && <div>Field description: {data?.description}</div>} */}
-  //       {/* {!root && typeof value?.getFields === 'function' && (
-  //         <>
-  //           <span>Fields:</span>
-  //           <ul>
-  //             {Object.entries(value.getFields()).map(([key, value]) => (
-  //               <li key={key}>{key}</li>
-  //             ))}
-  //           </ul>
-  //         </>
-  //       )} */}
-  //       {rootKeys.map((key) => (
-  //         <button key={key} onClick={() => handleClick(key)}>
-  //           {key}
-  //         </button>
-  //       ))}
-  //       {!isRootSchema &&
-  //         rootKeys.map((key: string) => (
-  //           <DetailFieldSchema
-  //             key={key}
-  //             value={data[key] as GraphQLObjectType}
-  //             handleChangeField={handleChangeField}
-  //           />
-  //         ))}
-  //     </div>
-  //   </>
-  // );
-};
+});
 
 export default FieldSchema;
