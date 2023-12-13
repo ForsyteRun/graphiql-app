@@ -47,8 +47,6 @@ const useSchema = () => {
     }
   }, [schema]);
 
-  console.log(schema);
-
   return {
     rootSchema,
     setSchema,

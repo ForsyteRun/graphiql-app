@@ -1,4 +1,9 @@
-import { GraphQLNamedType, GraphQLOutputType, GraphQLType } from 'graphql';
+import {
+  GraphQLArgument,
+  GraphQLNamedType,
+  GraphQLOutputType,
+  GraphQLType,
+} from 'graphql';
 import { useCallback } from 'react';
 
 interface INextField {
@@ -23,17 +28,48 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
   );
 
   const renderType = useCallback(
-    (typeValue: GraphQLOutputType) =>
-      'type' in typeValue && typeValue.type ? (
-        <span
-          style={{ color: 'blue' }}
-          onClick={() => {
-            handleClick(typeValue.type as GraphQLNamedType);
-          }}
-        >
-          :{(typeValue.type as GraphQLNamedType).name}
-        </span>
-      ) : null,
+    (typeValue: GraphQLOutputType) => {
+      if ('type' in typeValue && typeValue.type) {
+        return (
+          <span
+            style={{ color: 'blue', cursor: 'pointer' }}
+            onClick={() => {
+              handleClick(typeValue.type as GraphQLNamedType);
+            }}
+          >
+            :{(typeValue.type as GraphQLNamedType).name}
+          </span>
+        );
+      }
+      return null;
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [fieldType]
+  );
+  const renderArgs = useCallback(
+    (typeValue: GraphQLOutputType) => {
+      if ('args' in typeValue && typeValue.args instanceof Array) {
+        const isManyArgs = (typeValue.args as GraphQLArgument[]).length > 1;
+
+        return (
+          <>
+            {typeValue.args.map((arg: GraphQLArgument, index: number) => (
+              <span key={arg.name}>
+                {index === 0 && '('}
+                {arg.name}
+                {isManyArgs &&
+                  index !== (typeValue.args as GraphQLArgument[]).length - 1 &&
+                  ','}
+                {index === (typeValue.args as GraphQLArgument[]).length - 1 &&
+                  ')'}
+              </span>
+            ))}
+          </>
+        );
+      }
+
+      return null;
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [fieldType]
   );
@@ -41,6 +77,7 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
   return (
     <>
       {renderField(fieldName, fieldType)}
+      {renderArgs(fieldType)}
       {renderType(fieldType)}
     </>
   );
