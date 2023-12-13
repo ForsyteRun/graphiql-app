@@ -7,8 +7,10 @@ import {
   isObjectType,
 } from 'graphql/type';
 import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { FieldsType, IRootSchema, Maybe } from '../../../hooks/useSchema';
 import DetailedField from './DetailedField';
+import NextField from './NextField';
 import NextField from './NextField';
 
 interface IFieldSchema {
@@ -16,6 +18,7 @@ interface IFieldSchema {
   setRootSchema: (value: IRootSchema) => void;
 }
 
+const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
 const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   const [fields, setFields] = useState<[string, GraphQLOutputType][]>();
   const [isDescription, setIsDescription] = useState(false);
@@ -107,6 +110,32 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
                   fieldName={fieldName}
                   fieldType={fieldType}
                 />
+                <li key={fieldName} style={{ cursor: 'pointer' }}>
+                  <NextField
+                    handleClick={handleClick}
+                    fieldName={fieldName}
+                    fieldType={fieldType}
+                  />
+                  {/* <span
+                    onClick={() => {
+                      handleClick(fieldType);
+                    }}
+                  >
+                    {fieldName}
+                  </span>
+                  {'type' in fieldType && fieldType.type ? (
+                    <span
+                      style={{ color: 'blue' }}
+                      onClick={() => {
+                        handleClick(fieldType.type as GraphQLNamedType);
+                      }}
+                    >
+                      :{(fieldType.type as GraphQLNamedType).name}
+                    </span>
+                  ) : (
+                    ''
+                  )} */}
+                </li>
               )}
             </li>
           ))}
@@ -193,5 +222,6 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   //   </>
   // );
 };
+});
 
 export default FieldSchema;
