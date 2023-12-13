@@ -34,99 +34,18 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
 
         setRootSchema(modiFyData);
         setIsDescription(false);
-      } else if (isLeafType(value)) {
+      } else if (
+        typeof value === 'object' &&
+        !(value instanceof GraphQLObjectType)
+      ) {
         const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+          fields: { ...value } as unknown as FieldsType,
         };
         setRootSchema(modiFyData);
         setIsDescription(false);
-      } else if (isLeafType(value)) {
+      } else {
         const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if (isLeafType(value)) {
-        const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+          fields: { ...value } as unknown as FieldsType,
         };
 
         setRootSchema(modiFyData);
@@ -147,65 +66,71 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   return (
     <>
       <ul>
-        {/* Assuming 'fields' is defined somewhere in your code */}
         {fields &&
-          fields.map(([fieldName, fieldType]: [string, GraphQLOutputType]) => (
-            <li key={fieldName} style={{ cursor: 'pointer' }}>
-            <li key={fieldName} style={{ cursor: 'pointer' }}>
-              {isDescription ? (
-                <DetailedField value={fieldType as GraphQLLeafType} />
-              ) : (
-                <NextField
-                  handleClick={handleClick}
-                  fieldName={fieldName}
-                  fieldType={fieldType}
-                />
-              )}
-            </li>
-            </li>
-          ))}
+          fields.map(
+            (
+              [fieldName, fieldType]: [string, GraphQLObjectType],
+              index: number
+            ) => (
+              <li key={index}>
+                {isDescription ? (
+                  <>
+                    <DetailedField value={fieldType} />
+                  </>
+                ) : (
+                  <span
+                    onClick={() => {
+                      handleClick(fieldType);
+                    }}
+                  >
+                    {fieldName}
+                  </span>
+                )}
+              </li>
+            )
+          )}
       </ul>
     </>
   );
-});
 
-// return (
-//   <>
-//     <div
-//       style={{
-//         display: 'flex',
-//         flexDirection: 'column',
-//         gap: '0.5rem',
-//         justifyContent: 'flex-start',
-//       }}
-//     >
-//       {/* {!root && <div>Field name: {data?.name}2</div>}
-//       {!root && <div>Field description: {data?.description}</div>} */}
-//       {/* {!root && typeof value?.getFields === 'function' && (
-//         <>
-//           <span>Fields:</span>
-//           <ul>
-//             {Object.entries(value.getFields()).map(([key, value]) => (
-//               <li key={key}>{key}</li>
-//             ))}
-//           </ul>
-//         </>
-//       )} */}
-//       {rootKeys.map((key) => (
-//         <button key={key} onClick={() => handleClick(key)}>
-//           {key}
-//         </button>
-//       ))}
-//       {!isRootSchema &&
-//         rootKeys.map((key: string) => (
-//           <DetailFieldSchema
-//             key={key}
-//             value={data[key] as GraphQLObjectType}
-//             handleChangeField={handleChangeField}
-//           />
-//         ))}
-//     </div>
-//   </>
-// );
+  // return (
+  //   <>
+  //     <div
+  //       style={{
+  //         display: 'flex',
+  //         flexDirection: 'column',
+  //         gap: '0.5rem',
+  //         justifyContent: 'flex-start',
+  //       }}
+  //     >
+  //       {/* {!root && <div>Field name: {data?.name}2</div>}
+  //       {!root && <div>Field description: {data?.description}</div>} */}
+  //       {/* {!root && typeof value?.getFields === 'function' && (
+  //         <>
+  //           <span>Fields:</span>
+  //           <ul>
+  //             {Object.entries(value.getFields()).map(([key, value]) => (
+  //               <li key={key}>{key}</li>
+  //             ))}
+  //           </ul>
+  //         </>
+  //       )} */}
+  //       {rootKeys.map((key) => (
+  //         <button key={key} onClick={() => handleClick(key)}>
+  //           {key}
+  //         </button>
+  //       ))}
+  //       {!isRootSchema &&
+  //         rootKeys.map((key: string) => (
+  //           <DetailFieldSchema
+  //             key={key}
+  //             value={data[key] as GraphQLObjectType}
+  //             handleChangeField={handleChangeField}
+  //           />
+  //         ))}
+  //     </div>
+  //   </>
+  // );
+};
 
 export default FieldSchema;
