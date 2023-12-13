@@ -6,16 +6,17 @@ import {
   isLeafType,
   isObjectType,
 } from 'graphql/type';
-import { useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { FieldsType, IRootSchema, Maybe } from '../../../hooks/useSchema';
 import DetailedField from './DetailedField';
+import NextField from './NextField';
 
 interface IFieldSchema {
   schema: Maybe<IRootSchema>;
   setRootSchema: (value: IRootSchema) => void;
 }
 
-const FieldSchema = ({ schema, setRootSchema }: IFieldSchema) => {
+const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   const [fields, setFields] = useState<[string, GraphQLOutputType][]>();
   const [isDescription, setIsDescription] = useState(false);
 
@@ -59,8 +60,13 @@ const FieldSchema = ({ schema, setRootSchema }: IFieldSchema) => {
               {isDescription ? (
                 <DetailedField value={fieldType as GraphQLLeafType} />
               ) : (
-                <li key={fieldName}>
-                  <span
+                <li key={fieldName} style={{ cursor: 'pointer' }}>
+                  <NextField
+                    handleClick={handleClick}
+                    fieldName={fieldName}
+                    fieldType={fieldType}
+                  />
+                  {/* <span
                     onClick={() => {
                       handleClick(fieldType);
                     }}
@@ -78,7 +84,7 @@ const FieldSchema = ({ schema, setRootSchema }: IFieldSchema) => {
                     </span>
                   ) : (
                     ''
-                  )}
+                  )} */}
                 </li>
               )}
             </>
@@ -86,6 +92,6 @@ const FieldSchema = ({ schema, setRootSchema }: IFieldSchema) => {
       </ul>
     </>
   );
-};
+});
 
 export default FieldSchema;
