@@ -1,15 +1,15 @@
 import {
   GraphQLFieldMap,
-  GraphQLNamedType,
   GraphQLObjectType,
+  GraphQLOutputType,
   GraphQLSchema,
 } from 'graphql';
-import { ObjMap } from 'graphql/jsutils/ObjMap';
 import { useEffect, useState } from 'react';
 
 export interface IRootSchema {
   queries?: IQueries;
   fields: FieldsType;
+  types?: GraphQLOutputType;
 }
 
 export interface IQueries {
@@ -18,43 +18,21 @@ export interface IQueries {
   fields: GraphQLFieldMap<object, object>;
 }
 
-export type FieldsType = Record<string, GraphQLObjectType>;
+export type FieldsType = Record<string, GraphQLOutputType>;
 export type Maybe<T> = undefined | T;
 
 const useSchema = () => {
   const [schema, setSchema] = useState<Maybe<GraphQLSchema>>();
   const [rootSchema, setRootSchema] = useState<Maybe<IRootSchema>>();
 
-  const [fieldsTypes, setFieldsTypes] =
-    useState<ObjMap<GraphQLNamedType> | null>(null);
-
-  // const getMatchField = (
-  //   globalFields: ObjMap<GraphQLNamedType> | null | undefined,
-  //   field: ObjMap<GraphQLNamedType> | null
-  //   // deep = 0
-  // ) => {
-  //   if (!globalFields || !field) {
-  //     return;
-  //   }
-
-  //   const rootState = Object.is(globalFields, field);
-
-  //   setIsRootSchema(rootState);
-
-  //   if (rootState) {
-  //     return;
-  //   }
-
-  //   for (const key in globalFields) {
-  //     if (Object.is(globalFields[key], field[key])) {
-  //     }
-  //   }
-  // };
-
   useEffect(() => {
     if (schema) {
       const queryType = schema.getQueryType()!;
       const namedTypes = schema.getTypeMap();
+
+      const filteredNamedTypes = Object.fromEntries(
+        Object.entries(namedTypes).filter(([key]) => !key.includes('_'))
+      );
 
       const rootSchema: IRootSchema = {
         queries: {
@@ -62,25 +40,18 @@ const useSchema = () => {
           description: queryType.description,
           fields: queryType.getFields(),
         },
-        fields: namedTypes as FieldsType,
+        fields: filteredNamedTypes as FieldsType,
       };
-      //
+
       setRootSchema(rootSchema);
-      // setFieldsTypes(namedTypes);
     }
   }, [schema]);
 
-  // useEffect(() => {
-  //   const mainTypes = schema && schema.getTypeMap()!;
-
-  //   getMatchField(mainTypes, fieldsTypes);
-  // }, [fieldsTypes, schema]);
+  console.log(schema);
 
   return {
     rootSchema,
-    fieldsTypes,
     setSchema,
-    setFieldsTypes,
     setRootSchema,
   };
 };

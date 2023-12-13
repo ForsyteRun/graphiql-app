@@ -13,17 +13,6 @@ const Docs = memo(() => {
   } = useGetDocsFromApi();
   const { rootSchema, setSchema, setRootSchema } = useSchema();
 
-  // const [selectFfield, setSelectField] =
-  //   useState<GraphQLFieldMap<object, object>>();
-
-  // const handleChangeField = (data: IRootSchema) => {
-  //   // const modiFyData: IRootSchema = {
-  //   //   fields: { ...data } as unknown as FieldsType,
-  //   // };
-
-  //   setRootSchema(data);
-  // };
-
   useEffect(() => {
     if (data) {
       const response = buildClientSchema(data);
@@ -33,26 +22,10 @@ const Docs = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  // useEffect(() => {
-  //   if (rootSchema) {
-  //     const fieldsSchema = Object.entries(rootSchema.fields as FieldsType);
-  //     setFields(fieldsSchema);
-  //   }
-  // }, [rootSchema]);
-
-  // console.log(rootSchema, fields);
-
   return (
     <aside className={classNames({ openModal: open })}>
       <div className="docs-container">
-        <ul
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          {<FieldSchema schema={rootSchema} setRootSchema={setRootSchema} />}
-        </ul>
+        <FieldSchema schema={rootSchema} setRootSchema={setRootSchema} />
       </div>
       <button
         className="docs-button"
