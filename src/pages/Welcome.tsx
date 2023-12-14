@@ -3,6 +3,7 @@ import { Dog } from '../components/Welcome/Dog';
 import { GraphQL } from '../components/Welcome/GraphQL';
 import { OurTeam } from '../components/Welcome/OurTeam';
 import { Plus } from '../components/Welcome/Plus';
+import { Team } from '../components/Welcome/Team';
 import { Video } from '../components/Welcome/Video';
 
 const Welcome = () => {
@@ -14,6 +15,7 @@ const Welcome = () => {
       <About />
       <Dog />
       <OurTeam />
+      <Team />
     </div>
   );
 };
