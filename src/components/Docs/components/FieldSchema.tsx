@@ -52,7 +52,7 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
 
   return (
     <>
-      <ul>
+      <ul className="fieldSchema-container">
         {fields &&
           fields.map(([fieldName, fieldType]: [string, GraphQLOutputType]) => (
             <li key={fieldName} style={{ cursor: 'pointer' }}>
