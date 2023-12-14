@@ -18,26 +18,29 @@
   }
 
   &__container {
-    .form-fields,
+    h1 {
+      text-align: left;
+      color: #ffe1f1;
+    }
+
+    .form {
+      @include flexColumn($align: stretch);
+    }
+
     .label {
       @include flexColumn($align: start);
       margin-bottom: 25px;
       position: relative;
+      width: auto;
+      color: $text-color;
+      float: left;
+      padding: 6px 0;
 
-      label {
-        width: auto;
-        float: left;
-        color: $text-color;
-        padding: 6px 0;
-        margin-right: 10px;
-
-        span {
-          color: $important;
-        }
+      span {
+        color: #9ffffb;
       }
 
-      input,
-      select {
+      input {
         width: 80%;
         min-width: 300px;
 
@@ -47,55 +50,19 @@
         }
       }
 
-      .password-block {
-        width: 100%;
-
-        button {
-          background: transparent;
-          font-size: 22px;
-          padding: 0 1em;
-
-          @include media('l') {
-            padding: 0 0.3em;
-          }
-
-          &:focus,
-          &:focus-visible,
-          &:hover {
-            border: none;
-            outline: none;
-          }
-        }
-      }
-    }
-
-    .label {
-      span {
-        width: auto;
-        color: $text-color;
-        float: left;
-        padding: 6px 0;
-        margin-right: 10px;
-      }
-    }
-
-    .address-row {
-      border: 1px solid $links;
-      margin-bottom: 10px;
-      padding: 10px;
-
-      h2 {
-        @include flex($align: flex-start, $wrap: wrap);
-      }
-
-      .label-check {
-        display: block;
-        margin: 35px 0 15px;
-
+      &.error {
         span {
-          font-weight: bold;
+          color: $error;
+        }
+
+        input {
+          border-color: $error;
         }
       }
+    }
+
+    .button {
+      margin-top: 15px;
     }
   }
 
@@ -110,38 +77,16 @@
     p {
       padding: 15px 0;
     }
-
-    ul {
-      @include media('m') {
-        padding: 0 15px;
-      }
-    }
-
-    li {
-      padding: 5px 0;
-      list-style: disc;
-    }
-  }
-
-  .button {
-    margin-top: 15px;
   }
 
   &__login {
     margin-top: 15px;
     @include font($family: $font-family-title, $size: $font-size-14);
   }
-
-  .error-message,
-  .email__error,
-  .password__error {
-    top: 70px;
-  }
 }
 
-.error-message,
-.email__error,
-.password__error {
+.error-message {
+  top: 70px;
   position: absolute;
   color: $important;
   font-size: $font-size-12;
@@ -149,25 +94,4 @@
   @include media('xxs') {
     font-size: 10px;
   }
-}
-
-.error input,
-.error select,
-.error input:focus,
-.error select:focus,
-.error input:hover,
-.error select:hover,
-.input__error:focus,
-.input__error:hover,
-.input__error {
-  color: $important;
-  border-color: $important;
-  box-shadow: 0 0 0 2px rgb(244 67 54 / 8%);
-}
-
-.service__error {
-  @include font($family: $font-family-title, $size: $font-size-24);
-  color: $error;
-  text-align: center;
-  margin-top: 25px;
 }

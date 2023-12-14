@@ -10,7 +10,7 @@ $button-second-hover: lighten($button-second, 5%);
 $text-color: #000;
 $background: #fff;
 $background-dark: #0d0c18;
-$important: #bf4d4d;
+$important: #ff4f4f;
 $error: #e74c3c;
 $top-links: #595959;
 $blue-color: #2196f3;
@@ -18,6 +18,13 @@ $dark-blue-color: #1565c0;
 $purple-color: #673ab7;
 $background-gradient: linear-gradient(135deg, $button 30%, $button-second 100%);
 $border: 1px solid #eee;
+
+$background1: #303435;
+$background2: #2c4461;
+$background3: #3e3036;
+$background4: #566063;
+$background5: #45344b;
+$background6: #403943;
 
 // Fonts
 $font-family: Futura, Arial, Verdana, sans-serif;

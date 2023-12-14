@@ -1,6 +1,7 @@
 .welcome {
   @include flexColumn(space-between);
   padding: 0;
+  background: $background-dark;
 
   @include media('xl') {
     gap: clamp(2rem, 16vw, 10rem);
