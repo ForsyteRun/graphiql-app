@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { introspectionQuery } from '../constants/introspectionQuery';
 import { IQuery } from '../types/interface';
+import { getIntrospectionQuery } from 'graphql';
 
 // https://beta.pokeapi.co/graphql/v1beta
 // 'https://rickandmortyapi.com/graphql'
@@ -29,7 +29,7 @@ const useGetDocsFromApi = () => {
     if (hoverButton && !query.data) {
       const fetchDocs = async () => {
         try {
-          const res: IQuery = await getDocsData(introspectionQuery);
+          const res: IQuery = await getDocsData(getIntrospectionQuery());
 
           setQuery(res);
         } catch (error) {
