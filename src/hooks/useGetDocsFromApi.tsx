@@ -8,7 +8,6 @@ import { useAppSelector } from '../store/types';
 // 'https://graphqlzero.almansi.me/api'
 const useGetDocsFromApi = () => {
   const [query, setQuery] = useState<IQuery>({ data: null });
-  const [hoverButton, setHoverButton] = useState<boolean>(false);
   const { api } = useAppSelector((state) => state.request);
 
   const getDocsData = useCallback(
@@ -25,23 +24,23 @@ const useGetDocsFromApi = () => {
   );
 
   useEffect(() => {
-    if (hoverButton && !query.data) {
-      const fetchDocs = async () => {
-        try {
-          const res: IQuery = await getDocsData(getIntrospectionQuery());
+    setQuery({ data: null });
 
-          setQuery(res);
-        } catch (error) {
-          alert('error get docs'); //TODO: modal error
-        }
-      };
+    const fetchDocs = async () => {
+      try {
+        const res: IQuery = await getDocsData(getIntrospectionQuery());
 
-      fetchDocs();
-    }
+        setQuery(res);
+      } catch (error) {
+        alert('error get docs'); //TODO: modal error
+      }
+    };
+
+    fetchDocs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hoverButton]);
+  }, [api]);
 
-  return { query, setHoverButton };
+  return { query };
 };
 
 export default useGetDocsFromApi;
