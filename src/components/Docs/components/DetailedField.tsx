@@ -1,9 +1,7 @@
 import { GraphQLLeafType } from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
+import { isNonNull } from '../types/types';
 
-function isNonNull<T>(value: T): boolean {
-  return value !== null && value !== undefined;
-}
 const DetailedField = ({ value }: { value: GraphQLLeafType }) => {
   const { name, description } = value;
 

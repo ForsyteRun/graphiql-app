@@ -1,12 +1,10 @@
-import { IntrospectionQuery } from 'graphql';
 import { useCallback, useEffect, useState } from 'react';
 import { introspectionQuery } from '../constants/introspectionQuery';
+import { IQuery } from '../types/interface';
 
-interface IQuery {
-  data: IntrospectionQuery | null;
-}
 // https://beta.pokeapi.co/graphql/v1beta
 // 'https://rickandmortyapi.com/graphql'
+// 'https://graphqlzero.almansi.me/api'
 const useGetDocsFromApi = () => {
   const [query, setQuery] = useState<IQuery>({ data: null });
   const [hoverButton, setHoverButton] = useState<boolean>(false);
@@ -35,7 +33,7 @@ const useGetDocsFromApi = () => {
 
           setQuery(res);
         } catch (error) {
-          alert('error get docs');
+          alert('error get docs'); //TODO: modal error
         }
       };
 

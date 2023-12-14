@@ -1,25 +1,8 @@
-import {
-  GraphQLFieldMap,
-  GraphQLObjectType,
-  GraphQLOutputType,
-  GraphQLSchema,
-} from 'graphql';
+import { GraphQLSchema } from 'graphql';
+import { Maybe } from 'graphql/jsutils/Maybe';
 import { useEffect, useState } from 'react';
-
-export interface IRootSchema {
-  queries?: IQueries;
-  fields: FieldsType;
-  types?: GraphQLOutputType;
-}
-
-export interface IQueries {
-  name: GraphQLObjectType['name'];
-  description: GraphQLObjectType['description'];
-  fields: GraphQLFieldMap<object, object>;
-}
-
-export type FieldsType = Record<string, GraphQLOutputType>;
-export type Maybe<T> = undefined | T;
+import { IRootSchema } from '../types/interface';
+import { FieldsType } from '../types/types';
 
 const useSchema = () => {
   const [schema, setSchema] = useState<Maybe<GraphQLSchema>>();
@@ -46,6 +29,8 @@ const useSchema = () => {
       setRootSchema(rootSchema);
     }
   }, [schema]);
+
+  console.log(rootSchema);
 
   return {
     rootSchema,

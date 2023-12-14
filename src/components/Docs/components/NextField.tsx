@@ -1,17 +1,7 @@
-import {
-  GraphQLArgument,
-  GraphQLInputType,
-  GraphQLNamedType,
-  GraphQLOutputType,
-  GraphQLType,
-} from 'graphql';
-import { ReactNode, useCallback } from 'react';
-
-interface INextField {
-  handleClick: (value: GraphQLType) => void;
-  fieldName: string;
-  fieldType: GraphQLOutputType;
-}
+import { GraphQLArgument, GraphQLNamedType, GraphQLOutputType } from 'graphql';
+import { useCallback } from 'react';
+import getArgsTypes from '../utils/getArgsTypes';
+import { INextField } from '../types/interfaces';
 
 const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
   const renderField = useCallback(
@@ -49,20 +39,6 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
   );
   const renderArgs = useCallback(
     (typeValue: GraphQLOutputType) => {
-      const getArgsTypes = (type: GraphQLInputType): ReactNode => {
-        if ('name' in type) {
-          return (
-            <span style={{ color: 'blue', cursor: 'pointer' }}>
-              :{type.name}
-            </span>
-          );
-        } else if ('ofType' in type) {
-          return getArgsTypes(type.ofType);
-        } else {
-          return null;
-        }
-      };
-
       if ('args' in typeValue && typeValue.args instanceof Array) {
         const lastArg = (typeValue.args as GraphQLArgument[]).length - 1;
         const isManyArgs = (typeValue.args as GraphQLArgument[]).length > 1;
@@ -73,7 +49,7 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
               <span key={arg.name}>
                 {index === 0 && '('}
                 {arg.name}
-                {getArgsTypes(arg.type)}
+                {getArgsTypes(arg.type, handleClick)}
                 {isManyArgs && index !== lastArg && ','}
                 {index === lastArg && ')'}
               </span>
