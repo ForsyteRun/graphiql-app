@@ -17,7 +17,7 @@ const useSchema = () => {
         Object.entries(namedTypes).filter(([key]) => !key.includes('_'))
       );
 
-      const rootSchema: IRootSchema = {
+      const modifyRootSchema: IRootSchema = {
         queries: {
           name: queryType.name,
           description: queryType.description,
@@ -26,11 +26,9 @@ const useSchema = () => {
         fields: filteredNamedTypes as FieldsType,
       };
 
-      setRootSchema(rootSchema);
+      setRootSchema(modifyRootSchema);
     }
   }, [schema]);
-
-  console.log(rootSchema);
 
   return {
     rootSchema,
