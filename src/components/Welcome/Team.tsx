@@ -1,21 +1,21 @@
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
-import img1 from '../../assets/img/11.png';
+import { Member } from './Member';
 
 const Team = () => {
   const { isVisible, titleRef } = useIntersectionObserver();
 
   return (
-    <div className={`team2 ${isVisible ? 'visible' : ''}`} ref={titleRef}>
+    <div className={`team ${isVisible ? 'visible' : ''}`} ref={titleRef}>
       <div className="team__content container">
         <h2
-          className={`team2__title title-animation ${
+          className={`team__title title-animation ${
             isVisible ? 'visible' : ''
           }`}
         >
-          Наша команда 2
+          Наша команда
         </h2>
-        <div className="team2__list">
-          <img className="logo__image" alt="logo" title="" src={img1} />
+        <div className="team__list">
+          <Member />
         </div>
       </div>
     </div>

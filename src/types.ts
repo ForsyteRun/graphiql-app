@@ -8,6 +8,5 @@ export type DevelopersData = {
   image: string;
   role: Role;
   github: string;
-  about: string;
   contribution: string[];
 };
