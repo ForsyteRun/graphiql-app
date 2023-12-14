@@ -9,11 +9,12 @@ const Docs = memo(() => {
   const [open, setOpen] = useState<boolean>(false);
   const {
     query: { data },
-    setHoverButton,
   } = useGetDocsFromApi();
   const { rootSchema, setSchema, setRootSchema } = useSchema();
 
   useEffect(() => {
+    setRootSchema(null);
+
     if (data) {
       const response = buildClientSchema(data);
 
@@ -27,12 +28,7 @@ const Docs = memo(() => {
       <div className="docs-container">
         <FieldSchema schema={rootSchema} setRootSchema={setRootSchema} />
       </div>
-      <button
-        className="docs-button"
-        onMouseEnter={() => setHoverButton(true)}
-        onMouseLeave={() => setHoverButton(false)}
-        onClick={() => setOpen(!open)}
-      >
+      <button className="docs-button" onClick={() => setOpen(!open)}>
         Docs
       </button>
     </aside>

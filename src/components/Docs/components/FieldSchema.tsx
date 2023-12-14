@@ -6,14 +6,13 @@ import {
   isLeafType,
 } from 'graphql/type';
 import { memo, useCallback, useEffect, useState } from 'react';
+import { IRootSchema } from '../../../types/interface';
+import { FieldsType } from '../../../types/types';
 import { IFieldSchema } from '../types/interfaces';
 import DetailedField from './DetailedField';
 import NextField from './NextField';
-import { IRootSchema } from '../../../types/interface';
-import { FieldsType } from '../../../types/types';
 
 const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
-  const [fields, setFields] = useState<[string, GraphQLOutputType][]>();
   const [isDescription, setIsDescription] = useState(false);
 
   const handleClick = useCallback(
@@ -40,29 +39,28 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   );
 
   useEffect(() => {
-    if (schema) {
-      const fieldsSchema = Object.entries(schema.fields);
-      setFields(fieldsSchema);
-    }
+    if (!schema) setIsDescription(false);
   }, [schema]);
 
   return (
     <>
       <ul className="fieldSchema-container">
-        {fields &&
-          fields.map(([fieldName, fieldType]: [string, GraphQLOutputType]) => (
-            <li key={fieldName} style={{ cursor: 'pointer' }}>
-              {isDescription ? (
-                <DetailedField value={fieldType as GraphQLLeafType} />
-              ) : (
-                <NextField
-                  handleClick={handleClick}
-                  fieldName={fieldName}
-                  fieldType={fieldType}
-                />
-              )}
-            </li>
-          ))}
+        {schema &&
+          Object.entries(schema.fields).map(
+            ([fieldName, fieldType]: [string, GraphQLOutputType]) => (
+              <li key={fieldName} style={{ cursor: 'pointer' }}>
+                {isDescription ? (
+                  <DetailedField value={fieldType as GraphQLLeafType} />
+                ) : (
+                  <NextField
+                    handleClick={handleClick}
+                    fieldName={fieldName}
+                    fieldType={fieldType}
+                  />
+                )}
+              </li>
+            )
+          )}
       </ul>
     </>
   );
