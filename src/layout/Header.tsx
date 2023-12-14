@@ -15,33 +15,32 @@ const Header = () => {
   const { isAuth } = useAppSelector((state) => state.user);
   return (
     <header className="header container">
-      <div className="row">
-        <div className="top-logo">
-          <Logo />
-        </div>
-        <div className="nav-bar__block">
-          <NavLink to={WELCOME_ROUTE}>
-            <button className="button button-second">Приветствие</button>
-          </NavLink>
-          {isAuth ? (
-            <>
-              <NavLink to={MAIN_ROUTE}>
-                <button className="button button-second">Главная</button>
-              </NavLink>
-              <LogOut />
-            </>
-          ) : (
-            <>
-              <NavLink to={REGISTRATION_ROUTE}>
-                <button className="button button-second">Регистрация</button>
-              </NavLink>
-              <NavLink to={AUTH_ROUTE}>
-                <button className="button">Вход</button>
-              </NavLink>
-            </>
-          )}
-        </div>
+      <div className="header__logo">
+        <Logo />
       </div>
+      <div className="header__links">
+        <NavLink to={WELCOME_ROUTE} className="link">
+          Приветствие
+        </NavLink>
+        {isAuth ? (
+          <>
+            <NavLink to={MAIN_ROUTE} className="link">
+              Редактор
+            </NavLink>
+            <LogOut />
+          </>
+        ) : null}
+      </div>
+      {!isAuth && (
+        <div className="header__buttons">
+          <NavLink to={REGISTRATION_ROUTE}>
+            <button className="button button-second">Регистрация</button>
+          </NavLink>
+          <NavLink to={AUTH_ROUTE}>
+            <button className="button">Вход</button>
+          </NavLink>
+        </div>
+      )}
     </header>
   );
 };

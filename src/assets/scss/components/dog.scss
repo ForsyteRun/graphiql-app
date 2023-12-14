@@ -1,0 +1,44 @@
+/* dog */
+
+.dog {
+  background: $background;
+  width: 100%;
+  margin-top: -1px;
+
+  &__content {
+    @include flex();
+    padding-bottom: 40px;
+  }
+
+  &__img {
+    flex: 1;
+    transform: translateY(50px);
+    transition:
+      opacity 1s ease,
+      transform 1s ease;
+
+    &.visible {
+      transform: translateY(0);
+    }
+  }
+
+  &__description {
+    @include flexColumn($align: flex-start);
+    flex: 1;
+    gap: 20px;
+    padding: 0 2rem;
+  }
+
+  &__title {
+    @include font(
+      $family: $font-family-title,
+      $size: $font-size-32,
+      $weight: bold
+    );
+  }
+
+  &__buttons {
+    @include flex();
+    gap: 30px;
+  }
+}

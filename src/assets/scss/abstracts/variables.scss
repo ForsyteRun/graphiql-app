@@ -2,22 +2,21 @@
 
 // Colors
 $links: #ef45a3;
-$links1: #7bc2ab;
 $links-hover: darken($links, 10%);
 $button: #00bbb3;
 $button-hover: lighten($links, 5%);
 $button-second: #2b88c6;
 $button-second-hover: lighten($button-second, 5%);
-$top-links: #595959;
+$text-color: #000;
+$background: #fff;
+$background-dark: #0d0c18;
 $important: #bf4d4d;
 $error: #e74c3c;
-$background: #fff;
-$background2: linear-gradient(135deg, $button 30%, $button-second 100%);
-$text-color: #000;
+$top-links: #595959;
 $blue-color: #2196f3;
 $dark-blue-color: #1565c0;
-$white-color: #fff;
 $purple-color: #673ab7;
+$background-gradient: linear-gradient(135deg, $button 30%, $button-second 100%);
 $border: 1px solid #eee;
 
 // Fonts

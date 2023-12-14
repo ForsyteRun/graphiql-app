@@ -7,13 +7,15 @@
 @import 'base/basic';
 
 /* Components */
+@import 'components/about';
 @import 'components/authorization';
 @import 'components/buttons';
 @import 'components/content.scss';
+@import 'components/dog.scss';
 @import 'components/editor.scss';
-@import 'components/navigation';
-@import 'components/ourTeam.scss';
-@import 'components/teamMember.scss';
+@import 'components/team.scss';
+@import 'components/plus.scss';
+@import 'components/video.scss';
 @import 'components/docs.scss';
 
 /* Layout */

@@ -1,19 +1,51 @@
 /* footer */
 
 .footer {
-  border-top: 1px solid #e1e1e1;
   flex-shrink: 0;
-  margin-top: 30px;
   @include font($family: $font-family-title);
 
-  .row {
-    padding: 20px;
-    @include flex($justify: center, $align: start, $wrap: wrap);
+  &__content {
+    @include flex($justify: space-between, $wrap: wrap);
+    padding: 1em 0;
     gap: 10px 40px;
+    color: $background;
+
+    & > * {
+      flex: 1;
+    }
 
     @include media('l') {
       @include flexColumn($align: stretch);
       gap: 2px;
     }
+  }
+
+  &__svg {
+    height: 3rem;
+    fill: $background;
+    transition: 0.25s;
+    filter: invert(100%);
+
+    &:hover {
+      scale: 1.1;
+    }
+  }
+
+  &__rss-link {
+    text-align: left;
+
+    svg {
+      background: url('../svg/rs.svg') center / contain no-repeat;
+      width: 8rem;
+    }
+  }
+
+  &__gh-link svg {
+    background: url('../svg/github.svg') center / contain no-repeat;
+    width: 3rem;
+  }
+
+  &__year-link {
+    text-align: right;
   }
 }
