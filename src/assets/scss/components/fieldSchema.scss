@@ -1,0 +1,12 @@
+.fieldSchema-container {
+  @include flexColumn(flex-start, flex-start);
+  row-gap: 1rem;
+  & li {
+    display: flex;
+    flex-wrap: nowrap;
+    & span {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
+}
