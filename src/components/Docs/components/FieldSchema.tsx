@@ -36,7 +36,7 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
           fields: { [value.name]: { ...value } } as unknown as FieldsType,
         };
         setRootSchema(modiFyData);
-        setIsDescription(false);
+        setIsDescription(true);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
