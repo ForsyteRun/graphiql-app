@@ -36,7 +36,7 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
           fields: { [value.name]: { ...value } } as unknown as FieldsType,
         };
         setRootSchema(modiFyData);
-        setIsDescription(false);
+        setIsDescription(true);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,17 +56,17 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
         {fields &&
           fields.map(([fieldName, fieldType]: [string, GraphQLOutputType]) => (
             <li key={fieldName} style={{ cursor: 'pointer' }}>
-            <li key={fieldName} style={{ cursor: 'pointer' }}>
-              {isDescription ? (
-                <DetailedField value={fieldType as GraphQLLeafType} />
-              ) : (
-                <NextField
-                  handleClick={handleClick}
-                  fieldName={fieldName}
-                  fieldType={fieldType}
-                />
-              )}
-            </li>
+              <li key={fieldName} style={{ cursor: 'pointer' }}>
+                {isDescription ? (
+                  <DetailedField value={fieldType as GraphQLLeafType} />
+                ) : (
+                  <NextField
+                    handleClick={handleClick}
+                    fieldName={fieldName}
+                    fieldType={fieldType}
+                  />
+                )}
+              </li>
             </li>
           ))}
       </ul>
