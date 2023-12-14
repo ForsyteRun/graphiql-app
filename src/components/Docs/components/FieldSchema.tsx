@@ -56,17 +56,15 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
         {fields &&
           fields.map(([fieldName, fieldType]: [string, GraphQLOutputType]) => (
             <li key={fieldName} style={{ cursor: 'pointer' }}>
-              <li key={fieldName} style={{ cursor: 'pointer' }}>
-                {isDescription ? (
-                  <DetailedField value={fieldType as GraphQLLeafType} />
-                ) : (
-                  <NextField
-                    handleClick={handleClick}
-                    fieldName={fieldName}
-                    fieldType={fieldType}
-                  />
-                )}
-              </li>
+              {isDescription ? (
+                <DetailedField value={fieldType as GraphQLLeafType} />
+              ) : (
+                <NextField
+                  handleClick={handleClick}
+                  fieldName={fieldName}
+                  fieldType={fieldType}
+                />
+              )}
             </li>
           ))}
       </ul>
