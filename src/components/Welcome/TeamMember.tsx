@@ -3,7 +3,7 @@ import { DevelopersData } from '../../types';
 const TeamMember = ({ developer }: { developer: DevelopersData }) => {
   const { name, role, about, image, github, contribution } = developer;
   return (
-    <div className="team">
+    <div className="team__item">
       <div className="team__info">
         <img className="team__photo" src={image} alt={name} />
         <div className="team__details">
@@ -19,8 +19,8 @@ const TeamMember = ({ developer }: { developer: DevelopersData }) => {
             {github}
           </a>
           <div>
-            <h4 className="team__contribution_title">Contribution</h4>
-            <ul className="team__contribution_list">
+            <h4 className="team__contribution-title">Contribution</h4>
+            <ul className="team__contribution-list">
               {contribution.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -28,7 +28,7 @@ const TeamMember = ({ developer }: { developer: DevelopersData }) => {
           </div>
         </div>
       </div>
-      <h4 className="team__about_title">About</h4>
+      <h4 className="team__about-title">About</h4>
       <p className="team__about">{about}</p>
     </div>
   );

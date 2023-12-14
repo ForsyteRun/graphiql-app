@@ -1,29 +1,38 @@
-.welcome-container {
-  max-width: 1440px; //TODO
+.welcome {
   @include flexColumn(space-between);
-  gap: 10rem;
-  padding: 0 20px;
+  padding: 0;
+
   @include media('xl') {
     gap: clamp(2rem, 16vw, 10rem);
-    padding: 0 10px;
-  }
-}
-
-.welcome-title {
-  align-self: flex-start;
-  @include media('xl+') {
-    align-self: center;
-    overflow-wrap: break-word;
+    padding: 0;
   }
 
-  & h1 {
-    @include media('xl') {
-      font-size: clamp(14px, 3vw, 28px);
+  &__title {
+    width: 100%;
+    background: $background-gradient;
+    padding: 50px 0;
+
+    h1 {
+      text-align: left;
+
+      span {
+        color: $links;
+      }
+
+      @include media('xl') {
+        font-size: clamp(14px, 3vw, 28px);
+      }
+    }
+
+    p {
+      text-align: justify;
     }
   }
-  & span {
+
+  &__description {
     color: $top-links;
     font-style: italic;
+
     @include media('xl') {
       display: inline-block;
       width: 100%;
