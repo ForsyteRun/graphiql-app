@@ -4,7 +4,6 @@
   background: $background-dark;
 
   @include media('xl') {
-    gap: clamp(2rem, 16vw, 10rem);
     padding: 0;
   }
 

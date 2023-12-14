@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
-import dog from '../../assets/img/dog.webp';
+import dog from '../../assets/img/dog.png';
 import { MAIN_ROUTE } from '../../constants/route';
 
 const Dog = () => {
