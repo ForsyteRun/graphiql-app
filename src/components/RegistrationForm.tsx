@@ -77,7 +77,7 @@ const RegistrationForm: React.FC = () => {
       ))}
 
       <button className="button button-second" type="submit">
-        Отправить
+        Регистрация
       </button>
     </form>
   );
