@@ -13,7 +13,9 @@ const Login = () => {
           </div>
           <div className="authorization__information">
             <h4>Не зарегистрированы?</h4>
-            <p>Создание учетной записи займет не больше минуты.</p>
+            <p className="white">
+              Создание учетной записи займет не больше минуты.
+            </p>
             <NavLink to={REGISTRATION_ROUTE}>Создать учетную запись</NavLink>
           </div>
         </div>
