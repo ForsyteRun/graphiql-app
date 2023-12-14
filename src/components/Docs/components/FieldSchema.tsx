@@ -4,17 +4,13 @@ import {
   GraphQLOutputType,
   GraphQLType,
   isLeafType,
-  isObjectType,
 } from 'graphql/type';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { FieldsType, IRootSchema, Maybe } from '../../../hooks/useSchema';
+import { IFieldSchema } from '../types/interfaces';
 import DetailedField from './DetailedField';
 import NextField from './NextField';
-
-interface IFieldSchema {
-  schema: Maybe<IRootSchema>;
-  setRootSchema: (value: IRootSchema) => void;
-}
+import { IRootSchema } from '../../../types/interface';
+import { FieldsType } from '../../../types/types';
 
 const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   const [fields, setFields] = useState<[string, GraphQLOutputType][]>();
@@ -22,7 +18,7 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
 
   const handleClick = useCallback(
     (value: GraphQLType | GraphQLNamedType) => {
-      if (isObjectType(value)) {
+      if ('getFields' in value) {
         const data = value.getFields();
 
         const modiFyData: IRootSchema = {

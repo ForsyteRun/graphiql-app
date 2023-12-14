@@ -1,3 +1,5 @@
+import { GraphQLOutputType } from 'graphql';
+
 export interface DataForm extends DataLogin {
   confirmPassword: string;
 }
@@ -8,3 +10,6 @@ export interface DataLogin {
 }
 
 export type FieldName = 'email' | 'password';
+
+export type FieldsType = Record<string, GraphQLOutputType>;
+export type Maybe<T> = undefined | T;
