@@ -31,18 +31,51 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
 
         setRootSchema(modiFyData);
         setIsDescription(false);
-      } else if (
-        typeof value === 'object' &&
-        !(value instanceof GraphQLObjectType)
-      ) {
+      } else if (isLeafType(value)) {
         const modiFyData: IRootSchema = {
           fields: { ...value } as unknown as FieldsType,
         };
         setRootSchema(modiFyData);
         setIsDescription(false);
-      } else {
+      } else if (isLeafType(value)) {
         const modiFyData: IRootSchema = {
-          fields: { ...value } as unknown as FieldsType,
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+        };
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (isLeafType(value)) {
+        const modiFyData: IRootSchema = {
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+        };
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (isLeafType(value)) {
+        const modiFyData: IRootSchema = {
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+        };
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (isLeafType(value)) {
+        const modiFyData: IRootSchema = {
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+        };
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (isLeafType(value)) {
+        const modiFyData: IRootSchema = {
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+        };
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (isLeafType(value)) {
+        const modiFyData: IRootSchema = {
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+        };
+        setRootSchema(modiFyData);
+        setIsDescription(false);
+      } else if (isLeafType(value)) {
+        const modiFyData: IRootSchema = {
+          fields: { [value.name]: { ...value } } as unknown as FieldsType,
         };
 
         setRootSchema(modiFyData);
@@ -66,6 +99,7 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
         {fields &&
           fields.map(([fieldName, fieldType]: [string, GraphQLOutputType]) => (
             <li key={fieldName} style={{ cursor: 'pointer' }}>
+            <li key={fieldName} style={{ cursor: 'pointer' }}>
               {isDescription ? (
                 <DetailedField value={fieldType as GraphQLLeafType} />
               ) : (
@@ -75,6 +109,7 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
                   fieldType={fieldType}
                 />
               )}
+            </li>
             </li>
           ))}
       </ul>
