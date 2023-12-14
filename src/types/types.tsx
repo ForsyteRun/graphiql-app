@@ -7,4 +7,4 @@ export interface DataLogin {
   password: string;
 }
 
-export type FieldName = 'email' | 'password' | 'confirmPassword';
+export type FieldName = 'email' | 'password';
