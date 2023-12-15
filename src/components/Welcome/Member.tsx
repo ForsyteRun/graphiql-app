@@ -1,10 +1,17 @@
+import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import developers from '../../constants/developers';
 
 const Member = () => {
+  const { isVisible, titleRef } = useIntersectionObserver();
+
   return (
     <>
       {developers.map((developer, index) => (
-        <div className="team__item" key={index}>
+        <div
+          className={`team__item ${isVisible ? 'visible' : ''}`}
+          ref={titleRef}
+          key={index}
+        >
           <h3 className="team__name">{developer.name}</h3>
           <h4 className="team__role">{developer.role}</h4>
           <a
@@ -35,7 +42,9 @@ const Member = () => {
           </a>
           <ul className={`team__contribution-list team${index + 1}`}>
             {developer.contribution.map((item, index) => (
-              <li key={index}>{item}</li>
+              <li key={index} className={`${isVisible ? 'visible' : ''}`}>
+                {item}
+              </li>
             ))}
           </ul>
           <img
@@ -43,31 +52,6 @@ const Member = () => {
             src={developer.image}
             alt={developer.name}
           />
-
-          {/* <div className="team__details">
-              <h3 className="team__name">{developer.name}</h3>
-              <h4 className="team__role">{developer.role}</h4>
-              <a
-                href={`https://github.com/${developer.github}`}
-            className="team__github"
-            rel="noreferrer"
-            target="_blank"
-            title={`${developer.name} GitHub`}
-          >
-            {developer.github}
-          </a>
-          <div>
-            <h4 className="team__contribution-title">Contribution</h4>
-            <ul className="team__contribution-list">
-              {developer.contribution.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div> * /}
-
-          {/* <h4 className="team__about-title">About</h4>
-          <p className="team__about">{developer.about}</p> */}
         </div>
       ))}
     </>
