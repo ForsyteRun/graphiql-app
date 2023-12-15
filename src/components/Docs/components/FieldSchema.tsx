@@ -12,8 +12,24 @@ import { IFieldSchema } from '../types/interfaces';
 import DetailedField from './DetailedField';
 import NextField from './NextField';
 
+interface IHistoryState {
+  state: FieldsType[];
+}
+
 const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   const [isDescription, setIsDescription] = useState(false);
+  const [history, setHistory] = useState<IHistoryState>({ state: [] });
+
+  const getLastHistorySchema = useCallback(() => {
+    if (history.state.length > 1) {
+      const modifyHistory = history.state.slice(0, history.state.length - 1);
+      const lastElement = modifyHistory[modifyHistory.length - 1];
+      setRootSchema({ fields: lastElement });
+      setHistory({ state: modifyHistory });
+      setIsDescription(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history.state]);
 
   const handleClick = useCallback(
     (value: GraphQLType | GraphQLNamedType) => {
@@ -35,15 +51,37 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [schema]
+    []
   );
 
   useEffect(() => {
-    if (!schema) setIsDescription(false);
+    if (!schema) {
+      setIsDescription(false);
+    } else {
+      const isExist = Object.is(
+        history.state[history.state.length - 1],
+        schema.fields
+      );
+
+      !isExist &&
+        setHistory((prevState) => {
+          return { ...prevState, state: [...prevState.state, schema.fields] };
+        });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [schema]);
+
+  console.log('test');
 
   return (
     <>
+      <button
+        type="button"
+        style={{ border: '1px solid red' }}
+        onClick={getLastHistorySchema}
+      >
+        Go up
+      </button>
       <ul className="fieldSchema-container">
         {schema &&
           Object.entries(schema.fields).map(
