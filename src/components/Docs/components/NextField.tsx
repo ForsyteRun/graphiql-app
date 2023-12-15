@@ -2,11 +2,13 @@ import {
   GraphQLArgument,
   GraphQLList,
   GraphQLNamedType,
+  GraphQLObjectType,
   GraphQLOutputType,
 } from 'graphql';
+import { Maybe } from 'graphql/jsutils/Maybe';
 import { ReactNode, useCallback } from 'react';
-import getArgsTypes from '../utils/getArgsTypes';
 import { INextField } from '../types/interfaces';
+import getArgsTypes from '../utils/getArgsTypes';
 
 const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
   const renderField = useCallback(
@@ -28,14 +30,16 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
   ): ReactNode => {
     if ('name' in obj) {
       return (
-        <span
-          style={{ color: 'blue', cursor: 'pointer' }}
-          onClick={() => {
-            handleClick(obj);
-          }}
-        >
-          {obj.name}
-        </span>
+        <>
+          <div
+            style={{ color: 'blue', cursor: 'pointer' }}
+            onClick={() => {
+              handleClick(obj);
+            }}
+          >
+            {obj.name}
+          </div>
+        </>
       );
     } else if ('ofType' in obj) {
       return getNameFromTypeList(obj.ofType);
@@ -84,9 +88,12 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
 
   return (
     <>
-      {renderField(fieldName, fieldType)}
-      {renderArgs(fieldType)}
-      {renderType(fieldType)}
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        {renderField(fieldName, fieldType)}
+        {renderArgs(fieldType)}
+        {renderType(fieldType)}
+      </div>
+      <p>{(fieldType as GraphQLObjectType)?.description as Maybe<string>}</p>
     </>
   );
 };
