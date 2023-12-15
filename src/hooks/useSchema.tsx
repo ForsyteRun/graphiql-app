@@ -3,6 +3,7 @@ import { Maybe } from 'graphql/jsutils/Maybe';
 import { useEffect, useState } from 'react';
 import { IRootSchema } from '../types/interface';
 import { FieldsType } from '../types/types';
+import fillDescriptionFieldSchema from '../utils/fillDescriptionFieldSchema';
 
 const useSchema = () => {
   const [schema, setSchema] = useState<Maybe<GraphQLSchema>>();
@@ -13,7 +14,7 @@ const useSchema = () => {
       const queryType = schema.getQueryType()!;
       const namedTypes = schema.getTypeMap();
 
-      const filteredNamedTypes = Object.fromEntries(
+      const filteredByNameTypes = Object.fromEntries(
         Object.entries(namedTypes).filter(([key]) => !key.includes('_'))
       );
 
@@ -23,7 +24,7 @@ const useSchema = () => {
           description: queryType.description,
           fields: queryType.getFields(),
         },
-        fields: filteredNamedTypes as FieldsType,
+        fields: fillDescriptionFieldSchema(filteredByNameTypes as FieldsType),
       };
 
       setRootSchema(modifyRootSchema);

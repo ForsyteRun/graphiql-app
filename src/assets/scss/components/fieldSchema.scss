@@ -2,8 +2,13 @@
   @include flexColumn(flex-start, flex-start);
   row-gap: 1rem;
   & li {
-    display: flex;
-    flex-wrap: nowrap;
+    @include flexColumn(flex-start, flex-start);
+    row-gap: 0.2rem;
+    font-size: 0.9rem;
+    & p {
+      text-align: left;
+      font-size: 10px;
+    }
     & span {
       display: flex;
       flex-wrap: nowrap;
