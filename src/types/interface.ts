@@ -1,5 +1,6 @@
 import {
   GraphQLFieldMap,
+  GraphQLInputFieldMap,
   GraphQLNamedType,
   GraphQLObjectType,
   GraphQLOutputType,
@@ -9,7 +10,10 @@ import { ObjMap } from 'graphql/jsutils/ObjMap';
 
 export interface IRootSchema {
   queries?: IQueries;
-  fields: ObjMap<GraphQLNamedType>;
+  fields:
+    | ObjMap<GraphQLNamedType>
+    | GraphQLInputFieldMap
+    | GraphQLFieldMap<unknown, unknown>;
   types?: GraphQLOutputType;
 }
 
