@@ -56,4 +56,8 @@
   background: transparent;
   color: $links;
   border: 2px solid $links;
+
+  &:hover {
+    border: 2px solid transparent;
+  }
 }
