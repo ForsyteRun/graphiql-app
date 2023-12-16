@@ -4,11 +4,13 @@ import { useAppDispatch } from '../../store/types';
 
 const Headers = () => {
   const dispatch = useAppDispatch();
+
   const [value, setValue] = useState('');
 
   const handleSubmit = () => {
     dispatch(setHeaders(value));
   };
+
   return (
     <div className="headers">
       <div className="headers__content">
