@@ -1,10 +1,9 @@
 import {
-  GraphQLField,
   GraphQLInputObjectType,
   GraphQLInterfaceType,
-  GraphQLNamedType,
   GraphQLObjectType,
   GraphQLOutputType,
+  GraphQLType,
 } from 'graphql';
 import { Role } from './enum';
 
@@ -40,9 +39,7 @@ type GetFieldsType =
   | GraphQLObjectType
   | GraphQLInputObjectType;
 
-export const isGetFieldsType = (
-  value: GraphQLNamedType | GraphQLField<object, object>
-): value is GetFieldsType => {
+export const isGetFieldsType = (value: GraphQLType): value is GetFieldsType => {
   return (
     value instanceof GraphQLInterfaceType ||
     value instanceof GraphQLObjectType ||

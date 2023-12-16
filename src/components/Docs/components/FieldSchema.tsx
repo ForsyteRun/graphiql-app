@@ -1,4 +1,6 @@
 import {
+  GraphQLFieldMap,
+  GraphQLInputFieldMap,
   GraphQLLeafType,
   GraphQLNamedType,
   GraphQLOutputType,
@@ -6,21 +8,25 @@ import {
 } from 'graphql/type';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { IRootSchema } from '../../../types/interface';
-import { FieldsType } from '../../../types/types';
+import { FieldsType, isGetFieldsType } from '../../../types/types';
 import { IFieldSchema } from '../types/interfaces';
 import DetailedField from './DetailedField';
 import NextField from './NextField';
+import { ObjMap } from 'graphql/jsutils/ObjMap';
 
 interface IHistoryState {
-  state: FieldsType[];
+  state: ObjMap<GraphQLNamedType>[];
 }
+
+const hasElements = <T extends object>(el: T): boolean =>
+  Array.isArray(el) && el.length > 1;
 
 const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   const [isDescription, setIsDescription] = useState(false);
   const [history, setHistory] = useState<IHistoryState>({ state: [] });
 
   const getLastHistorySchema = useCallback(() => {
-    if (history.state.length > 1) {
+    if (hasElements(history.state)) {
       const modifyHistory = history.state.slice(0, history.state.length - 1);
       const lastElement = modifyHistory[modifyHistory.length - 1];
       setRootSchema({ fields: lastElement });
@@ -31,12 +37,14 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
   }, [history.state]);
 
   const handleClick = useCallback(
-    (value: GraphQLType | GraphQLNamedType) => {
-      if ('getFields' in value) {
+    (value: GraphQLType) => {
+      if (isGetFieldsType(value)) {
         const data = value.getFields();
 
         const modiFyData: IRootSchema = {
-          fields: { ...data } as unknown as FieldsType,
+          fields: { ...data } as
+            | GraphQLInputFieldMap
+            | GraphQLFieldMap<unknown, unknown>,
         };
 
         setRootSchema(modiFyData);
