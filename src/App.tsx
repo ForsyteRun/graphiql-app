@@ -1,8 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import {
   AUTH_ROUTE,
-  MAIN_ROUTE,
   NOTFOUND_ROUTE,
   REGISTRATION_ROUTE,
   WELCOME_ROUTE,
@@ -13,7 +12,7 @@ import { NavigationLayout } from './layout';
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<NavigationLayout />}>
           <Route index element={<Welcome />} />
@@ -21,7 +20,7 @@ const App = () => {
           <Route path={AUTH_ROUTE} element={<Login />} />
           <Route path={NOTFOUND_ROUTE} element={<NotFound />} />
           <Route
-            path={MAIN_ROUTE}
+            path="/main/*"
             element={
               <AuthRequired>
                 <Routes>
@@ -33,7 +32,7 @@ const App = () => {
           />
         </Route>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };
 
