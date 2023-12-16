@@ -241,6 +241,10 @@ textarea {
   &:hover::before {
     width: 100px;
     height: 100px;
+
+    @include media('s') {
+      height: 50px;
+    }
   }
 }
 
