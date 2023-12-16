@@ -1,4 +1,5 @@
-import { DevelopersData, Role } from '../../types';
+import { Role } from '../../types/enum';
+import { DevelopersData } from '../../types/types';
 import photo from './../../../src/assets/img/Kate.jpg';
 
 export const Katsiaryna: DevelopersData = {

@@ -1,14 +1,15 @@
 import {
   GraphQLFieldMap,
+  GraphQLNamedType,
   GraphQLObjectType,
   GraphQLOutputType,
   IntrospectionQuery,
 } from 'graphql';
-import { FieldsType } from './types';
+import { ObjMap } from 'graphql/jsutils/ObjMap';
 
 export interface IRootSchema {
   queries?: IQueries;
-  fields: FieldsType;
+  fields: ObjMap<GraphQLNamedType>;
   types?: GraphQLOutputType;
 }
 

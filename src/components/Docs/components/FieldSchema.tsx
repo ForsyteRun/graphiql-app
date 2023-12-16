@@ -3,7 +3,6 @@ import {
   GraphQLNamedType,
   GraphQLOutputType,
   GraphQLType,
-  isLeafType,
 } from 'graphql/type';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { IRootSchema } from '../../../types/interface';
@@ -42,9 +41,11 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
 
         setRootSchema(modiFyData);
         setIsDescription(false);
-      } else if (isLeafType(value)) {
+      } else if ('name' in value) {
         const modiFyData: IRootSchema = {
-          fields: { [value.name]: { ...value } } as unknown as FieldsType,
+          fields: {
+            [value.name]: { ...value },
+          } as FieldsType,
         };
         setRootSchema(modiFyData);
         setIsDescription(true);
@@ -70,8 +71,6 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [schema]);
-
-  console.log('test');
 
   return (
     <>

@@ -1,4 +1,5 @@
-import { DevelopersData, Role } from '../../types';
+import { Role } from '../../types/enum';
+import { DevelopersData } from '../../types/types';
 import photo from './../../../src/assets/img/Nastia.webp';
 
 export const nastia: DevelopersData = {
