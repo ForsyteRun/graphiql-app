@@ -1,4 +1,5 @@
 import {
+  GraphQLField,
   GraphQLInputObjectType,
   GraphQLInterfaceType,
   GraphQLObjectType,
@@ -39,7 +40,9 @@ type GetFieldsType =
   | GraphQLObjectType
   | GraphQLInputObjectType;
 
-export const isGetFieldsType = (value: GraphQLType): value is GetFieldsType => {
+export const isGetFieldsType = (
+  value: GraphQLType | GraphQLField<object, object>
+): value is GetFieldsType => {
   return (
     value instanceof GraphQLInterfaceType ||
     value instanceof GraphQLObjectType ||

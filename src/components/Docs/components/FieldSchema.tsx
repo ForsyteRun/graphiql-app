@@ -1,5 +1,7 @@
+import { ObjMap } from 'graphql/jsutils/ObjMap';
 import {
   GraphQLFieldMap,
+  GraphQLInputField,
   GraphQLInputFieldMap,
   GraphQLLeafType,
   GraphQLNamedType,
@@ -8,11 +10,10 @@ import {
 } from 'graphql/type';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { IRootSchema } from '../../../types/interface';
-import { FieldsType, isGetFieldsType } from '../../../types/types';
+import { isGetFieldsType } from '../../../types/types';
 import { IFieldSchema } from '../types/interfaces';
 import DetailedField from './DetailedField';
 import NextField from './NextField';
-import { ObjMap } from 'graphql/jsutils/ObjMap';
 
 interface IHistoryState {
   state: ObjMap<GraphQLNamedType>[];
@@ -52,8 +53,8 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
       } else if ('name' in value) {
         const modiFyData: IRootSchema = {
           fields: {
-            [value.name]: { ...value },
-          } as FieldsType,
+            [value.name]: { ...value } as unknown as GraphQLInputField,
+          },
         };
         setRootSchema(modiFyData);
         setIsDescription(true);
@@ -74,7 +75,13 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
 
       !isExist &&
         setHistory((prevState) => {
-          return { ...prevState, state: [...prevState.state, schema.fields] };
+          return {
+            ...prevState,
+            state: [
+              ...prevState.state,
+              schema.fields,
+            ] as ObjMap<GraphQLNamedType>[],
+          };
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
