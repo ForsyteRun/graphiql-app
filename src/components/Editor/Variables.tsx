@@ -3,8 +3,9 @@ import { setVariables } from '../../store/slice/requestSlice';
 import { useAppDispatch, useAppSelector } from '../../store/types';
 
 const Variables = () => {
-  const { variables } = useAppSelector((state) => state.request);
   const dispatch = useAppDispatch();
+
+  const { variables } = useAppSelector((state) => state.request);
   const [value, setValue] = useState(variables);
 
   const handleSubmit = () => {

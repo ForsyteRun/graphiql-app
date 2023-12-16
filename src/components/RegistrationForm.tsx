@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { DataForm, FieldName } from '../types/types';
-import { schema } from '../utils/schema';
+import { schema, IForm } from '../utils/schema';
 import { registerWithEmailAndPassword } from '../firebase/firebase';
 import { toastForNoConnection, toastSignUp } from '../utils/toasts';
 import {
@@ -32,7 +32,7 @@ const RegistrationForm: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<DataForm>({
+  } = useForm<IForm>({
     mode: 'onChange',
     resolver: yupResolver(schema),
   });

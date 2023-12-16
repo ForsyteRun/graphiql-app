@@ -4,13 +4,13 @@ import Footer from './Footer';
 
 function NavigationLayout() {
   return (
-    <div className="tygh">
+    <>
       <Header />
       <main className="content">
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
 

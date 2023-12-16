@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { sectionData } from '../../constants/editor';
 import { useAppDispatch, useAppSelector } from '../../store/types';
 import { setQuery } from '../../store/slice/requestSlice';
@@ -7,16 +7,7 @@ interface EditorSectionProps {
   title: string;
 }
 
-const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
-  const dispatch = useAppDispatch();
-
-  const countLines = (text: string) => {
-    return text.split('\n').length;
-  };
-
-  const { query } = useAppSelector((state) => state.request);
-
-  const initialQuery = `query {
+const initialQuery = `query {
   characters(page: 2, filter: { name: "rick" }) {
     info {
       count
@@ -33,8 +24,16 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   }
 }`;
 
+const countLines = (text: string) => {
+  return text.split('\n').length;
+};
 
+const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
+  const dispatch = useAppDispatch();
+
+  const { query } = useAppSelector((state) => state.request);
   const [value, setValue] = useState(query);
+  const [numLines, setNumLines] = useState(0);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const lines = countLines(event.target.value);
@@ -46,7 +45,9 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
     dispatch(setQuery(value));
   };
 
-  const [numLines, setNumLines] = useState(countLines(initialQuery));
+  useEffect(() => {
+    setNumLines(countLines(initialQuery));
+  }, []);
 
   return (
     <>
