@@ -81,7 +81,7 @@
 
   &__login {
     margin-top: 15px;
-    @include font($family: $font-family-title);
+    @include font($family: $font-family-title, $color: $background);
   }
 }
 
