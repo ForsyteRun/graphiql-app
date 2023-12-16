@@ -5,11 +5,12 @@ interface EditorSectionProps {
   title: string;
 }
 
-const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
+const EditorResult: React.FC<EditorSectionProps> = ({ title }) => {
   const { api, variables, response, headers, query } = useAppSelector(
     (state) => state.request
   );
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(
       fetchQuery({ api, variables, requestHeaders: headers as Headers, query })
@@ -30,4 +31,4 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   );
 };
 
-export default EditorSection;
+export default EditorResult;
