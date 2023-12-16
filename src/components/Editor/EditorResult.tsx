@@ -1,13 +1,21 @@
-import React from 'react';
-import { useAppSelector } from '../../store/types';
-import { useGraphqlRequest } from '../../utils/graphqlRequest';
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/types';
+import { fetchQuery } from '../../store/slice/requestSlice';
 interface EditorSectionProps {
   title: string;
 }
 
 const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
-  const { response } = useAppSelector((state) => state.request);
-  useGraphqlRequest();
+  const { api, variables, response, headers, query } = useAppSelector(
+    (state) => state.request
+  );
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(
+      fetchQuery({ api, variables, requestHeaders: headers as Headers, query })
+    );
+  }, [api, dispatch, headers, query, variables]);
+
   return (
     <>
       <div className="editor__header">
