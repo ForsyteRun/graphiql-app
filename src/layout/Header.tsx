@@ -9,10 +9,21 @@ import {
 import { LogOut } from '../components/Logout';
 import { AuthState } from '../utils/AuthState';
 import { useAppSelector } from '../store/types';
+import { useState } from 'react';
 
 const Header = () => {
   AuthState();
   const { isAuth } = useAppSelector((state) => state.user);
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
+
+  const closeMenu = () => {
+    setMenuVisible(false);
+  };
+
   return (
     <header className="header container">
       <div className="header__logo">
@@ -22,25 +33,31 @@ const Header = () => {
         <NavLink to={WELCOME_ROUTE} className="link">
           Приветствие
         </NavLink>
-        {isAuth ? (
+        {isAuth && (
           <>
             <NavLink to={MAIN_ROUTE} className="link">
               Редактор
             </NavLink>
-            <LogOut />
           </>
-        ) : null}
+        )}
       </div>
-      {!isAuth && (
-        <div className="header__buttons">
-          <NavLink to={REGISTRATION_ROUTE}>
-            <button className="button button-second">Регистрация</button>
-          </NavLink>
-          <NavLink to={AUTH_ROUTE}>
-            <button className="button">Вход</button>
-          </NavLink>
+      <div className="header__buttons">
+        <span className="header__buttons-icon" onClick={toggleMenu}></span>
+        <div className={`header__buttons-list ${menuVisible ? 'active' : ''}`}>
+          {isAuth ? (
+            <LogOut />
+          ) : (
+            <>
+              <NavLink to={REGISTRATION_ROUTE} onClick={closeMenu}>
+                <button className="button button-second">Регистрация</button>
+              </NavLink>
+              <NavLink to={AUTH_ROUTE} onClick={closeMenu}>
+                <button className="button">Вход</button>
+              </NavLink>
+            </>
+          )}
         </div>
-      )}
+      </div>
     </header>
   );
 };

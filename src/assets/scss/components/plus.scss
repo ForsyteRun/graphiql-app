@@ -5,16 +5,15 @@
   background: $background;
   padding: 50px 0px;
 
+  @include media('m') {
+    padding: 30px 0px;
+  }
+
   &__content {
     @include flexColumn($align: stretch);
   }
 
   &__title {
-    @include font(
-      $family: $font-family-title,
-      $size: $font-size-28,
-      $weight: bold
-    );
     padding-bottom: 30px;
     text-align: left;
   }
@@ -23,6 +22,22 @@
     @include flex();
     gap: 5rem;
     padding-bottom: 50px;
+
+    @include media('xl') {
+      gap: 3rem;
+    }
+
+    @include media('l') {
+      gap: 1rem;
+    }
+
+    @include media('m') {
+      flex-wrap: wrap;
+    }
+
+    @include media('xs') {
+      flex-direction: column;
+    }
   }
 
   &__item {
@@ -43,6 +58,10 @@
       transform 1s ease;
     position: relative;
 
+    @include media('m') {
+      min-width: 45%;
+    }
+
     &:nth-child(even) {
       transform: translateY(50%) translateX(-50%);
     }
@@ -57,11 +76,7 @@
     }
 
     h3 {
-      @include font(
-        $family: $font-family-title,
-        $size: $font-size-16,
-        $weight: bold
-      );
+      @include font($family: $font-family-title, $size: 1.15rem, $weight: bold);
     }
   }
 }

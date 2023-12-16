@@ -4,6 +4,10 @@
   position: relative;
   overflow: hidden;
 
+  @include media('s') {
+    height: calc(100vh - 5rem);
+  }
+
   &__content {
     position: absolute;
     height: 100%;
