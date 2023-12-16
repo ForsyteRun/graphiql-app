@@ -8,6 +8,16 @@ import {
 } from 'graphql';
 import { Role } from './enum';
 
+import {
+  GraphQLField,
+  GraphQLInputObjectType,
+  GraphQLInterfaceType,
+  GraphQLNamedType,
+  GraphQLObjectType,
+  GraphQLOutputType,
+} from 'graphql';
+import { Role } from './enum';
+
 export interface DataForm extends DataLogin {
   confirmPassword: string;
 }
