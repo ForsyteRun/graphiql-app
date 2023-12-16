@@ -1,4 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { checkVariables } from '../../utils/checkVariables';
+import { toast } from 'react-toastify';
+import {
+  TOAST_REQUEST_PENDING,
+  TOAST_REQUEST_SUCCESS,
+} from '../../constants/toastsConst';
+import { onRenderError } from '../../utils/renderError';
 
 interface DataType {
   api: string;
@@ -33,6 +40,38 @@ const initialState: DataType = {
   headers: { 'Content-Type': 'application/json' },
 };
 
+export const fetchQuery = createAsyncThunk(
+  'request/fetchQuery',
+  async ({
+    api,
+    variables,
+    requestHeaders,
+    query,
+  }: {
+    api: string;
+    variables: string;
+    requestHeaders: Headers;
+    query: string;
+  }) => {
+    try {
+      const response = await fetch(api, {
+        method: 'POST',
+        headers: requestHeaders as Headers,
+        body: JSON.stringify({ query, variables: checkVariables(variables) }),
+      });
+      if (!response.ok) {
+        throw new Error(`Error fetching data: ${response.status}`);
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      {
+        throw new Error(`Error fetching data: ${error}`);
+      }
+    }
+  }
+);
+
 const requestSlice = createSlice({
   name: 'request',
   initialState,
@@ -52,6 +91,21 @@ const requestSlice = createSlice({
     setHeaders: (state, action) => {
       state.headers = { 'Content-Type': 'application/json', ...action.payload };
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchQuery.pending, () => {
+      toast.loading(TOAST_REQUEST_PENDING);
+    });
+    builder.addCase(fetchQuery.rejected, (state, action) => {
+      const errorMessage = action.error.message || 'Unknown error';
+      toast.dismiss();
+      toast.error(onRenderError(errorMessage));
+    });
+    builder.addCase(fetchQuery.fulfilled, (state, action) => {
+      toast.dismiss();
+      toast.success(TOAST_REQUEST_SUCCESS);
+      state.response = JSON.stringify(action.payload, null, 2);
+    });
   },
 });
 
