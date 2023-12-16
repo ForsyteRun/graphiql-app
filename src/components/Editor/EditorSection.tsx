@@ -8,6 +8,8 @@ interface EditorSectionProps {
 }
 
 const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
+  const dispatch = useAppDispatch();
+
   const countLines = (text: string) => {
     return text.split('\n').length;
   };
@@ -31,7 +33,7 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   }
 }`;
 
-  const dispatch = useAppDispatch();
+
   const [value, setValue] = useState(query);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
