@@ -72,8 +72,6 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [schema]);
 
-  console.log('test');
-
   return (
     <>
       <button
