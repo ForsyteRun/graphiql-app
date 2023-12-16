@@ -1,23 +1,27 @@
-import { GraphQLFieldMap } from 'graphql';
-import { FieldsType } from '../types/types';
-
-const getTemplateString = <T extends string>(key: T): `GraphQL ${T} type` =>
-  `GraphQL ${key} type`;
+import { GraphQLField, GraphQLInputFieldMap, GraphQLNamedType } from 'graphql';
+import { ObjMap } from 'graphql/jsutils/ObjMap';
+import { getTemplateString, isGetFieldsType } from '../types/types';
 
 const fillDescriptionFieldSchema = <
-  T extends FieldsType | GraphQLFieldMap<object, object>,
+  T extends
+    | ObjMap<GraphQLNamedType>
+    | ObjMap<GraphQLField<object, object>>
+    | GraphQLInputFieldMap,
 >(
   fields: T
 ): T => {
-  const data = Object.entries(fields);
+  const data: Array<[string, GraphQLNamedType | GraphQLField<object, object>]> =
+    Object.entries(fields);
 
   const updatedFields = data.map(([key, value]) => {
-    if (!value.description.trim()) {
-      value.description = getTemplateString(key);
+    if (!value.description) {
+      const typedValue = value;
+      typedValue.description = getTemplateString(key);
     }
 
-    if ('getFields' in value) {
-      fillDescriptionFieldSchema(value.getFields());
+    if (isGetFieldsType(value)) {
+      const fields = value.getFields();
+      fillDescriptionFieldSchema(fields);
     }
 
     return [key, value];
