@@ -8,16 +8,6 @@ import {
 } from 'graphql';
 import { Role } from './enum';
 
-import {
-  GraphQLField,
-  GraphQLInputObjectType,
-  GraphQLInterfaceType,
-  GraphQLNamedType,
-  GraphQLObjectType,
-  GraphQLOutputType,
-} from 'graphql';
-import { Role } from './enum';
-
 export interface DataForm extends DataLogin {
   confirmPassword: string;
 }
@@ -37,7 +27,7 @@ export type DevelopersData = {
   image: string;
   role: Role;
   github: string;
-  about: string;
+  about?: string;
   contribution: string[];
 };
 

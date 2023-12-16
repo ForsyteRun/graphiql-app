@@ -1,8 +1,8 @@
-import { DevelopersData, Role } from '../types';
-
 import alexPhoto from './../../src/assets/img/alex.png';
 import nastyaPhoto from './../../src/assets/img/nastya.png';
 import katyaPhoto from './../../src/assets/img/katya.png';
+import { DevelopersData } from '../types/types';
+import { Role } from '../types/enum';
 
 const developers: DevelopersData[] = [
   {
