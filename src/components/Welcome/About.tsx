@@ -27,7 +27,7 @@ const About = () => {
               <div
                 className={`about__descriptions ${isVisible ? 'visible' : ''}`}
               >
-                <h2>{item.title}</h2>
+                <h3 className="about__subtitle">{item.title}</h3>
                 <p>{item.description}</p>
                 <div className="about__number">{index + 1}</div>
               </div>

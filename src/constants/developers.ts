@@ -10,7 +10,7 @@ const developers: DevelopersData[] = [
     image: nastyaPhoto,
     role: Role.developer,
     github: 'nyurasheva',
-    contribution: ['Дизайн', 'Главная страница', 'Редактор', 'Подвал'],
+    contribution: ['Приветствие', 'Дизайн', 'Редактор', 'Подвал'],
   },
   {
     name: 'Александр',
@@ -24,7 +24,7 @@ const developers: DevelopersData[] = [
     image: katyaPhoto,
     role: Role.developer,
     github: 'Katsiaryna',
-    contribution: ['Вход', 'Регистрация'],
+    contribution: ['Регистрация', 'Вход'],
   },
 ];
 

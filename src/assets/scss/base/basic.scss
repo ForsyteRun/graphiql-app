@@ -20,6 +20,10 @@
   @include font($size: $font-size-14);
   background-color: $background;
   overflow-x: hidden;
+
+  @include media('s') {
+    @include font($size: $font-size-12);
+  }
 }
 
 *,
@@ -40,39 +44,36 @@ body {
 main {
   width: 100%;
   flex-grow: 1;
-  background: $background2;
-  background: $background3;
-  background: $background4;
-  background: $background5;
-  background: $background6;
-  background: $background1;
+  background: $background-grey;
 }
 
 body,
 p,
 div,
 li {
-  font-size: $font-size-14;
+  font-size: 1rem;
 }
 
 h1 {
-  @include font(
-    $family: $font-family-title,
-    $size: $font-size-28,
-    $height: 1.1
-  );
+  @include font($family: $font-family-title, $size: 2rem, $height: 1.1);
   margin-top: 20px;
   margin-bottom: 10px;
-}
-
-h1 {
   text-align: center;
 }
 
 h2 {
   @include font(
     $family: $font-family-title,
-    $size: $font-size-32,
+    $size: 2.3rem,
+    $height: 1.1,
+    $weight: bold
+  );
+}
+
+h3 {
+  @include font(
+    $family: $font-family-title,
+    $size: 2rem,
     $height: 1.1,
     $weight: bold
   );
@@ -145,7 +146,7 @@ input[type='text'],
 input[type='email'],
 input[type='password'],
 textarea {
-  @include font($size: $font-size-12, $color: $button-second);
+  @include font($size: 0.8rem, $color: $button-second);
   min-height: $button-size-40;
   height: $button-size-40;
   outline: none !important;
@@ -245,30 +246,4 @@ textarea {
 
 .white {
   color: $background;
-}
-
-.page {
-  padding: 0 20px;
-
-  h2,
-  h3,
-  p,
-  ul {
-    text-align: left;
-    padding: 6px 0;
-  }
-
-  h2,
-  h3 {
-    margin-top: 20px;
-  }
-
-  li span {
-    @include font($family: $font-family-title, $size: $font-size-14);
-    text-decoration: underline;
-  }
-
-  h3 {
-    @include font($family: $font-family-title, $size: $font-size-14);
-  }
 }

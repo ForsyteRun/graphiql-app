@@ -10,13 +10,12 @@
     gap: 10px 40px;
     color: $background;
 
-    & > * {
-      flex: 1;
+    @include media('s') {
+      gap: 10px;
     }
 
-    @include media('l') {
-      @include flexColumn($align: stretch);
-      gap: 2px;
+    & > * {
+      flex: 1;
     }
   }
 
@@ -37,15 +36,27 @@
     svg {
       background: url('../svg/rs.svg') center / contain no-repeat;
       width: 8rem;
+
+      @include media('s') {
+        width: 5rem;
+      }
     }
   }
 
   &__gh-link svg {
     background: url('../svg/github.svg') center / contain no-repeat;
     width: 3rem;
+
+    @include media('s') {
+      width: 2rem;
+    }
   }
 
   &__year-link {
     text-align: right;
+
+    @include media('s') {
+      font-size: 0.8rem;
+    }
   }
 }
