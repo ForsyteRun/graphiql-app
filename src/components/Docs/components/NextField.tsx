@@ -14,6 +14,7 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
   const renderField = useCallback(
     (nameValue: string, typeValue: GraphQLOutputType) => (
       <span
+        style={{ color: 'orange' }}
         onClick={() => {
           handleClick(typeValue);
         }}
