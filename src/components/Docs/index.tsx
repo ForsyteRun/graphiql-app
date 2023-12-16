@@ -24,7 +24,7 @@ const Docs = memo(() => {
   }, [data]);
 
   return (
-    <aside className={classNames({ openModal: open })}>
+    <aside className={classNames({ openAside: open })}>
       <div className="docs-container">
         <FieldSchema schema={rootSchema} setRootSchema={setRootSchema} />
       </div>
