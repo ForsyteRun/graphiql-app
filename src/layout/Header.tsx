@@ -24,7 +24,18 @@ const Header = () => {
     setMenuVisible(false);
   };
 
-  const viewHeader = useMemo(() => {
+  const viewMainLink = useMemo(() => {
+    {
+      if (isAuth)
+        return (
+          <NavLink to={MAIN_ROUTE} className="link">
+            Редактор
+          </NavLink>
+        );
+    }
+  }, [isAuth]);
+
+  const viewButtons = useMemo(() => {
     {
       if (isAuth) return <LogOut />;
       return (
@@ -49,18 +60,12 @@ const Header = () => {
         <NavLink to={WELCOME_ROUTE} className="link">
           Приветствие
         </NavLink>
-        {isAuth && (
-          <>
-            <NavLink to={MAIN_ROUTE} className="link">
-              Редактор
-            </NavLink>
-          </>
-        )}
+        {viewMainLink}
       </div>
       <div className="header__buttons">
         <span className="header__buttons-icon" onClick={toggleMenu}></span>
         <div className={`header__buttons-list ${menuVisible ? 'active' : ''}`}>
-          {viewHeader}
+          {viewButtons}
         </div>
       </div>
     </header>
