@@ -1,25 +1,9 @@
-import {
-  GraphQLFieldMap,
-  GraphQLObjectType,
-  GraphQLOutputType,
-  GraphQLSchema,
-} from 'graphql';
+import { GraphQLNamedType, GraphQLObjectType, GraphQLSchema } from 'graphql';
+import { Maybe } from 'graphql/jsutils/Maybe';
+import { ObjMap } from 'graphql/jsutils/ObjMap';
 import { useEffect, useState } from 'react';
-
-export interface IRootSchema {
-  queries?: IQueries;
-  fields: FieldsType;
-  types?: GraphQLOutputType;
-}
-
-export interface IQueries {
-  name: GraphQLObjectType['name'];
-  description: GraphQLObjectType['description'];
-  fields: GraphQLFieldMap<object, object>;
-}
-
-export type FieldsType = Record<string, GraphQLOutputType>;
-export type Maybe<T> = undefined | T;
+import { IRootSchema } from '../types/interface';
+import fillDescriptionFieldSchema from '../utils/fillDescriptionFieldSchema';
 
 const useSchema = () => {
   const [schema, setSchema] = useState<Maybe<GraphQLSchema>>();
@@ -27,23 +11,23 @@ const useSchema = () => {
 
   useEffect(() => {
     if (schema) {
-      const queryType = schema.getQueryType()!;
-      const namedTypes = schema.getTypeMap();
+      const queryType: Maybe<GraphQLObjectType> = schema.getQueryType()!;
+      const namedTypes: ObjMap<GraphQLNamedType> = schema.getTypeMap();
 
-      const filteredNamedTypes = Object.fromEntries(
+      const filteredByNameTypes: ObjMap<GraphQLNamedType> = Object.fromEntries(
         Object.entries(namedTypes).filter(([key]) => !key.includes('_'))
       );
 
-      const rootSchema: IRootSchema = {
+      const modifyRootSchema: IRootSchema = {
         queries: {
           name: queryType.name,
           description: queryType.description,
           fields: queryType.getFields(),
         },
-        fields: filteredNamedTypes as FieldsType,
+        fields: fillDescriptionFieldSchema(filteredByNameTypes),
       };
 
-      setRootSchema(rootSchema);
+      setRootSchema(modifyRootSchema);
     }
   }, [schema]);
 

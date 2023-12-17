@@ -1,22 +1,24 @@
 import { GraphQLLeafType } from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
+import { isNonNull } from '../types/types';
+import { memo, useCallback } from 'react';
 
-function isNonNull<T>(value: T): boolean {
-  return value !== null && value !== undefined;
-}
-const DetailedField = ({ value }: { value: GraphQLLeafType }) => {
+const DetailedField = memo(({ value }: { value: GraphQLLeafType }) => {
   const { name, description } = value;
 
-  const renderDetailItem = <T extends string>(value: Maybe<T>, key: string) => {
-    if (isNonNull(value)) {
-      return (
-        <div className={`docs-details__${key}`} key={key}>
-          {key}: <span>{value}</span>
-        </div>
-      );
-    }
-    return null;
-  };
+  const renderDetailItem = useCallback(
+    <T extends string>(value: Maybe<T>, key: T) => {
+      if (isNonNull(value)) {
+        return (
+          <div className={`docs-details__${key}`} key={key}>
+            {key}: <span>{value}</span>
+          </div>
+        );
+      }
+      return null;
+    },
+    []
+  );
 
   return (
     <div className="docs-details">
@@ -24,6 +26,6 @@ const DetailedField = ({ value }: { value: GraphQLLeafType }) => {
       {renderDetailItem(description, 'description')}
     </div>
   );
-};
+});
 
 export default DetailedField;

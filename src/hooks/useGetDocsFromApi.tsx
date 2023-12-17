@@ -1,50 +1,46 @@
-import { IntrospectionQuery } from 'graphql';
 import { useCallback, useEffect, useState } from 'react';
-import { introspectionQuery } from '../constants/introspectionQuery';
+import { IQuery } from '../types/interface';
+import { getIntrospectionQuery } from 'graphql';
+import { useAppSelector } from '../store/types';
 
-interface IQuery {
-  data: IntrospectionQuery | null;
-}
 // https://beta.pokeapi.co/graphql/v1beta
 // 'https://rickandmortyapi.com/graphql'
+// 'https://graphqlzero.almansi.me/api'
 const useGetDocsFromApi = () => {
   const [query, setQuery] = useState<IQuery>({ data: null });
-  const [hoverButton, setHoverButton] = useState<boolean>(false);
+  const { api } = useAppSelector((state) => state.request);
 
   const getDocsData = useCallback(
     async <T extends string>(query: T): Promise<IQuery> => {
-      const response: Response = await fetch(
-        'https://rickandmortyapi.com/graphql',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query }),
-        }
-      );
+      const response: Response = await fetch(api, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+      });
 
       return response.json();
     },
-    []
+    [api]
   );
 
   useEffect(() => {
-    if (hoverButton && !query.data) {
-      const fetchDocs = async () => {
-        try {
-          const res: IQuery = await getDocsData(introspectionQuery);
+    setQuery({ data: null });
 
-          setQuery(res);
-        } catch (error) {
-          alert('error get docs');
-        }
-      };
+    const fetchDocs = async () => {
+      try {
+        const res: IQuery = await getDocsData(getIntrospectionQuery());
 
-      fetchDocs();
-    }
+        setQuery(res);
+      } catch (error) {
+        alert('error get docs'); //TODO: modal error
+      }
+    };
+
+    fetchDocs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hoverButton]);
+  }, [api]);
 
-  return { query, setHoverButton };
+  return { query };
 };
 
 export default useGetDocsFromApi;

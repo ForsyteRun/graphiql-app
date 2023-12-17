@@ -1,21 +1,27 @@
 import {
   GraphQLArgument,
+  GraphQLField,
+  GraphQLList,
   GraphQLNamedType,
+  GraphQLObjectType,
   GraphQLOutputType,
-  GraphQLType,
 } from 'graphql';
-import { useCallback } from 'react';
+import { Maybe } from 'graphql/jsutils/Maybe';
+import { ReactNode, memo, useCallback } from 'react';
+import { INextField } from '../types/interfaces';
+import getArgsTypes from '../utils/getArgsTypes';
 
-interface INextField {
-  handleClick: (value: GraphQLType) => void;
-  fieldName: string;
-  fieldType: GraphQLOutputType;
-}
+const isGraphQLField = (
+  value: GraphQLField<unknown, unknown>
+): value is GraphQLField<unknown, unknown> => {
+  return 'args' in value && value.args instanceof Array;
+};
 
-const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
+const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
   const renderField = useCallback(
     (nameValue: string, typeValue: GraphQLOutputType) => (
       <span
+        style={{ color: 'orange' }}
         onClick={() => {
           handleClick(typeValue);
         }}
@@ -27,29 +33,45 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
     [fieldName, fieldType]
   );
 
+  const getNameFromTypeList = (
+    obj: GraphQLNamedType | GraphQLList<GraphQLOutputType>
+  ): ReactNode => {
+    if ('name' in obj) {
+      return (
+        <>
+          <div
+            style={{ color: 'blue', cursor: 'pointer' }}
+            onClick={() => {
+              handleClick(obj);
+            }}
+          >
+            {obj.name}
+          </div>
+        </>
+      );
+    } else if ('ofType' in obj) {
+      return getNameFromTypeList(obj.ofType);
+    } else {
+      return null;
+    }
+  };
+
   const renderType = useCallback(
     (typeValue: GraphQLOutputType) => {
       if ('type' in typeValue && typeValue.type) {
-        return (
-          <span
-            style={{ color: 'blue', cursor: 'pointer' }}
-            onClick={() => {
-              handleClick(typeValue.type as GraphQLNamedType);
-            }}
-          >
-            :{(typeValue.type as GraphQLNamedType).name}
-          </span>
-        );
+        return <>{getNameFromTypeList(typeValue.type as GraphQLNamedType)}</>;
       }
       return null;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [fieldType]
   );
+
   const renderArgs = useCallback(
-    (typeValue: GraphQLOutputType) => {
-      if ('args' in typeValue && typeValue.args instanceof Array) {
-        const isManyArgs = (typeValue.args as GraphQLArgument[]).length > 1;
+    (typeValue: GraphQLField<unknown, unknown>) => {
+      if (isGraphQLField(typeValue)) {
+        const lastArg = typeValue.args.length - 1;
+        const isManyArgs = typeValue.args.length > 1;
 
         return (
           <>
@@ -57,11 +79,9 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
               <span key={arg.name}>
                 {index === 0 && '('}
                 {arg.name}
-                {isManyArgs &&
-                  index !== (typeValue.args as GraphQLArgument[]).length - 1 &&
-                  ','}
-                {index === (typeValue.args as GraphQLArgument[]).length - 1 &&
-                  ')'}
+                {getArgsTypes(arg.type, handleClick)}
+                {isManyArgs && index !== lastArg && ','}
+                {index === lastArg && ')'}
               </span>
             ))}
           </>
@@ -76,11 +96,14 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
 
   return (
     <>
-      {renderField(fieldName, fieldType)}
-      {renderArgs(fieldType)}
-      {renderType(fieldType)}
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        {renderField(fieldName, fieldType as GraphQLOutputType)}
+        {renderArgs(fieldType as GraphQLField<unknown, unknown>)}
+        {renderType(fieldType as GraphQLOutputType)}
+      </div>
+      <p>{(fieldType as GraphQLObjectType)?.description as Maybe<string>}</p>
     </>
   );
-};
+});
 
 export default NextField;

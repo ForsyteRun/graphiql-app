@@ -9,11 +9,12 @@ const Docs = memo(() => {
   const [open, setOpen] = useState<boolean>(false);
   const {
     query: { data },
-    setHoverButton,
   } = useGetDocsFromApi();
   const { rootSchema, setSchema, setRootSchema } = useSchema();
 
   useEffect(() => {
+    setRootSchema(null);
+
     if (data) {
       const response = buildClientSchema(data);
 
@@ -23,16 +24,11 @@ const Docs = memo(() => {
   }, [data]);
 
   return (
-    <aside className={classNames({ openModal: open })}>
+    <aside className={classNames({ openAside: open })}>
       <div className="docs-container">
         <FieldSchema schema={rootSchema} setRootSchema={setRootSchema} />
       </div>
-      <button
-        className="docs-button"
-        onMouseEnter={() => setHoverButton(true)}
-        onMouseLeave={() => setHoverButton(false)}
-        onClick={() => setOpen(!open)}
-      >
+      <button className="docs-button" onClick={() => setOpen(!open)}>
         Docs
       </button>
     </aside>
