@@ -1,5 +1,5 @@
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { GraphQLOutputType, GraphQLType } from 'graphql';
+import { GraphQLField, GraphQLOutputType, GraphQLType } from 'graphql';
 import { IRootSchema } from '../../../types/interface';
 
 export interface IFieldSchema {
@@ -10,5 +10,5 @@ export interface IFieldSchema {
 export interface INextField {
   handleClick: (value: GraphQLType) => void;
   fieldName: string;
-  fieldType: GraphQLOutputType;
+  fieldType: GraphQLOutputType | GraphQLField<unknown, unknown>;
 }

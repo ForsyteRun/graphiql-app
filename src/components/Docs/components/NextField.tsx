@@ -1,16 +1,23 @@
 import {
   GraphQLArgument,
+  GraphQLField,
   GraphQLList,
   GraphQLNamedType,
   GraphQLObjectType,
   GraphQLOutputType,
 } from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { ReactNode, useCallback } from 'react';
+import { ReactNode, memo, useCallback } from 'react';
 import { INextField } from '../types/interfaces';
 import getArgsTypes from '../utils/getArgsTypes';
 
-const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
+const isGraphQLField = (
+  value: GraphQLField<unknown, unknown>
+): value is GraphQLField<unknown, unknown> => {
+  return 'args' in value && value.args instanceof Array;
+};
+
+const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
   const renderField = useCallback(
     (nameValue: string, typeValue: GraphQLOutputType) => (
       <span
@@ -61,10 +68,10 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
   );
 
   const renderArgs = useCallback(
-    (typeValue: GraphQLOutputType) => {
-      if ('args' in typeValue && typeValue.args instanceof Array) {
-        const lastArg = (typeValue.args as GraphQLArgument[]).length - 1;
-        const isManyArgs = (typeValue.args as GraphQLArgument[]).length > 1;
+    (typeValue: GraphQLField<unknown, unknown>) => {
+      if (isGraphQLField(typeValue)) {
+        const lastArg = typeValue.args.length - 1;
+        const isManyArgs = typeValue.args.length > 1;
 
         return (
           <>
@@ -90,13 +97,13 @@ const NextField = ({ fieldName, fieldType, handleClick }: INextField) => {
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
-        {renderField(fieldName, fieldType)}
-        {renderArgs(fieldType)}
-        {renderType(fieldType)}
+        {renderField(fieldName, fieldType as GraphQLOutputType)}
+        {renderArgs(fieldType as GraphQLField<unknown, unknown>)}
+        {renderType(fieldType as GraphQLOutputType)}
       </div>
       <p>{(fieldType as GraphQLObjectType)?.description as Maybe<string>}</p>
     </>
   );
-};
+});
 
 export default NextField;

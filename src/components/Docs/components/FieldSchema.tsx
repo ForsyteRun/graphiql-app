@@ -1,5 +1,6 @@
 import { ObjMap } from 'graphql/jsutils/ObjMap';
 import {
+  GraphQLField,
   GraphQLFieldMap,
   GraphQLInputField,
   GraphQLInputFieldMap,
@@ -99,7 +100,10 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
       <ul className="fieldSchema-container">
         {schema &&
           Object.entries(schema.fields).map(
-            ([fieldName, fieldType]: [string, GraphQLOutputType]) => (
+            ([fieldName, fieldType]: [
+              string,
+              GraphQLOutputType | GraphQLField<unknown, unknown>,
+            ]) => (
               <li key={fieldName} style={{ cursor: 'pointer' }}>
                 {isDescription ? (
                   <DetailedField value={fieldType as GraphQLLeafType} />

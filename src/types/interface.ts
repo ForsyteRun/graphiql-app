@@ -1,3 +1,4 @@
+import { ObjMap } from 'graphql/jsutils/ObjMap';
 import {
   GraphQLFieldMap,
   GraphQLInputFieldMap,
@@ -6,14 +7,15 @@ import {
   GraphQLOutputType,
   IntrospectionQuery,
 } from 'graphql';
-import { ObjMap } from 'graphql/jsutils/ObjMap';
+
+export type RootFieldType =
+  | ObjMap<GraphQLNamedType>
+  | GraphQLInputFieldMap
+  | GraphQLFieldMap<unknown, unknown>;
 
 export interface IRootSchema {
   queries?: IQueries;
-  fields:
-    | ObjMap<GraphQLNamedType>
-    | GraphQLInputFieldMap
-    | GraphQLFieldMap<unknown, unknown>;
+  fields: RootFieldType;
   types?: GraphQLOutputType;
 }
 

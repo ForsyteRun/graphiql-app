@@ -1,3 +1,3 @@
-export function isNonNull<T>(value: T): boolean {
+export const isNonNull = <T>(value: T): boolean => {
   return value !== null && value !== undefined;
-}
+};
