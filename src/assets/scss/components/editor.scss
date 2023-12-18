@@ -7,7 +7,7 @@
 .api,
 .headers,
 .variables {
-  @include flex($justify: space-between);
+  @include flex($justify: space-between, $align: end);
   gap: 2rem;
   margin: 0 0 20px;
   color: $background;
@@ -33,6 +33,7 @@
   &__label {
     min-width: 130px;
     text-align: left;
+    color: #9ffffb;
   }
 }
 
