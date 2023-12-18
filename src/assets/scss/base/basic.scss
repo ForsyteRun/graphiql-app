@@ -55,7 +55,12 @@ li {
 }
 
 h1 {
-  @include font($family: $font-family-title, $size: 2rem, $height: 1.1);
+  @include font(
+    $family: $font-family-title,
+    $size: 2rem,
+    $height: 1.1,
+    $color: $background
+  );
   margin-top: 20px;
   margin-bottom: 10px;
   text-align: center;

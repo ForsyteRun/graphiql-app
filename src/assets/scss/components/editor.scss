@@ -1,7 +1,7 @@
 /* editor */
 
-.main {
-  padding: 0 20px;
+.main__title {
+  color: #9ffffb;
 }
 
 .api,
@@ -10,6 +10,7 @@
   @include flex($justify: space-between);
   gap: 2rem;
   margin: 0 0 20px;
+  color: $background;
 
   &__content {
     @include flex();
@@ -36,10 +37,12 @@
 }
 
 .editor {
+  padding-bottom: 30px;
+
   &__wrapper {
     @include flex($justify: space-between, $align: baseline);
     display: flex;
-    border: solid 10px #00000059;
+    border: solid 10px #0d0c18;
     border-radius: 4px;
     overflow: hidden;
     margin: 0;
@@ -58,23 +61,36 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    border-left: solid 1px #2b2b2b;
+    border-bottom: solid 1px #2b2b2b;
+  }
+
+  &__left {
+    .editor__content {
+      background: #1f1f1f47;
+    }
+  }
+
+  &__right {
+    border-right: solid 1px #2b2b2b;
   }
 
   &__header {
     @include flex($justify: space-between);
+    min-height: 52px;
     text-align: left;
     padding: 10px 15px;
-    background: #00000026;
-    border-top: solid 1px #ffffff0d;
-    border-bottom: solid 1px #ffffff0d;
+    background: #181818;
+    border-top: solid 1px #2b2b2b;
+    border-bottom: solid 1px #2b2b2b;
     border-radius: 2px 2px 0 0;
     color: #ffffff99;
   }
 
   &__content {
     @include flex($align: stretch);
-    background: #efefef;
-    color: #aaa;
+    background: #1f1f1f;
+    color: #739db3;
     flex: 1 0 auto;
     position: relative;
   }
@@ -82,7 +98,7 @@
   &__numbers {
     @include flexColumn();
     color: #999;
-    background: #ddd;
+    background: #181818;
     font-family: menlo, monospace;
     padding: 10px 10px;
     height: 100%;
@@ -105,5 +121,28 @@
       border: none;
       box-shadow: none;
     }
+  }
+
+  &__response {
+    text-align: left;
+  }
+
+  &__buttons {
+    @include flex();
+    gap: 10px;
+  }
+
+  &__play,
+  &__play:hover {
+    min-width: 30px;
+    height: 30px;
+    background: url(/src/assets/svg/play.svg) no-repeat center center/cover;
+  }
+
+  &__color,
+  &__color:hover {
+    min-width: 30px;
+    height: 30px;
+    background: url(/src/assets/svg/colors.svg) no-repeat center center/cover;
   }
 }

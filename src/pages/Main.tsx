@@ -6,8 +6,8 @@ import Variables from '../components/Editor/Variables';
 
 const Main = () => {
   return (
-    <div className="main">
-      <h1>GraphiQL Editor</h1>
+    <div className="container main">
+      <h1 className="main__title">GraphiQL Editor</h1>
       <Api />
       <Headers />
       <Variables />

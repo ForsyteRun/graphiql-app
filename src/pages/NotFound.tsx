@@ -3,7 +3,7 @@ import { WELCOME_ROUTE } from '../constants/route';
 
 const NotFound = () => {
   return (
-    <div className="main container">
+    <div className="container">
       <div className="exception">
         <div className="exception__code">
           404

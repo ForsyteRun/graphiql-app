@@ -13,6 +13,15 @@ export type RootFieldType =
   | GraphQLInputFieldMap
   | GraphQLFieldMap<unknown, unknown>;
 
+export interface DataForm extends DataLogin {
+  confirmPassword: string;
+}
+
+export interface DataLogin {
+  email: string;
+  password: string;
+}
+
 export interface IRootSchema {
   queries?: IQueries;
   fields: RootFieldType;
@@ -27,4 +36,17 @@ export interface IQueries {
 
 export interface IQuery {
   data: IntrospectionQuery | null;
+}
+
+export interface EditorSectionProps {
+  title: string;
+}
+
+export interface DataForm extends DataLogin {
+  confirmPassword: string;
+}
+
+export interface DataLogin {
+  email: string;
+  password: string;
 }
