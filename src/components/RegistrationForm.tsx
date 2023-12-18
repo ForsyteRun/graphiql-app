@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { DataForm, FieldName } from '../types/types';
+import { FieldName } from '../types/types';
 import { schema, IForm } from '../utils/schema';
 import { registerWithEmailAndPassword } from '../firebase/firebase';
 import { toastForNoConnection, toastSignUp } from '../utils/toasts';
@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../store/types';
 import { setIsLogin } from '../store/slice/userSlice';
 import { fields } from '../constants/fields';
+import { DataForm } from '../types/interface';
 
 const onRenderError = (error: FirebaseError) => {
   if (error.code === 'auth/email-already-in-use') {
