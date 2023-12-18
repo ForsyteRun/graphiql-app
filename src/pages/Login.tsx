@@ -5,7 +5,7 @@ import { LoginForm } from '../components';
 const Login = () => {
   return (
     <>
-      <div className="main page container">
+      <div className="container">
         <div className="authorization">
           <div className="authorization__container">
             <h1>Войти</h1>

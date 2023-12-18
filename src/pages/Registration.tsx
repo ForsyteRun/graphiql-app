@@ -4,7 +4,7 @@ import { AUTH_ROUTE } from '../constants/route';
 
 const Registration = () => {
   return (
-    <div className="main container page">
+    <div className="container">
       <div className="authorization">
         <div className="authorization__container">
           <h1>Создать учетную запись</h1>

@@ -1,5 +1,4 @@
 import { sectionData } from '../../constants/editor';
-import EditorResult from './EditorResult';
 import EditorSection from './EditorSection';
 
 const Editor = () => {
@@ -13,7 +12,7 @@ const Editor = () => {
         </div>
         <div className="editor__right">
           <div className="editor__response">
-            <EditorResult title={sectionData.response.label} />
+            <EditorSection title={sectionData.response.label} />
           </div>
         </div>
       </div>
