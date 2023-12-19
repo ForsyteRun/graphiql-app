@@ -1,0 +1,43 @@
+import { Translations } from './types';
+
+// Simulated translations data
+export const translationsData: Translations = {
+  en: {
+    en: 'En',
+    ru: 'Ru',
+    welcome: 'Welcome',
+    main: 'Main',
+    registration: 'Registration',
+    login: 'Sign in',
+    logout: 'Sign out',
+    registerTitle: 'Create an account',
+    registerSubtitle: 'Registered user benefit:',
+    registerText: 'Already have an account? Then just click ',
+    loginTitle: 'Sign in',
+    loginSubtitle: 'Not registered?',
+    loginText: '"Creating an account will take no more than a minute ',
+    notfoundText: 'Error',
+    notfoundTitle: 'Sorry! We could not find what you were looking for.',
+    notfoundInfo: 'The page was not found.',
+    notfoundLink: 'Go to home page',
+  },
+  ru: {
+    en: 'Англ',
+    ru: 'Рус',
+    welcome: 'Приветствие',
+    main: 'Главная',
+    registration: 'Регистрация',
+    login: 'Вход',
+    logout: 'Выход',
+    registerTitle: 'Создать учетную запись',
+    registerSubtitle: 'Преимущества зарегистрированного пользователя:',
+    registerText: 'Уже есть учетная запись? Тогда просто жмите ',
+    loginTitle: 'Вход',
+    loginSubtitle: 'Не зарегистрированы?',
+    loginText: 'Создание учетной записи займет не больше минуты. ',
+    notfoundText: 'Ошибка',
+    notfoundTitle: 'Извините! Мы не смогли найти то, что вы искали.',
+    notfoundInfo: 'Запрашиваемая страница не найдена.',
+    notfoundLink: 'Перейти на главную страницу',
+  },
+};
