@@ -1,9 +1,9 @@
-import { useLocalization } from '../../context/LocalContext';
+import { Localization } from '../../context/LocalContext';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 
 const GraphQL = () => {
   const { isVisible, titleRef } = useIntersectionObserver();
-  const { translations } = useLocalization();
+  const { translations } = Localization();
   return (
     <div
       className={`welcome__title ${isVisible ? 'visible' : ''}`}

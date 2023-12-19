@@ -2,14 +2,16 @@ import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { IFormLogin } from '../utils/schema';
+import { IFormLogin, schemaLoginRu } from '../utils/schema';
 import { FieldName } from '../types/types';
 import { schemaLogin } from '../utils/schema';
 import { logInWithEmailAndPassword } from '../firebase/firebase';
 import { toastForNoConnection, toastSignIn } from '../utils/toasts';
 import {
   TOAST_INTERNAL_SERVER_ERROR,
+  TOAST_INTERNAL_SERVER_ERROR_RU,
   TOAST_SIGN_IN_ERROR,
+  TOAST_SIGN_IN_ERROR_RU,
 } from '../constants/toastsConst';
 import { FirebaseError } from 'firebase/app';
 import { MAIN_ROUTE } from '../constants/route';
@@ -17,21 +19,13 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../store/types';
 import { setIsLogin } from '../store/slice/userSlice';
 import { Fields, fieldsEn, fieldsRu } from '../constants/fields';
-import { useLocalization } from '../context/LocalContext';
+import { Localization } from '../context/LocalContext';
 import { DataLogin } from '../types/interface';
-
-const onRenderError = (error: FirebaseError) => {
-  if (error.code === 'auth/email-already-in-use') {
-    return TOAST_INTERNAL_SERVER_ERROR;
-  } else {
-    return TOAST_SIGN_IN_ERROR;
-  }
-};
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { language, translations } = useLocalization();
+  const { language, translations } = Localization();
   const {
     register,
     handleSubmit,
@@ -39,15 +33,26 @@ const LoginForm: React.FC = () => {
     formState: { errors },
   } = useForm<IFormLogin>({
     mode: 'onChange',
-    resolver: yupResolver(schemaLogin),
+    resolver: yupResolver(language === 'en' ? schemaLogin : schemaLoginRu),
   });
+
+  const onRenderError = (error: FirebaseError) => {
+    if (error.code === 'auth/email-already-in-use') {
+      if (language === 'en') {
+        return TOAST_INTERNAL_SERVER_ERROR;
+      }
+      return TOAST_INTERNAL_SERVER_ERROR_RU;
+    } else {
+      return language === 'en' ? TOAST_SIGN_IN_ERROR : TOAST_SIGN_IN_ERROR_RU;
+    }
+  };
 
   const onSubmit = async (data: DataLogin) => {
     try {
-      if (toastForNoConnection()) {
+      if (toastForNoConnection(language)) {
         return;
       }
-      await toastSignIn(onRenderError, () =>
+      await toastSignIn(language, onRenderError, () =>
         logInWithEmailAndPassword(data.email, data.password)
       );
       dispatch(setIsLogin(true));

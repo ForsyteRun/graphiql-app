@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import { setHeaders } from '../../store/slice/requestSlice';
+import { setHeaders, setInfo } from '../../store/slice/requestSlice';
 import { useAppDispatch } from '../../store/types';
-import { useLocalization } from '../../context/LocalContext';
+import { Localization } from '../../context/LocalContext';
 
 const Headers = () => {
   const dispatch = useAppDispatch();
-  const { translations } = useLocalization();
+  const { translations, language } = Localization();
 
   const [value, setValue] = useState('');
 
   const handleSubmit = () => {
     dispatch(setHeaders(value));
+    dispatch(setInfo(language));
   };
 
   return (

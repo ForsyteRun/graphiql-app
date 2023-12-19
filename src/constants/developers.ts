@@ -4,7 +4,7 @@ import katyaPhoto from './../../src/assets/img/katya.png';
 import { DevelopersData } from '../types/types';
 import { Role } from '../types/enum';
 
-const developers: DevelopersData[] = [
+const developersRu: DevelopersData[] = [
   {
     name: 'Анастасия',
     image: nastyaPhoto,
@@ -28,4 +28,28 @@ const developers: DevelopersData[] = [
   },
 ];
 
-export default developers;
+const developersEn: DevelopersData[] = [
+  {
+    name: 'Anastasia',
+    image: nastyaPhoto,
+    role: Role.developer,
+    github: 'nyurasheva',
+    contribution: ['Welcome', 'Disain', 'Editor', 'Footer'],
+  },
+  {
+    name: 'Aleksanrdr',
+    image: alexPhoto,
+    role: Role.lead,
+    github: 'forsyterun',
+    contribution: ['Shema'],
+  },
+  {
+    name: 'Katsiaryna',
+    image: katyaPhoto,
+    role: Role.developer,
+    github: 'massaracsh7',
+    contribution: ['Registration', 'Login'],
+  },
+];
+
+export { developersRu, developersEn };

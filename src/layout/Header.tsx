@@ -9,14 +9,14 @@ import {
 import { LogOut } from '../components/Logout';
 import { useAppSelector } from '../store/types';
 import { useMemo, useState } from 'react';
-import { useLocalization } from '../context/LocalContext';
+import { Localization } from '../context/LocalContext';
 import { AuthState } from '../utils/AuthState';
 
 const Header = () => {
   AuthState();
   const { isAuth } = useAppSelector((state) => state.user);
   const [menuVisible, setMenuVisible] = useState(false);
-  const { translations, changeLanguage } = useLocalization();
+  const { translations, language, changeLanguage } = Localization();
 
   const handleLanguageChange = (newLanguage: string) => {
     changeLanguage(newLanguage);
@@ -75,21 +75,25 @@ const Header = () => {
         <div className={`header__buttons-list ${menuVisible ? 'active' : ''}`}>
           {viewButtons}
         </div>
-        <i className="language">
-          <input type="checkbox" id="switch" className="language__input" />
+        <div className="language">
+          <input
+            type="checkbox"
+            id="switch"
+            className="language__input"
+            defaultChecked={language === 'ru'}
+            onChange={(e) => {
+              if (e.target.checked) {
+                handleLanguageChange('ru');
+              } else {
+                handleLanguageChange('en');
+              }
+            }}
+          />
           <label htmlFor="switch" className="language__toggler">
-            <span className="language__ru">RU</span>
-            <span className="language__en">EN</span>
+            <span className="language__ru">{translations.ru}</span>
+            <span className="language__en">{translations.en}</span>
           </label>
-        </i>
-      </div>
-      <div>
-        <button className="button" onClick={() => handleLanguageChange('en')}>
-          {translations.en}
-        </button>
-        <button className="button" onClick={() => handleLanguageChange('ru')}>
-          {translations.ru}
-        </button>
+        </div>
       </div>
     </header>
   );

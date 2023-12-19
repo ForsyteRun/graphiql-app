@@ -1,15 +1,19 @@
-// EditorSection.tsx
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { fetchQuery } from '../../store/slice/requestSlice';
-import { initialQuery, sectionData } from '../../constants/editor';
+import {
+  initialQuery,
+  sectionDataRu,
+  sectionDataEn,
+} from '../../constants/editor';
+import { Localization } from '../../context/LocalContext';
 import { useAppDispatch, useAppSelector } from '../../store/types';
-import { setQuery } from '../../store/slice/requestSlice';
+import { setQuery, setInfo } from '../../store/slice/requestSlice';
 import { countLines } from '../../utils/countLines';
 import { EditorSectionProps } from '../../types/interface';
 
 const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const dispatch = useAppDispatch();
+  const { language } = Localization();
   const { api, variables, response, headers, query } = useAppSelector(
     (state) => state.request
   );
@@ -24,7 +28,15 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
 
   const handleSubmit = () => {
     dispatch(setQuery(value));
+    dispatch(setInfo(language));
   };
+
+  const sectionData = useMemo(() => {
+    if (language === 'ru') {
+      return sectionDataRu;
+    }
+    return sectionDataEn;
+  }, [language]);
 
   useEffect(() => {
     setNumLines(countLines(initialQuery, ''));

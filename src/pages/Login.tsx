@@ -1,12 +1,12 @@
 import { NavLink, Navigate, useLocation } from 'react-router-dom';
 import { MAIN_ROUTE, REGISTRATION_ROUTE } from '../constants/route';
 import { LoginForm } from '../components';
-import { useLocalization } from '../context/LocalContext';
+import { Localization } from '../context/LocalContext';
 import { useAppSelector } from '../store/types';
 
 const Login = () => {
   const { isAuth } = useAppSelector((state) => state.user);
-  const { translations } = useLocalization();
+  const { translations } = Localization();
   const location = useLocation();
   if (isAuth) {
     return <Navigate to={MAIN_ROUTE} state={{ from: location }} replace />;

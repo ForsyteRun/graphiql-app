@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { WELCOME_ROUTE } from '../constants/route';
-import { useLocalization } from '../context/LocalContext';
+import { Localization } from '../context/LocalContext';
 
 const NotFound = () => {
-  const { translations } = useLocalization();
+  const { translations } = Localization();
   return (
     <div className="container">
       <div className="exception">

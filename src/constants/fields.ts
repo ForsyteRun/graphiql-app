@@ -37,7 +37,8 @@ const fieldsEn = [
     placeholder: 'email@gmail.com',
   },
   {
-    label: 'Password (минимум 8 символов, включая цифру, букву и спецсимвол):',
+    label:
+      'Password (minimum 8 symbols, including a digit, letter, and special character)',
     name: 'password',
     type: 'password',
   },

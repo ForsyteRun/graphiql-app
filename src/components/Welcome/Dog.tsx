@@ -2,11 +2,11 @@ import { NavLink } from 'react-router-dom';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import dog from '../../assets/img/dog.png';
 import { MAIN_ROUTE } from '../../constants/route';
-import { useLocalization } from '../../context/LocalContext';
+import { Localization } from '../../context/LocalContext';
 
 const Dog = () => {
   const { isVisible, titleRef } = useIntersectionObserver();
-  const { translations } = useLocalization();
+  const { translations } = Localization();
   return (
     <div className={`dog ${isVisible ? 'visible' : ''}`} ref={titleRef}>
       <div className="dog__content container">

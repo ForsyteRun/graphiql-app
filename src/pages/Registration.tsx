@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { RegistrationForm } from '../components';
 import { AUTH_ROUTE } from '../constants/route';
-import { useLocalization } from '../context/LocalContext';
+import { Localization } from '../context/LocalContext';
 
 const Registration = () => {
-  const { translations } = useLocalization();
+  const { translations } = Localization();
   return (
     <div className="container">
       <div className="authorization">

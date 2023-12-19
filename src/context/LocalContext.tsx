@@ -39,12 +39,10 @@ export const LocalizationProvider: React.FC<LocalizationProviderProps> = ({
   );
 };
 
-export const useLocalization = (): LocalizationContextType => {
+export const Localization = () => {
   const context = useContext(LocalizationContext);
   if (!context) {
-    throw new Error(
-      'useLocalization must be used within a LocalizationProvider'
-    );
+    throw new Error('Localization must be used within a LocalizationProvider');
   }
   return context;
 };

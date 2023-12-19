@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { sectionDataRu, sectionDataEn } from '../../constants/editor';
 import EditorSection from './EditorSection';
-import { useLocalization } from '../../context/LocalContext';
+import { Localization } from '../../context/LocalContext';
 
 const Editor = () => {
-  const { language } = useLocalization();
+  const { language } = Localization();
   const sectionData = useMemo(() => {
     if (language === 'ru') {
       return sectionDataRu;

@@ -34,8 +34,8 @@ export const translationsData: Translations = {
     dogLink: 'Meet the team',
     dogBtn: 'Go to the editor',
     aboutTitle: 'You get it!',
-    plusTitle: 'Преимущества',
-    plusBtn: 'Перейти в редактор',
+    plusTitle: 'Advantages',
+    plusBtn: 'Go to the editor',
   },
   ru: {
     en: 'Англ',
@@ -69,7 +69,7 @@ export const translationsData: Translations = {
     dogLink: 'Познакомиться с командой',
     dogBtn: 'Перейти в редактор',
     aboutTitle: 'Вы получаете!',
-    plusTitle: 'Advantages',
-    plusBtn: 'Go to the editor',
+    plusTitle: 'Преимущества',
+    plusBtn: 'Перейти в редактор',
   },
 };

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/types';
 import { setApi } from '../../store/slice/requestSlice';
-import { useLocalization } from '../../context/LocalContext';
+import { Localization } from '../../context/LocalContext';
 
 const Api = () => {
   const dispatch = useAppDispatch();
-  const { translations } = useLocalization();
+  const { translations } = Localization();
 
   const { api } = useAppSelector((state) => state.request);
   const [value, setValue] = useState(api);

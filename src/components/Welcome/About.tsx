@@ -1,12 +1,12 @@
 import { aboutDataRu, aboutDataEn } from '../../constants';
 import lineSVG from '../../assets/svg/line.svg';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
-import { useLocalization } from '../../context/LocalContext';
+import { Localization } from '../../context/LocalContext';
 import { useMemo } from 'react';
 
 const About = () => {
   const { isVisible, titleRef } = useIntersectionObserver();
-  const { language, translations } = useLocalization();
+  const { language, translations } = Localization();
   const aboutData = useMemo(() => {
     if (language === 'ru') {
       return aboutDataRu;

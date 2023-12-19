@@ -2,12 +2,12 @@ import { NavLink } from 'react-router-dom';
 import { welcomePlusRu, welcomePlusEn } from '../../constants';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import { MAIN_ROUTE } from '../../constants/route';
-import { useLocalization } from '../../context/LocalContext';
+import { Localization } from '../../context/LocalContext';
 import { useMemo } from 'react';
 
 const Plus = () => {
   const { isVisible, titleRef } = useIntersectionObserver();
-  const { translations, language } = useLocalization();
+  const { translations, language } = Localization();
   const welcomePlus = useMemo(() => {
     if (language === 'ru') {
       return welcomePlusRu;
