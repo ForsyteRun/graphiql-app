@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/types';
 import { setApi } from '../../store/slice/requestSlice';
+import { useLocalization } from '../../context/LocalContext';
 
 const Api = () => {
   const dispatch = useAppDispatch();
+  const { translations } = useLocalization();
 
   const { api } = useAppSelector((state) => state.request);
   const [value, setValue] = useState(api);
@@ -25,7 +27,7 @@ const Api = () => {
         />
       </div>
       <div className="button" onClick={handleSubmit}>
-        Отправить
+        {translations.submit}
       </div>
     </div>
   );
