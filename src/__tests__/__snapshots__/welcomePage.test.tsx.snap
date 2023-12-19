@@ -3,360 +3,536 @@
 exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="welcome-container"
+    class="welcome"
   >
     <div
-      class="welcome-title"
+      class="video"
     >
-      <h1>
-        GraphiQL is the ability to harness the full power of GraphQL
-      </h1>
-      <span>
-        make a request to your own universe
-      </span>
+      <video
+        autoplay=""
+        class="video__content"
+        loop=""
+        playsinline=""
+        src="test-file-stub"
+      />
     </div>
-    <ul
-      class="welcome-list"
+    <div
+      class="welcome__title "
     >
-      <li>
-        Efficiency
-        <span>
-          :
-        </span>
-        <span>
-          Clients get exactly the data they need, no more, no less
-        </span>
-      </li>
-      <li>
-        Flexibility
-        <span>
-          :
-        </span>
-        <span>
-          Clients can request multiple resources in a single query
-        </span>
-      </li>
-      <li>
-        Versioning
-        <span>
-          :
-        </span>
-        <span>
-          No need for versioning as clients have control
-        </span>
-      </li>
-      <li>
-        Strongly Typed
-        <span>
-          :
-        </span>
-        <span>
-          Type checking at the query level
-        </span>
-      </li>
-    </ul>
-    <div>
-      <h2
-        class="ourTeam-title"
-      >
-        OurTeam
-      </h2>
       <div
-        class="ourTeam-container"
+        class="container"
+      >
+        <h1
+          class="title-animation "
+        >
+          <span>
+            GraphQL
+          </span>
+           — это возможность использовать всю мощь
+          <span>
+             GraphQL
+          </span>
+          .
+        </h1>
+        <span
+          class="welcome__description"
+        >
+          сделай запрос в свою собственную вселенную
+        </span>
+        <p>
+          Задача состоит в том, чтобы реализовать playground/IDE для работы с запросами GraphQL. GraphQL - это язык запросов, используемый клиентскими приложениями для обработки данных. GraphQL ассоциируется с таким понятием, как schema, которое позволяет организовать создание, чтение, обновление и удаление данных в приложении. GraphiQL - это инструмент с открытым исходным кодом. Помимо самого ide для работы с запросами GraphQL, реализованы возможности авторизации, чтобы предоставить доступ к инструменту только авторизованным пользователям.
+        </p>
+      </div>
+    </div>
+    <div
+      class="plus "
+    >
+      <div
+        class="plus__content container"
+      >
+        <h2
+          class="plus__title title-animation "
+        >
+          Преимущества
+        </h2>
+        <div
+          class="plus__description"
+        >
+          <div
+            class="plus__item "
+          >
+            <h3>
+              Эффективность
+            </h3>
+            <p>
+              Клиенты получают именно те данные, которые им нужны, ни больше, ни меньше
+            </p>
+          </div>
+          <div
+            class="plus__item "
+          >
+            <h3>
+              Гибкость
+            </h3>
+            <p>
+              Клиенты могут запрашивать несколько ресурсов в одном запросе
+            </p>
+          </div>
+          <div
+            class="plus__item "
+          >
+            <h3>
+              Управление версиями
+            </h3>
+            <p>
+              В контроле версий нет необходимости
+            </p>
+          </div>
+          <div
+            class="plus__item "
+          >
+            <h3>
+              Строгая типизация
+            </h3>
+            <p>
+              Проверка типов на уровне запроса
+            </p>
+          </div>
+        </div>
+      </div>
+      <a
+        class=""
+        href="/main"
+      >
+        <button
+          class="button"
+        >
+          Перейти в редактор
+        </button>
+      </a>
+    </div>
+    <div
+      class="about "
+    >
+      <div
+        class="about__content"
+      >
+        <h2
+          class="about__title title-animation "
+        >
+          Вы получаете!
+        </h2>
+        <div
+          class="container"
+        >
+          <div
+            class="about__item "
+          >
+            <div
+              class="about__images "
+            >
+              <img
+                alt="Удобный редактор"
+                class="about__img"
+                src="test-file-stub"
+              />
+            </div>
+            <div
+              class="about__descriptions "
+            >
+              <h3
+                class="about__subtitle"
+              >
+                Удобный редактор
+              </h3>
+              <p>
+                Это легковесная и интерактивная среда разработки GraphQL в браузере, которая предлагает интуитивно понятный интерфейс, что облегчает исследование и экспериментирование с GraphQL API.
+              </p>
+              <div
+                class="about__number"
+              >
+                1
+              </div>
+            </div>
+          </div>
+          <div
+            class="about__item "
+          >
+            <div
+              class="about__images "
+            >
+              <img
+                alt="Изменяемый заголовок"
+                class="about__img"
+                src="test-file-stub"
+              />
+            </div>
+            <div
+              class="about__descriptions "
+            >
+              <h3
+                class="about__subtitle"
+              >
+                Изменяемый заголовок
+              </h3>
+              <p>
+                Вы можете параметризовать свои запросы, делая их более динамичными и многократно используемыми.
+              </p>
+              <div
+                class="about__number"
+              >
+                2
+              </div>
+            </div>
+          </div>
+          <div
+            class="about__item "
+          >
+            <div
+              class="about__images "
+            >
+              <img
+                alt="Переменные"
+                class="about__img"
+                src="test-file-stub"
+              />
+            </div>
+            <div
+              class="about__descriptions "
+            >
+              <h3
+                class="about__subtitle"
+              >
+                Переменные
+              </h3>
+              <p>
+                Вместо хардкодинга значений непосредственно в запросе вы можете определить переменные и передавать их значения во время выполнения.
+              </p>
+              <div
+                class="about__number"
+              >
+                3
+              </div>
+            </div>
+          </div>
+          <div
+            class="about__item "
+          >
+            <div
+              class="about__images "
+            >
+              <img
+                alt="Изменение Api"
+                class="about__img"
+                src="test-file-stub"
+              />
+            </div>
+            <div
+              class="about__descriptions "
+            >
+              <h3
+                class="about__subtitle"
+              >
+                Изменение Api
+              </h3>
+              <p>
+                Можно использовать различные API.
+              </p>
+              <div
+                class="about__number"
+              >
+                4
+              </div>
+            </div>
+          </div>
+          <div
+            class="about__item "
+          >
+            <div
+              class="about__images "
+            >
+              <img
+                alt="Интерактивная документация"
+                class="about__img"
+                src="test-file-stub"
+              />
+            </div>
+            <div
+              class="about__descriptions "
+            >
+              <h3
+                class="about__subtitle"
+              >
+                Интерактивная документация
+              </h3>
+              <p>
+                Изучите документацию схемы, включая типы, поля и аргументы, предоставляющие полезную информацию при составлении ваших запросов.
+              </p>
+              <div
+                class="about__number"
+              >
+                5
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="about__svg"
+      >
+        <img
+          alt="Line"
+          src="test-file-stub"
+        />
+      </div>
+    </div>
+    <div
+      class="dog "
+    >
+      <div
+        class="dog__content container"
       >
         <div
-          class="team"
+          class="dog__img "
         >
-          <div
-            class="team__info"
-          >
-            <img
-              alt="Katsiaryna"
-              class="team__photo"
-            />
-            <div
-              class="team__details"
-            >
-              <h3
-                class="team__name"
-              >
-                Katsiaryna
-              </h3>
-              <h4
-                class="team__role"
-              >
-                Developer
-              </h4>
-              <a
-                class="team__github"
-                href="https://github.com/Katsiaryna"
-                rel="noreferrer"
-                target="_blank"
-                title="Katsiaryna GitHub"
-              >
-                Katsiaryna
-              </a>
-              <div>
-                <h4
-                  class="team__contribution_title"
-                >
-                  Contribution
-                </h4>
-                <ul
-                  class="team__contribution_list"
-                >
-                  <li>
-                    JavaScript
-                  </li>
-                  <li>
-                    Python
-                  </li>
-                  <li>
-                    Java
-                  </li>
-                  <li>
-                    C++
-                  </li>
-                  <li>
-                    C#
-                  </li>
-                  <li>
-                    TypeScript
-                  </li>
-                  <li>
-                    Ruby
-                  </li>
-                  <li>
-                    Swift
-                  </li>
-                  <li>
-                    Go
-                  </li>
-                  <li>
-                    Kotlin
-                  </li>
-                  <li>
-                    Rust
-                  </li>
-                  <li>
-                    PHP
-                  </li>
-                  <li>
-                    HTML
-                  </li>
-                  <li>
-                    CSS
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <h4
-            class="team__about_title"
-          >
-            About
-          </h4>
-          <p
-            class="team__about"
-          >
-            I\`m is a Ukrainian singer, producer, and DJ known for his contributions to the pop and electronic music scenes. Born on October 17, 1988, in Chelyabinsk, Russia,
-          </p>
+          <img
+            alt="Dog"
+            src="test-file-stub"
+          />
         </div>
         <div
-          class="team"
+          class="dog__description"
         >
-          <div
-            class="team__info"
+          <h2
+            class="dog__title title-animation "
           >
-            <img
-              alt="Forsyte Alex"
-              class="team__photo"
-            />
-            <div
-              class="team__details"
-            >
-              <h3
-                class="team__name"
-              >
-                Forsyte Alex
-              </h3>
-              <h4
-                class="team__role"
-              >
-                Team Lead
-              </h4>
-              <a
-                class="team__github"
-                href="https://github.com/forsyterun"
-                rel="noreferrer"
-                target="_blank"
-                title="Forsyte Alex GitHub"
-              >
-                forsyterun
-              </a>
-              <div>
-                <h4
-                  class="team__contribution_title"
-                >
-                  Contribution
-                </h4>
-                <ul
-                  class="team__contribution_list"
-                >
-                  <li>
-                    JavaScript
-                  </li>
-                  <li>
-                    Python
-                  </li>
-                  <li>
-                    Java
-                  </li>
-                  <li>
-                    C++
-                  </li>
-                  <li>
-                    C#
-                  </li>
-                  <li>
-                    TypeScript
-                  </li>
-                  <li>
-                    Ruby
-                  </li>
-                  <li>
-                    Swift
-                  </li>
-                  <li>
-                    Go
-                  </li>
-                  <li>
-                    Kotlin
-                  </li>
-                  <li>
-                    Rust
-                  </li>
-                  <li>
-                    PHP
-                  </li>
-                  <li>
-                    HTML
-                  </li>
-                  <li>
-                    CSS
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <h4
-            class="team__about_title"
-          >
-            About
-          </h4>
-          <p
-            class="team__about"
-          >
-            I\`m is a Ukrainian singer, producer, and DJ known for his contributions to the pop and electronic music scenes. Born on October 17, 1988, in Chelyabinsk, Russia,
+            Давайте делать что-нибудь вместе!
+          </h2>
+          <p>
+            Попробуйте в использовании наш редактор.
           </p>
+          <div
+            class="dog__buttons"
+          >
+            <a
+              class=""
+              href="/main"
+            >
+              <button
+                class="button button-transparent"
+              >
+                Перейти в редактор
+              </button>
+            </a>
+            <a>
+              Познакомиться с командой
+            </a>
+          </div>
         </div>
+      </div>
+    </div>
+    <div
+      class="team "
+    >
+      <div
+        class="team__content container"
+      >
+        <h2
+          class="team__title title-animation "
+        >
+          Наша команда
+        </h2>
         <div
-          class="team"
+          class="team__list"
         >
           <div
-            class="team__info"
+            class="team__item "
           >
-            <img
-              alt="nyurasheva"
-              class="team__photo"
-            />
-            <div
-              class="team__details"
+            <h3
+              class="team__name"
             >
-              <h3
-                class="team__name"
+              Анастасия
+            </h3>
+            <h4
+              class="team__role"
+            >
+              Developer
+            </h4>
+            <a
+              class="team__github"
+              href="https://github.com/nyurasheva"
+              rel="noreferrer"
+              target="_blank"
+              title="Анастасия GitHub"
+            >
+              <span
+                aria-label="github"
+                class="anticon anticon-github"
+                role="img"
               >
-                nyurasheva
-              </h3>
-              <h4
-                class="team__role"
-              >
-                Developer
-              </h4>
-              <a
-                class="team__github"
-                href="https://github.com/nyurasheva"
-                rel="noreferrer"
-                target="_blank"
-                title="nyurasheva GitHub"
-              >
-                nyurasheva
-              </a>
-              <div>
-                <h4
-                  class="team__contribution_title"
+                <svg
+                  aria-hidden="true"
+                  data-icon="github"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
                 >
-                  Contribution
-                </h4>
-                <ul
-                  class="team__contribution_list"
-                >
-                  <li>
-                    JavaScript
-                  </li>
-                  <li>
-                    Python
-                  </li>
-                  <li>
-                    Java
-                  </li>
-                  <li>
-                    C++
-                  </li>
-                  <li>
-                    C#
-                  </li>
-                  <li>
-                    TypeScript
-                  </li>
-                  <li>
-                    Ruby
-                  </li>
-                  <li>
-                    Swift
-                  </li>
-                  <li>
-                    Go
-                  </li>
-                  <li>
-                    Kotlin
-                  </li>
-                  <li>
-                    Rust
-                  </li>
-                  <li>
-                    PHP
-                  </li>
-                  <li>
-                    HTML
-                  </li>
-                  <li>
-                    CSS
-                  </li>
-                </ul>
-              </div>
-            </div>
+                  <path
+                    d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0138.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"
+                  />
+                </svg>
+              </span>
+              nyurasheva
+            </a>
+            <ul
+              class="team__contribution-list team1"
+            >
+              <li
+                class=""
+              >
+                Приветствие
+              </li>
+              <li
+                class=""
+              >
+                Дизайн
+              </li>
+              <li
+                class=""
+              >
+                Редактор
+              </li>
+              <li
+                class=""
+              >
+                Подвал
+              </li>
+            </ul>
+            <img
+              alt="Анастасия"
+              class="team__photo"
+              src="test-file-stub"
+            />
           </div>
-          <h4
-            class="team__about_title"
+          <div
+            class="team__item "
           >
-            About
-          </h4>
-          <p
-            class="team__about"
+            <h3
+              class="team__name"
+            >
+              Александр
+            </h3>
+            <h4
+              class="team__role"
+            >
+              Team Lead
+            </h4>
+            <a
+              class="team__github"
+              href="https://github.com/forsyterun"
+              rel="noreferrer"
+              target="_blank"
+              title="Александр GitHub"
+            >
+              <span
+                aria-label="github"
+                class="anticon anticon-github"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  data-icon="github"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0138.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"
+                  />
+                </svg>
+              </span>
+              forsyterun
+            </a>
+            <ul
+              class="team__contribution-list team2"
+            >
+              <li
+                class=""
+              >
+                Схема
+              </li>
+            </ul>
+            <img
+              alt="Александр"
+              class="team__photo"
+              src="test-file-stub"
+            />
+          </div>
+          <div
+            class="team__item "
           >
-            I\`m is a Ukrainian singer, producer, and DJ known for his contributions to the pop and electronic music scenes. Born on October 17, 1988, in Chelyabinsk, Russia,
-          </p>
+            <h3
+              class="team__name"
+            >
+              Екатерина
+            </h3>
+            <h4
+              class="team__role"
+            >
+              Developer
+            </h4>
+            <a
+              class="team__github"
+              href="https://github.com/Katsiaryna"
+              rel="noreferrer"
+              target="_blank"
+              title="Екатерина GitHub"
+            >
+              <span
+                aria-label="github"
+                class="anticon anticon-github"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  data-icon="github"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0138.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"
+                  />
+                </svg>
+              </span>
+              Katsiaryna
+            </a>
+            <ul
+              class="team__contribution-list team3"
+            >
+              <li
+                class=""
+              >
+                Регистрация
+              </li>
+              <li
+                class=""
+              >
+                Вход
+              </li>
+            </ul>
+            <img
+              alt="Екатерина"
+              class="team__photo"
+              src="test-file-stub"
+            />
+          </div>
         </div>
       </div>
     </div>
