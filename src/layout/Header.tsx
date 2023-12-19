@@ -67,6 +67,13 @@ const Header = () => {
         <div className={`header__buttons-list ${menuVisible ? 'active' : ''}`}>
           {viewButtons}
         </div>
+        <i className="language">
+          <input type="checkbox" id="switch" className="language__input" />
+          <label htmlFor="switch" className="language__toggler">
+            <span className="language__ru">RU</span>
+            <span className="language__en">EN</span>
+          </label>
+        </i>
       </div>
     </header>
   );
