@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IFormLogin } from '../utils/schema';
-import { DataLogin, FieldName } from '../types/types';
+import { FieldName } from '../types/types';
 import { schemaLogin } from '../utils/schema';
 import { logInWithEmailAndPassword } from '../firebase/firebase';
 import { toastForNoConnection, toastSignIn } from '../utils/toasts';
@@ -18,6 +18,7 @@ import { useAppDispatch } from '../store/types';
 import { setIsLogin } from '../store/slice/userSlice';
 import { Fields, fieldsEn, fieldsRu } from '../constants/fields';
 import { useLocalization } from '../context/LocalContext';
+import { DataLogin } from '../types/interface';
 
 const onRenderError = (error: FirebaseError) => {
   if (error.code === 'auth/email-already-in-use') {

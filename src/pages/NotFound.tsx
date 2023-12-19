@@ -5,7 +5,7 @@ import { useLocalization } from '../context/LocalContext';
 const NotFound = () => {
   const { translations } = useLocalization();
   return (
-    <div className="main container">
+    <div className="container">
       <div className="exception">
         <div className="exception__code">
           404

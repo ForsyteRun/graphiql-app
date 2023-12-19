@@ -6,7 +6,7 @@ import { useLocalization } from '../context/LocalContext';
 const Registration = () => {
   const { translations } = useLocalization();
   return (
-    <div className="main container page">
+    <div className="container">
       <div className="authorization">
         <div className="authorization__container">
           <h1>{translations.registerTitle}</h1>

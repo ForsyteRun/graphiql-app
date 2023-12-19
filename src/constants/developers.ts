@@ -23,7 +23,7 @@ const developers: DevelopersData[] = [
     name: 'Екатерина',
     image: katyaPhoto,
     role: Role.developer,
-    github: 'Katsiaryna',
+    github: 'massaracsh7',
     contribution: ['Регистрация', 'Вход'],
   },
 ];

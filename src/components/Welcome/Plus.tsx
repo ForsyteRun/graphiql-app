@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 
 const Plus = () => {
   const { isVisible, titleRef } = useIntersectionObserver();
-  const { language } = useLocalization();
+  const { translations, language } = useLocalization();
   const welcomePlus = useMemo(() => {
     if (language === 'ru') {
       return welcomePlusRu;
@@ -22,7 +22,7 @@ const Plus = () => {
             isVisible ? 'visible' : ''
           }`}
         >
-          Преимущества
+          {translations.plusTitle}
         </h2>
         <div className="plus__description">
           {welcomePlus.label.map((item, index) => (
@@ -37,7 +37,7 @@ const Plus = () => {
         </div>
       </div>
       <NavLink to={MAIN_ROUTE}>
-        <button className="button">Перейти в редактор</button>
+        <button className="button">{translations.plusBtn}</button>
       </NavLink>
     </div>
   );

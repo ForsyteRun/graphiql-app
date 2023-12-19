@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { DataForm, FieldName } from '../types/types';
+import { FieldName } from '../types/types';
 import { schema, IForm } from '../utils/schema';
 import { registerWithEmailAndPassword } from '../firebase/firebase';
 import { toastForNoConnection, toastSignUp } from '../utils/toasts';
@@ -16,6 +16,7 @@ import { useAppDispatch } from '../store/types';
 import { setIsLogin } from '../store/slice/userSlice';
 import { Fields, fieldsEn, fieldsRu } from '../constants/fields';
 import { useLocalization } from '../context/LocalContext';
+import { DataForm } from '../types/interface';
 
 const onRenderError = (error: FirebaseError) => {
   if (error.code === 'auth/email-already-in-use') {
