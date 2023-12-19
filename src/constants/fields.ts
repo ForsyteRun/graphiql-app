@@ -1,4 +1,4 @@
-const fields = [
+const fieldsRu = [
   {
     label: 'Имя:',
     name: 'firstName',
@@ -23,4 +23,32 @@ const fields = [
   },
 ];
 
-export { fields };
+const fieldsEn = [
+  {
+    label: 'Name:',
+    name: 'firstName',
+    type: 'text',
+    placeholder: 'John',
+  },
+  {
+    label: 'Email:',
+    name: 'email',
+    type: 'text',
+    placeholder: 'email@gmail.com',
+  },
+  {
+    label: 'Password (минимум 8 символов, включая цифру, букву и спецсимвол):',
+    name: 'password',
+    type: 'password',
+  },
+  {
+    label: 'Confirm Password:',
+    name: 'confirmPassword',
+    type: 'password',
+  },
+];
+
+type Fields = typeof fieldsRu;
+
+export { fieldsRu, fieldsEn };
+export type { Fields };

@@ -20,6 +20,7 @@ export const translationsData: Translations = {
     notfoundTitle: 'Sorry! We could not find what you were looking for.',
     notfoundInfo: 'The page was not found.',
     notfoundLink: 'Go to home page',
+    buttonSubmit: 'Submit',
   },
   ru: {
     en: 'Англ',
@@ -39,5 +40,6 @@ export const translationsData: Translations = {
     notfoundTitle: 'Извините! Мы не смогли найти то, что вы искали.',
     notfoundInfo: 'Запрашиваемая страница не найдена.',
     notfoundLink: 'Перейти на главную страницу',
+    buttonSubmit: 'Отправить',
   },
 };

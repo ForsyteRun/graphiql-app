@@ -7,14 +7,20 @@ import {
   WELCOME_ROUTE,
 } from '../constants/route';
 import { LogOut } from '../components/Logout';
-import { AuthState } from '../utils/AuthState';
 import { useAppSelector } from '../store/types';
 import { useMemo, useState } from 'react';
+import { useLocalization } from '../context/LocalContext';
+import { AuthState } from '../utils/AuthState';
 
 const Header = () => {
   AuthState();
   const { isAuth } = useAppSelector((state) => state.user);
   const [menuVisible, setMenuVisible] = useState(false);
+  const { translations, changeLanguage } = useLocalization();
+
+  const handleLanguageChange = (newLanguage: string) => {
+    changeLanguage(newLanguage);
+  };
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -29,11 +35,11 @@ const Header = () => {
       if (isAuth)
         return (
           <NavLink to={MAIN_ROUTE} className="link">
-            Редактор
+            {translations.main}
           </NavLink>
         );
     }
-  }, [isAuth]);
+  }, [isAuth, translations.main]);
 
   const viewButtons = useMemo(() => {
     {
@@ -41,15 +47,17 @@ const Header = () => {
       return (
         <>
           <NavLink to={REGISTRATION_ROUTE} onClick={closeMenu}>
-            <button className="button button-second">Регистрация</button>
+            <button className="button button-second">
+              {translations.registration}
+            </button>
           </NavLink>
           <NavLink to={AUTH_ROUTE} onClick={closeMenu}>
-            <button className="button">Вход</button>
+            <button className="button">{translations.login}</button>
           </NavLink>
         </>
       );
     }
-  }, [isAuth]);
+  }, [isAuth, translations.login, translations.registration]);
 
   return (
     <header className="header container">
@@ -58,7 +66,7 @@ const Header = () => {
       </div>
       <div className="header__links">
         <NavLink to={WELCOME_ROUTE} className="link">
-          Приветствие
+          {translations.welcome}
         </NavLink>
         {viewMainLink}
       </div>
@@ -67,6 +75,14 @@ const Header = () => {
         <div className={`header__buttons-list ${menuVisible ? 'active' : ''}`}>
           {viewButtons}
         </div>
+      </div>
+      <div>
+        <button className="button" onClick={() => handleLanguageChange('en')}>
+          {translations.en}
+        </button>
+        <button className="button" onClick={() => handleLanguageChange('ru')}>
+          {translations.ru}
+        </button>
       </div>
     </header>
   );

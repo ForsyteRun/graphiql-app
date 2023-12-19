@@ -1,22 +1,30 @@
-import { NavLink } from 'react-router-dom';
-import { REGISTRATION_ROUTE } from '../constants/route';
+import { NavLink, Navigate, useLocation } from 'react-router-dom';
+import { MAIN_ROUTE, REGISTRATION_ROUTE } from '../constants/route';
 import { LoginForm } from '../components';
+import { useLocalization } from '../context/LocalContext';
+import { useAppSelector } from '../store/types';
 
 const Login = () => {
+  const { isAuth } = useAppSelector((state) => state.user);
+  const { translations } = useLocalization();
+  const location = useLocation();
+  if (isAuth) {
+    return <Navigate to={MAIN_ROUTE} state={{ from: location }} replace />;
+  }
   return (
     <>
       <div className="main page container">
         <div className="authorization">
           <div className="authorization__container">
-            <h1>Войти</h1>
+            <h1>{translations.loginTitle}</h1>
             <LoginForm />
           </div>
           <div className="authorization__information">
-            <h4>Не зарегистрированы?</h4>
-            <p className="white">
-              Создание учетной записи займет не больше минуты.
-            </p>
-            <NavLink to={REGISTRATION_ROUTE}>Создать учетную запись</NavLink>
+            <h4>{translations.loginSubtitle}</h4>
+            <p className="white">{translations.loginText}</p>
+            <NavLink to={REGISTRATION_ROUTE}>
+              {translations.registerTitle}
+            </NavLink>
           </div>
         </div>
       </div>
