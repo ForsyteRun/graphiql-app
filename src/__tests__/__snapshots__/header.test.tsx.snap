@@ -6,52 +6,51 @@ exports[`Header component should match Welcome Page snapshot 1`] = `
     class="header container"
   >
     <div
-      class="row"
+      class="header__logo"
     >
       <div
-        class="top-logo"
-      >
-        <div
-          class="logo-container"
-        >
-          <a
-            aria-current="page"
-            class="active"
-            href="/"
-            title=""
-          >
-            <img
-              alt="logo"
-              class="logo-container__image"
-              title=""
-            />
-          </a>
-        </div>
-      </div>
-      <div
-        class="nav-bar__block"
+        class="logo"
       >
         <a
           aria-current="page"
           class="active"
           href="/"
+          title=""
         >
-          <button
-            class="button button-second"
+          <img
+            alt="logo"
+            class="logo__image"
+            src="test-file-stub"
+            title=""
+          />
+          <span
+            class="logo__span"
           >
-            Приветствие
-          </button>
+            GraphiQL
+          </span>
         </a>
-        <a
-          class=""
-          href="/main"
-        >
-          <button
-            class="button button-second"
-          >
-            Главная
-          </button>
-        </a>
+      </div>
+    </div>
+    <div
+      class="header__links"
+    >
+      <a
+        aria-current="page"
+        class="link active"
+        href="/"
+      >
+        Приветствие
+      </a>
+    </div>
+    <div
+      class="header__buttons"
+    >
+      <span
+        class="header__buttons-icon"
+      />
+      <div
+        class="header__buttons-list "
+      >
         <a
           class=""
           href="/registration"
@@ -72,11 +71,6 @@ exports[`Header component should match Welcome Page snapshot 1`] = `
             Вход
           </button>
         </a>
-        <button
-          class="button"
-        >
-          Выход
-        </button>
       </div>
     </div>
   </header>
