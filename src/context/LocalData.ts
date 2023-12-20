@@ -36,6 +36,7 @@ export const translationsData: Translations = {
     aboutTitle: 'You get it!',
     plusTitle: 'Advantages',
     plusBtn: 'Go to the editor',
+    mainTitle: 'GraphiQL Editor',
   },
   ru: {
     en: 'Англ',
@@ -71,5 +72,6 @@ export const translationsData: Translations = {
     aboutTitle: 'Вы получаете!',
     plusTitle: 'Преимущества',
     plusBtn: 'Перейти в редактор',
+    mainTitle: 'GraphiQL Редактор',
   },
 };

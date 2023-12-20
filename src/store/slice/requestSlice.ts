@@ -113,13 +113,13 @@ const requestSlice = createSlice({
       const lang = state.info;
       toast.dismiss();
       toast.error(onRenderError(errorMessage, lang));
+      state.response = ' ';
     });
     builder.addCase(fetchQuery.fulfilled, (state, action) => {
       toast.dismiss();
       toast.success(
         state.info === 'ru' ? TOAST_REQUEST_SUCCESS_RU : TOAST_REQUEST_SUCCESS
       );
-      console.log(state.info);
       state.response = JSON.stringify(action.payload, null, 2);
     });
   },
