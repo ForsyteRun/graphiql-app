@@ -87,6 +87,7 @@ describe('requestSlice', () => {
       response: '',
       variables: '',
       headers: { 'Content-Type': 'application/json' },
+      info: '',
     };
 
     const action = { type: fetchQuery.pending.type };
@@ -101,6 +102,7 @@ describe('requestSlice', () => {
       response: 'response',
       variables: 'variables',
       headers: { 'Content-Type': 'application/json' },
+      info: '',
     };
 
     const action = { type: fetchQuery.fulfilled.type };
@@ -120,6 +122,7 @@ describe('requestSlice', () => {
       response: 'response',
       variables: 'variables',
       headers: { 'Content-Type': 'application/json' },
+      info: '',
     };
 
     const action = {
