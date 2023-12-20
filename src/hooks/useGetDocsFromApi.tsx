@@ -32,7 +32,7 @@ const useGetDocsFromApi = () => {
 
         setQuery(res);
       } catch (error) {
-        alert('error get docs'); //TODO: modal error
+        console.log('error get docs');
       }
     };
 

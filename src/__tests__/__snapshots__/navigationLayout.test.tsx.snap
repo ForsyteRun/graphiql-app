@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header component should match Welcome Page snapshot 1`] = `
+exports[`NavigationLayout component should match snapshot 1`] = `
 <DocumentFragment>
   <header
     class="header container"
@@ -74,5 +74,49 @@ exports[`Header component should match Welcome Page snapshot 1`] = `
       </div>
     </div>
   </header>
+  <main
+    class="content"
+  />
+  <footer
+    class="footer container"
+  >
+    <div
+      class="footer__content"
+    >
+      <a
+        class="footer__rss-link"
+        href="https://rs.school/react/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <svg
+          class="footer__svg"
+        />
+      </a>
+      <a
+        class="footer__gh-link"
+        href="https://github.com/ForsyteRun/graphiql-app/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <svg
+          class="footer__svg"
+        />
+      </a>
+      <div
+        class="footer__year-link"
+      >
+        <span>
+          @Copyright 2023
+        </span>
+         
+        <a
+          href="/"
+        >
+          GraphiQL
+        </a>
+      </div>
+    </div>
+  </footer>
 </DocumentFragment>
 `;
