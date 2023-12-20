@@ -1,32 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Docs component should match Docs snapshot 1`] = `
-<DocumentFragment>
-  <aside
-    class=""
-  >
-    <div
-      class="docs-container"
-    >
-      <button
-        style="border: 1px solid red;"
-        type="button"
-      >
-        Go up
-      </button>
-      <ul
-        class="fieldSchema-container"
-      />
-    </div>
-    <button
-      class="docs-button"
-    >
-      Docs
-    </button>
-  </aside>
-</DocumentFragment>
-`;
-
 exports[`Docs component should match Docs snapshot with data 1`] = `
 <DocumentFragment>
   <aside
