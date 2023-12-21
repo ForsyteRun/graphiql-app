@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/types';
-import { setApi } from '../../store/slice/requestSlice';
+import { setApi, setQuery } from '../../store/slice/requestSlice';
 import { Localization } from '../../context/LocalContext';
 
 const Api = () => {
@@ -12,6 +12,7 @@ const Api = () => {
 
   const handleSubmit = () => {
     dispatch(setApi(value));
+    dispatch(setQuery(`query { }`));
   };
 
   return (

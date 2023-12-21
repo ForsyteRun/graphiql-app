@@ -52,6 +52,10 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
     );
   }, [api, dispatch, headers, query, variables]);
 
+  useEffect(() => {
+    setValue(query);
+  }, [query]);
+
   return (
     <>
       <div className="editor__header">

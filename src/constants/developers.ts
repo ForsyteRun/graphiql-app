@@ -30,14 +30,14 @@ const developersRu: DevelopersData[] = [
 
 const developersEn: DevelopersData[] = [
   {
-    name: 'Anastasia',
+    name: 'Anastasiia',
     image: nastyaPhoto,
     role: Role.developer,
     github: 'nyurasheva',
     contribution: ['Welcome', 'Disain', 'Editor', 'Footer'],
   },
   {
-    name: 'Aleksanrdr',
+    name: 'Aleksandr',
     image: alexPhoto,
     role: Role.lead,
     github: 'forsyterun',
