@@ -1,17 +1,10 @@
-import { ObjMap } from 'graphql/jsutils/ObjMap';
 import {
   GraphQLFieldMap,
-  GraphQLInputFieldMap,
-  GraphQLNamedType,
   GraphQLObjectType,
   GraphQLOutputType,
   IntrospectionQuery,
 } from 'graphql';
-
-export type RootFieldType =
-  | ObjMap<GraphQLNamedType>
-  | GraphQLInputFieldMap
-  | GraphQLFieldMap<unknown, unknown>;
+import { RootFieldType } from './types';
 
 export interface DataForm extends DataLogin {
   confirmPassword: string;

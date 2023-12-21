@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { fetchQuery } from '../../store/slice/requestSlice';
 import {
   initialQuery,
@@ -10,6 +10,10 @@ import { useAppDispatch, useAppSelector } from '../../store/types';
 import { setQuery, setInfo } from '../../store/slice/requestSlice';
 import { countLines } from '../../utils/countLines';
 import { EditorSectionProps } from '../../types/interface';
+import { EditorState } from '@codemirror/state';
+import { EditorView } from '@codemirror/view';
+import { javascript } from '@codemirror/lang-javascript';
+import { oneDark } from '@codemirror/theme-one-dark';
 
 const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const dispatch = useAppDispatch();
@@ -19,12 +23,13 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   );
   const [value, setValue] = useState(query);
   const [numLines, setNumLines] = useState<number>(0);
+  const editorRef = useRef<HTMLDivElement | null>(null);
 
-  const handleQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const lines = countLines(event.target.value, value);
-    setNumLines(lines);
-    setValue(event.target.value);
-  };
+  // const handleQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  //   const lines = countLines(event.target.value, value);
+  //   setNumLines(lines);
+  //   setValue(event.target.value);
+  // };
 
   const handleSubmit = () => {
     dispatch(setQuery(value));
@@ -45,7 +50,6 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
       setNumLines(lines);
     }
   }, [response]);
-
   useEffect(() => {
     dispatch(
       fetchQuery({ api, variables, requestHeaders: headers as Headers, query })
@@ -55,6 +59,24 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   useEffect(() => {
     setValue(query);
   }, [query]);
+
+  useEffect(() => {
+    if (editorRef.current) {
+      const startState = EditorState.create({
+        doc: value,
+        extensions: [EditorView.lineWrapping, javascript(), oneDark],
+      });
+
+      const editor = new EditorView({
+        state: startState,
+        parent: editorRef.current,
+      });
+
+      return () => {
+        editor.destroy();
+      };
+    }
+  }, [value]);
 
   return (
     <>
@@ -75,12 +97,7 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
         </div>
         <div className="editor__text">
           {sectionData.query.label === title ? (
-            <textarea
-              className="editor__query"
-              onChange={handleQueryChange}
-              value={value}
-              rows={numLines}
-            />
+            <div className="editor__query" ref={editorRef}></div>
           ) : (
             <pre className="editor__response">{response}</pre>
           )}
