@@ -14,6 +14,17 @@ const useClickOutside = (ref: MutableRefObject<null | HTMLElement>) => {
       document.removeEventListener('mousedown', handleClick);
     };
   }, [ref]);
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.position = 'fixed';
+    }
+
+    return () => {
+      document.body.style.position = 'static';
+    };
+  }, [open]);
+
   return { open, setOpen };
 };
 
