@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`main component should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="main"
+  >
+    <h1>
+      GraphiQL Editor
+    </h1>
+    <div
+      class="api"
+    >
+      <div
+        class="api__content"
+      >
+        <div
+          class="api__label"
+        >
+          API:
+        </div>
+        <input
+          class="api__input"
+          name="api"
+          placeholder="введите api"
+          value="https://rickandmortyapi.com/graphql"
+        />
+      </div>
+      <div
+        class="button"
+      >
+        Отправить
+      </div>
+    </div>
+    <div
+      class="headers"
+    >
+      <div
+        class="headers__content"
+      >
+        <div
+          class="headers__label"
+        >
+          Заголовок запроса:
+        </div>
+        <input
+          class="headers__input"
+          name="headers"
+          value=""
+        />
+      </div>
+      <div
+        class="button"
+      >
+        Отправить
+      </div>
+    </div>
+    <div
+      class="variables"
+    >
+      <div
+        class="variables__content"
+      >
+        <div
+          class="variables__label"
+        >
+          Переменные:
+        </div>
+        <input
+          class="variables__input"
+          name="variables"
+          value=""
+        />
+      </div>
+      <div
+        class="button"
+      >
+        Применить
+      </div>
+    </div>
+    <div
+      class="editor"
+    >
+      <div
+        class="editor__wrapper"
+      >
+        <div
+          class="editor__left"
+        >
+          <div
+            class="editor__query "
+          >
+            <div
+              class="editor__header"
+            >
+              <div
+                class="editor__title"
+              >
+                Запрос
+              </div>
+            </div>
+            <div
+              class="editor__content"
+            >
+              <div
+                class="editor__numbers"
+              >
+                <p>
+                  1
+                </p>
+                <p>
+                  2
+                </p>
+                <p>
+                  3
+                </p>
+                <p>
+                  4
+                </p>
+                <p>
+                  5
+                </p>
+                <p>
+                  6
+                </p>
+                <p>
+                  7
+                </p>
+                <p>
+                  8
+                </p>
+                <p>
+                  9
+                </p>
+                <p>
+                  10
+                </p>
+                <p>
+                  11
+                </p>
+                <p>
+                  12
+                </p>
+                <p>
+                  13
+                </p>
+                <p>
+                  14
+                </p>
+                <p>
+                  15
+                </p>
+                <p>
+                  16
+                </p>
+              </div>
+              <div
+                class="editor__text"
+              >
+                <textarea
+                  class="editor__query"
+                  rows="16"
+                >
+                  query {
+  characters(page: 2, filter: { name: "rick" }) {
+    info {
+      count
+    }
+    results {
+      name
+    }
+  }
+location(id: 1) {
+  id
+}
+episodesByIds(ids: [1, 2]) {
+  id
+}
+}
+                </textarea>
+              </div>
+              <div
+                class="button"
+              >
+                Применить
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="editor__right"
+        >
+          <div
+            class="editor__response"
+          >
+            <div
+              class="editor__header"
+            >
+              <div
+                class="editor__title"
+              >
+                Ответ
+              </div>
+            </div>
+            <div
+              class="editor__content"
+            >
+              <div
+                class="editor__text"
+              >
+                <pre
+                  style="text-align: left;"
+                >
+                    
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <aside
+      class=""
+    >
+      <div
+        class="docs-container"
+      >
+        <button
+          style="border: 1px solid red;"
+          type="button"
+        >
+          Go up
+        </button>
+        <ul
+          class="fieldSchema-container"
+        />
+      </div>
+      <button
+        class="docs-button"
+      >
+        Docs
+      </button>
+    </aside>
+  </div>
+</DocumentFragment>
+`;
