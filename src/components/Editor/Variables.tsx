@@ -1,21 +1,23 @@
 import { useState } from 'react';
-import { setVariables } from '../../store/slice/requestSlice';
+import { setVariables, setInfo } from '../../store/slice/requestSlice';
 import { useAppDispatch, useAppSelector } from '../../store/types';
+import { Localization } from '../../context/LocalContext';
 
 const Variables = () => {
   const dispatch = useAppDispatch();
-
+  const { translations, language } = Localization();
   const { variables } = useAppSelector((state) => state.request);
   const [value, setValue] = useState(variables);
 
   const handleSubmit = () => {
     dispatch(setVariables(value));
+    dispatch(setInfo(language));
   };
 
   return (
     <div className="variables">
       <div className="variables__content">
-        <div className="variables__label">Переменные:</div>
+        <div className="variables__label">{translations.variables}</div>
         <input
           className="variables__input"
           name="variables"
@@ -24,7 +26,7 @@ const Variables = () => {
         />
       </div>
       <div className="button" onClick={handleSubmit}>
-        Применить
+        {translations.submit}
       </div>
     </div>
   );

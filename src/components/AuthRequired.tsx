@@ -1,11 +1,15 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { AUTH_ROUTE } from '../constants/route';
-import { useAppSelector } from '../store/types';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase/firebase';
 
 const AuthRequired = ({ children }: { children: JSX.Element }) => {
+  const [user, loading] = useAuthState(auth);
   const location = useLocation();
-  const { isAuth } = useAppSelector((state) => state.user);
-  if (!isAuth) {
+  if (loading) {
+    return 'loader...';
+  }
+  if (!user) {
     return <Navigate to={AUTH_ROUTE} state={{ from: location }} replace />;
   }
   return children;
