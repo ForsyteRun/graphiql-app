@@ -20,14 +20,14 @@ const isGraphQLField = (
 const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
   const renderField = useCallback(
     (nameValue: string, typeValue: GraphQLOutputType) => (
-      <span
-        style={{ color: 'orange' }}
+      <div
+        style={{ color: 'orange', cursor: 'pointer' }}
         onClick={() => {
           handleClick(typeValue);
         }}
       >
         {nameValue}
-      </span>
+      </div>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [fieldName, fieldType]
