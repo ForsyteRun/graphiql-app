@@ -104,7 +104,7 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
               string,
               GraphQLOutputType | GraphQLField<unknown, unknown>,
             ]) => (
-              <li key={fieldName} style={{ cursor: 'pointer' }}>
+              <li key={fieldName} className="fieldSchema__element">
                 {isDescription ? (
                   <DetailedField value={fieldType as GraphQLLeafType} />
                 ) : (
