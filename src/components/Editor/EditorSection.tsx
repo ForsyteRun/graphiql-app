@@ -25,12 +25,6 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const [numLines, setNumLines] = useState<number>(0);
   const editorRef = useRef<HTMLDivElement | null>(null);
 
-  // const handleQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-  //   const lines = countLines(event.target.value, value);
-  //   setNumLines(lines);
-  //   setValue(event.target.value);
-  // };
-
   const handleSubmit = () => {
     dispatch(setQuery(value));
     dispatch(setInfo(language));

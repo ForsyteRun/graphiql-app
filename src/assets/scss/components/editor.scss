@@ -42,7 +42,6 @@
 
   &__wrapper {
     @include flex($justify: space-between, $align: baseline, $wrap: wrap);
-    display: flex;
     border: solid 10px #0d0c18;
     border-radius: 4px;
     overflow: hidden;
@@ -109,15 +108,12 @@
 
   &__text {
     @include flexColumn($align: stretch);
-    // padding: 10px;
     width: 100%;
   }
 
   &__query {
     height: 100%;
-    background: transparent;
     border: none;
-
     background: #2c2e2f;
     text-align: left;
     color: $background;
