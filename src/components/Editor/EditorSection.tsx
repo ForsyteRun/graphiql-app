@@ -14,6 +14,7 @@ import { EditorState } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { javascript } from '@codemirror/lang-javascript';
 import { oneDark } from '@codemirror/theme-one-dark';
+import beautify from 'js-beautify';
 
 const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const dispatch = useAppDispatch();
@@ -24,6 +25,27 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const [value, setValue] = useState(query);
   const [numLines, setNumLines] = useState<number>(0);
   const editorRef = useRef<HTMLDivElement | null>(null);
+
+  const formatCode = (code: string) => {
+    try {
+      const formattedCode = beautify(code, {
+        indent_size: 2,
+      });
+      return formattedCode;
+    } catch (error) {
+      console.error('Ошибка форматирования кода:', error);
+      return code;
+    }
+  };
+
+  const handleFormatCode = () => {
+    try {
+      const formattedCode = formatCode(value);
+      setValue(formattedCode);
+    } catch (error) {
+      console.error('Ошибка форматирования кода:', error);
+    }
+  };
 
   const handleSubmit = () => {
     dispatch(setQuery(value));
@@ -56,13 +78,12 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
 
   useEffect(() => {
     if (editorRef.current) {
-      const startState = EditorState.create({
-        doc: value,
-        extensions: [EditorView.lineWrapping, javascript(), oneDark],
-      });
-
+      editorRef.current.innerHTML = ''; // Очищаем содержимое редактора
       const editor = new EditorView({
-        state: startState,
+        state: EditorState.create({
+          doc: value,
+          extensions: [EditorView.lineWrapping, javascript(), oneDark],
+        }),
         parent: editorRef.current,
       });
 
@@ -78,7 +99,10 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
         <div className="editor__title">{title}</div>
         {sectionData.query.label === title && (
           <div className="editor__buttons">
-            <div className="editor__color button"></div>
+            <div
+              className="editor__color button"
+              onClick={handleFormatCode}
+            ></div>
             <div className="editor__play button" onClick={handleSubmit}></div>
           </div>
         )}

@@ -43,3 +43,16 @@ export interface DataLogin {
   email: string;
   password: string;
 }
+
+export interface DataType {
+  api: string;
+  query: string;
+  variables: string;
+  response: string;
+  headers: object;
+  info: string;
+}
+
+export interface User {
+  isAuth: boolean;
+}
