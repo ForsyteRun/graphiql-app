@@ -8,36 +8,12 @@ import {
   TOAST_REQUEST_SUCCESS_RU,
 } from '../../constants/toastsConst';
 import { onRenderError } from '../../utils/renderError';
-
-interface DataType {
-  api: string;
-  query: string;
-  variables: string;
-  response: string;
-  headers: object;
-  info: string;
-}
-
-const tempQuery = `query {
-  characters(page: 2, filter: { name: "rick" }) {
-    info {
-      count
-    }
-    results {
-      name
-    }
-  }
-location(id: 1) {
-  id
-}
-episodesByIds(ids: [1, 2]) {
-  id
-}
-}`;
+import { initialQuery } from '../../constants/editor';
+import { DataType } from '../../types/interface';
 
 const initialState: DataType = {
   api: 'https://rickandmortyapi.com/graphql',
-  query: tempQuery,
+  query: initialQuery,
   response: '',
   variables: '',
   headers: { 'Content-Type': 'application/json' },
