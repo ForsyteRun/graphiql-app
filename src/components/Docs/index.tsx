@@ -31,7 +31,11 @@ const Docs = memo(() => {
       <div className="docs-container">
         <FieldSchema schema={rootSchema} setRootSchema={setRootSchema} />
       </div>
-      <button className="docs-button" onClick={() => setOpen(!open)}>
+      <button
+        className="docs-button"
+        onClick={() => setOpen(!open)}
+        disabled={!rootSchema}
+      >
         Docs
       </button>
     </aside>
