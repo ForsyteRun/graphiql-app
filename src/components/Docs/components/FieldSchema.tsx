@@ -15,6 +15,7 @@ import { isGetFieldsType } from '../../../types/types';
 import { IFieldSchema } from '../types/interfaces';
 import DetailedField from './DetailedField';
 import NextField from './NextField';
+import { useAppSelector } from '../../../store/types';
 
 interface IHistoryState {
   state: ObjMap<GraphQLNamedType>[];
@@ -24,6 +25,8 @@ const hasElements = <T extends object>(el: T): boolean =>
   Array.isArray(el) && el.length > 1;
 
 const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
+  const { api } = useAppSelector((state) => state.request);
+
   const [isDescription, setIsDescription] = useState(false);
   const [history, setHistory] = useState<IHistoryState>({ state: [] });
 
@@ -74,7 +77,7 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
         schema.fields
       );
 
-      !isExist &&
+      if (!isExist) {
         setHistory((prevState) => {
           return {
             ...prevState,
@@ -84,9 +87,14 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
             ] as ObjMap<GraphQLNamedType>[],
           };
         });
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [schema]);
+
+  useEffect(() => {
+    setHistory({ state: [] });
+  }, [api]);
 
   return (
     <>

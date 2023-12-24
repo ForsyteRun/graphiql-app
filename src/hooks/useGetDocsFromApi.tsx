@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { IQuery } from '../types/interface';
 import { getIntrospectionQuery } from 'graphql';
 import { useAppSelector } from '../store/types';
-
+// https://countries.trevorblades.com
 // https://beta.pokeapi.co/graphql/v1beta
 // 'https://rickandmortyapi.com/graphql'
 // 'https://graphqlzero.almansi.me/api'
