@@ -5,11 +5,11 @@ export const formatCode = (code: string) => {
     const spaces = '  ';
 
     const lines = code
-      .replace(/\s{2,}/g, ' ')
-      .replace(/\n/g, '')
-      .split(/({|\}\)|})/)
+      .replace(/[^\S\r\n]{2,}/g, ' ')
+      .split(/({|\}\)|})|\n/)
       .filter(Boolean)
       .filter((item) => !/^\s*$/.test(item));
+
     lines.forEach((line) => {
       const trimmedLine = line.trim();
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { fetchQuery } from '../../store/slice/requestSlice';
 import {
   initialQuery,
@@ -10,11 +10,10 @@ import { useAppDispatch, useAppSelector } from '../../store/types';
 import { setQuery, setInfo } from '../../store/slice/requestSlice';
 import { countLines } from '../../utils/countLines';
 import { EditorSectionProps } from '../../types/interface';
-import { EditorState } from '@codemirror/state';
-import { EditorView } from '@codemirror/view';
 import { javascript } from '@codemirror/lang-javascript';
 import { oneDark } from '@codemirror/theme-one-dark';
 import { formatCode } from '../../utils/formatCode';
+import CodeMirror from '@uiw/react-codemirror';
 
 const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const dispatch = useAppDispatch();
@@ -24,7 +23,6 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   );
   const [value, setValue] = useState(query);
   const [numLines, setNumLines] = useState<number>(0);
-  const editorRef = useRef<HTMLDivElement | null>(null);
 
   const handleFormatCode = () => {
     try {
@@ -54,6 +52,7 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
       setNumLines(lines);
     }
   }, [response]);
+
   useEffect(() => {
     dispatch(
       fetchQuery({ api, variables, requestHeaders: headers as Headers, query })
@@ -63,23 +62,6 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   useEffect(() => {
     setValue(query);
   }, [query]);
-
-  useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.innerHTML = '';
-      const editor = new EditorView({
-        state: EditorState.create({
-          doc: value,
-          extensions: [EditorView.lineWrapping, javascript(), oneDark],
-        }),
-        parent: editorRef.current,
-      });
-
-      return () => {
-        editor.destroy();
-      };
-    }
-  }, [value]);
 
   return (
     <>
@@ -97,13 +79,24 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
       </div>
       <div className="editor__content">
         <div className="editor__numbers">
-          {[...Array(numLines).keys()].map((num) => (
-            <p key={num + 1}>{num + 1}</p>
-          ))}
+          {sectionData.query.label !== title &&
+            [...Array(numLines).keys()].map((num) => (
+              <p key={num + 1}>{num + 1}</p>
+            ))}
         </div>
+
         <div className="editor__text">
           {sectionData.query.label === title ? (
-            <div className="editor__query" ref={editorRef}></div>
+            <div className="editor__query">
+              <CodeMirror
+                onChange={(value) => {
+                  setValue(value);
+                }}
+                extensions={[javascript({ jsx: true })]}
+                theme={oneDark}
+                value={value}
+              />
+            </div>
           ) : (
             <pre className="editor__response">{response}</pre>
           )}
