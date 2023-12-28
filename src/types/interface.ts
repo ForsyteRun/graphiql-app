@@ -1,17 +1,19 @@
-import { ObjMap } from 'graphql/jsutils/ObjMap';
 import {
   GraphQLFieldMap,
-  GraphQLInputFieldMap,
-  GraphQLNamedType,
   GraphQLObjectType,
   GraphQLOutputType,
   IntrospectionQuery,
 } from 'graphql';
+import { RootFieldType } from './types';
 
-export type RootFieldType =
-  | ObjMap<GraphQLNamedType>
-  | GraphQLInputFieldMap
-  | GraphQLFieldMap<unknown, unknown>;
+export interface DataForm extends DataLogin {
+  confirmPassword: string;
+}
+
+export interface DataLogin {
+  email: string;
+  password: string;
+}
 
 export interface IRootSchema {
   queries?: IQueries;
@@ -27,4 +29,30 @@ export interface IQueries {
 
 export interface IQuery {
   data: IntrospectionQuery | null;
+}
+
+export interface EditorSectionProps {
+  title: string;
+}
+
+export interface DataForm extends DataLogin {
+  confirmPassword: string;
+}
+
+export interface DataLogin {
+  email: string;
+  password: string;
+}
+
+export interface DataType {
+  api: string;
+  query: string;
+  variables: string;
+  response: string;
+  headers: object;
+  info: string;
+}
+
+export interface User {
+  isAuth: boolean;
 }

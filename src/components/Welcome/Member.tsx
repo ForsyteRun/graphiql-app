@@ -1,9 +1,18 @@
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
-import developers from '../../constants/developers';
+import { developersRu, developersEn } from '../../constants/developers';
+import { Localization } from '../../context/LocalContext';
+import { useMemo } from 'react';
+import { DevelopersData } from '../../types/types';
 
 const Member = () => {
   const { isVisible, titleRef } = useIntersectionObserver();
-
+  const { language } = Localization();
+  const developers: DevelopersData[] = useMemo(() => {
+    if (language === 'ru') {
+      return developersRu;
+    }
+    return developersEn;
+  }, [language]);
   return (
     <>
       {developers.map((developer, index) => (

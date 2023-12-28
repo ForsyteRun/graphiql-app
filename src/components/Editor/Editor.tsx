@@ -1,8 +1,16 @@
-import { sectionData } from '../../constants/editor';
-import EditorResult from './EditorResult';
+import { useMemo } from 'react';
+import { sectionDataRu, sectionDataEn } from '../../constants/editor';
 import EditorSection from './EditorSection';
+import { Localization } from '../../context/LocalContext';
 
 const Editor = () => {
+  const { language } = Localization();
+  const sectionData = useMemo(() => {
+    if (language === 'ru') {
+      return sectionDataRu;
+    }
+    return sectionDataEn;
+  }, [language]);
   return (
     <div className="editor">
       <div className="editor__wrapper">
@@ -13,7 +21,7 @@ const Editor = () => {
         </div>
         <div className="editor__right">
           <div className="editor__response">
-            <EditorResult title={sectionData.response.label} />
+            <EditorSection title={sectionData.response.label} />
           </div>
         </div>
       </div>

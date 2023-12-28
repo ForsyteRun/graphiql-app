@@ -1,58 +1,111 @@
-import React, { useEffect, useState } from 'react';
-import { sectionData } from '../../constants/editor';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { fetchQuery } from '../../store/slice/requestSlice';
+import {
+  initialQuery,
+  sectionDataRu,
+  sectionDataEn,
+} from '../../constants/editor';
+import { Localization } from '../../context/LocalContext';
 import { useAppDispatch, useAppSelector } from '../../store/types';
-import { setQuery } from '../../store/slice/requestSlice';
-
-interface EditorSectionProps {
-  title: string;
-}
-
-const initialQuery = `query {
-  characters(page: 2, filter: { name: "rick" }) {
-    info {
-      count
-    }
-    results {
-      name
-    }
-  }
-  location(id: 1) {
-    id
-  }
-  episodesByIds(ids: [1, 2]) {
-    id
-  }
-}`;
-
-const countLines = (text: string) => {
-  return text.split('\n').length;
-};
+import { setQuery, setInfo } from '../../store/slice/requestSlice';
+import { countLines } from '../../utils/countLines';
+import { EditorSectionProps } from '../../types/interface';
+import { EditorState } from '@codemirror/state';
+import { EditorView } from '@codemirror/view';
+import { javascript } from '@codemirror/lang-javascript';
+import { oneDark } from '@codemirror/theme-one-dark';
+import beautify from 'js-beautify';
 
 const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const dispatch = useAppDispatch();
-
-  const { query } = useAppSelector((state) => state.request);
+  const { language } = Localization();
+  const { api, variables, response, headers, query } = useAppSelector(
+    (state) => state.request
+  );
   const [value, setValue] = useState(query);
-  const [numLines, setNumLines] = useState(0);
+  const [numLines, setNumLines] = useState<number>(0);
+  const editorRef = useRef<HTMLDivElement | null>(null);
 
-  const handleQueryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const lines = countLines(event.target.value);
-    setNumLines(lines);
-    setValue(event.target.value);
+  const formatCode = (code: string) => {
+    try {
+      const formattedCode = beautify(code, {
+        indent_size: 2,
+      });
+      return formattedCode;
+    } catch (error) {
+      console.error('Ошибка форматирования кода:', error);
+      return code;
+    }
+  };
+
+  const handleFormatCode = () => {
+    try {
+      const formattedCode = formatCode(value);
+      setValue(formattedCode);
+    } catch (error) {
+      console.error('Ошибка форматирования кода:', error);
+    }
   };
 
   const handleSubmit = () => {
     dispatch(setQuery(value));
+    dispatch(setInfo(language));
   };
 
+  const sectionData = useMemo(() => {
+    if (language === 'ru') {
+      return sectionDataRu;
+    }
+    return sectionDataEn;
+  }, [language]);
+
   useEffect(() => {
-    setNumLines(countLines(initialQuery));
-  }, []);
+    setNumLines(countLines(initialQuery, ''));
+    if (response) {
+      const lines = countLines(response, '');
+      setNumLines(lines);
+    }
+  }, [response]);
+  useEffect(() => {
+    dispatch(
+      fetchQuery({ api, variables, requestHeaders: headers as Headers, query })
+    );
+  }, [api, dispatch, headers, query, variables]);
+
+  useEffect(() => {
+    setValue(query);
+  }, [query]);
+
+  useEffect(() => {
+    if (editorRef.current) {
+      editorRef.current.innerHTML = ''; // Очищаем содержимое редактора
+      const editor = new EditorView({
+        state: EditorState.create({
+          doc: value,
+          extensions: [EditorView.lineWrapping, javascript(), oneDark],
+        }),
+        parent: editorRef.current,
+      });
+
+      return () => {
+        editor.destroy();
+      };
+    }
+  }, [value]);
 
   return (
     <>
       <div className="editor__header">
         <div className="editor__title">{title}</div>
+        {sectionData.query.label === title && (
+          <div className="editor__buttons">
+            <div
+              className="editor__color button"
+              onClick={handleFormatCode}
+            ></div>
+            <div className="editor__play button" onClick={handleSubmit}></div>
+          </div>
+        )}
       </div>
       <div className="editor__content">
         <div className="editor__numbers">
@@ -61,17 +114,11 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
           ))}
         </div>
         <div className="editor__text">
-          {sectionData.query.label === title && (
-            <textarea
-              className="editor__query"
-              onChange={handleQueryChange}
-              value={value}
-              rows={numLines}
-            />
+          {sectionData.query.label === title ? (
+            <div className="editor__query" ref={editorRef}></div>
+          ) : (
+            <pre className="editor__response">{response}</pre>
           )}
-        </div>
-        <div className="button" onClick={handleSubmit}>
-          Применить
         </div>
       </div>
     </>

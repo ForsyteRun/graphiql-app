@@ -7,14 +7,20 @@ import {
   WELCOME_ROUTE,
 } from '../constants/route';
 import { LogOut } from '../components/Logout';
-import { AuthState } from '../utils/AuthState';
 import { useAppSelector } from '../store/types';
 import { useMemo, useState } from 'react';
+import { Localization } from '../context/LocalContext';
+import { AuthState } from '../utils/AuthState';
 
 const Header = () => {
   AuthState();
   const { isAuth } = useAppSelector((state) => state.user);
   const [menuVisible, setMenuVisible] = useState(false);
+  const { translations, language, changeLanguage } = Localization();
+
+  const handleLanguageChange = (newLanguage: string) => {
+    changeLanguage(newLanguage);
+  };
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -29,11 +35,11 @@ const Header = () => {
       if (isAuth)
         return (
           <NavLink to={MAIN_ROUTE} className="link">
-            Редактор
+            {translations.main}
           </NavLink>
         );
     }
-  }, [isAuth]);
+  }, [isAuth, translations.main]);
 
   const viewButtons = useMemo(() => {
     {
@@ -41,15 +47,17 @@ const Header = () => {
       return (
         <>
           <NavLink to={REGISTRATION_ROUTE} onClick={closeMenu}>
-            <button className="button button-second">Регистрация</button>
+            <button className="button button-second">
+              {translations.registration}
+            </button>
           </NavLink>
           <NavLink to={AUTH_ROUTE} onClick={closeMenu}>
-            <button className="button">Вход</button>
+            <button className="button">{translations.login}</button>
           </NavLink>
         </>
       );
     }
-  }, [isAuth]);
+  }, [isAuth, translations.login, translations.registration]);
 
   return (
     <header className="header container">
@@ -58,7 +66,7 @@ const Header = () => {
       </div>
       <div className="header__links">
         <NavLink to={WELCOME_ROUTE} className="link">
-          Приветствие
+          {translations.welcome}
         </NavLink>
         {viewMainLink}
       </div>
@@ -66,6 +74,25 @@ const Header = () => {
         <span className="header__buttons-icon" onClick={toggleMenu}></span>
         <div className={`header__buttons-list ${menuVisible ? 'active' : ''}`}>
           {viewButtons}
+        </div>
+        <div className="language">
+          <input
+            type="checkbox"
+            id="switch"
+            className="language__input"
+            defaultChecked={language === 'ru'}
+            onChange={(e) => {
+              if (e.target.checked) {
+                handleLanguageChange('ru');
+              } else {
+                handleLanguageChange('en');
+              }
+            }}
+          />
+          <label htmlFor="switch" className="language__toggler">
+            <span className="language__ru">{translations.ru}</span>
+            <span className="language__en">{translations.en}</span>
+          </label>
         </div>
       </div>
     </header>

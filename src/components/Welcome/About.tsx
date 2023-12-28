@@ -1,10 +1,18 @@
-import { aboutData } from '../../constants';
+import { aboutDataRu, aboutDataEn } from '../../constants';
 import lineSVG from '../../assets/svg/line.svg';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
+import { Localization } from '../../context/LocalContext';
+import { useMemo } from 'react';
 
 const About = () => {
   const { isVisible, titleRef } = useIntersectionObserver();
-
+  const { language, translations } = Localization();
+  const aboutData = useMemo(() => {
+    if (language === 'ru') {
+      return aboutDataRu;
+    }
+    return aboutDataEn;
+  }, [language]);
   return (
     <div className={`about ${isVisible ? 'visible' : ''}`} ref={titleRef}>
       <div className="about__content">
@@ -13,7 +21,7 @@ const About = () => {
             isVisible ? 'visible' : ''
           }`}
         >
-          Вы получаете!
+          {translations.aboutTitle}
         </h2>
         <div className="container">
           {aboutData.map((item, index) => (

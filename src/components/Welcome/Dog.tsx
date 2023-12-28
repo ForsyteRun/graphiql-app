@@ -2,9 +2,11 @@ import { NavLink } from 'react-router-dom';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import dog from '../../assets/img/dog.png';
 import { MAIN_ROUTE } from '../../constants/route';
+import { Localization } from '../../context/LocalContext';
 
 const Dog = () => {
   const { isVisible, titleRef } = useIntersectionObserver();
+  const { translations } = Localization();
   return (
     <div className={`dog ${isVisible ? 'visible' : ''}`} ref={titleRef}>
       <div className="dog__content container">
@@ -17,16 +19,16 @@ const Dog = () => {
               isVisible ? 'visible' : ''
             }`}
           >
-            Давайте делать что-нибудь вместе!
+            {translations.dogTitle}
           </h2>
-          <p>Попробуйте в использовании наш редактор.</p>
+          <p>{translations.dogText}</p>
           <div className="dog__buttons">
             <NavLink to={MAIN_ROUTE}>
               <button className="button button-transparent">
-                Перейти в редактор
+                {translations.dogBtn}
               </button>
             </NavLink>
-            <a>Познакомиться с командой</a>
+            <a>{translations.dogLink}</a>
           </div>
         </div>
       </div>

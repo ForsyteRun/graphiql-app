@@ -1,21 +1,16 @@
+import { ObjMap } from 'graphql/jsutils/ObjMap';
 import {
   GraphQLField,
-  GraphQLInputObjectType,
-  GraphQLInterfaceType,
+  GraphQLFieldMap,
+  GraphQLInputFieldMap,
+  GraphQLNamedType,
   GraphQLObjectType,
   GraphQLOutputType,
+  GraphQLInputObjectType,
+  GraphQLInterfaceType,
   GraphQLType,
 } from 'graphql';
 import { Role } from './enum';
-
-export interface DataForm extends DataLogin {
-  confirmPassword: string;
-}
-
-export interface DataLogin {
-  email: string;
-  password: string;
-}
 
 export type FieldName = 'email' | 'password';
 
@@ -30,6 +25,11 @@ export type DevelopersData = {
   about?: string;
   contribution: string[];
 };
+
+export type RootFieldType =
+  | ObjMap<GraphQLNamedType>
+  | GraphQLInputFieldMap
+  | GraphQLFieldMap<unknown, unknown>;
 
 export const getTemplateString = <T extends string>(
   key: T
