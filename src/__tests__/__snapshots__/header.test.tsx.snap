@@ -39,7 +39,7 @@ exports[`Header component should match Welcome Page snapshot 1`] = `
         class="link active"
         href="/"
       >
-        Приветствие
+        Welcome
       </a>
     </div>
     <div
@@ -58,7 +58,7 @@ exports[`Header component should match Welcome Page snapshot 1`] = `
           <button
             class="button button-second"
           >
-            Регистрация
+            Registration
           </button>
         </a>
         <a
@@ -68,9 +68,33 @@ exports[`Header component should match Welcome Page snapshot 1`] = `
           <button
             class="button"
           >
-            Вход
+            Sign in
           </button>
         </a>
+      </div>
+      <div
+        class="language"
+      >
+        <input
+          class="language__input"
+          id="switch"
+          type="checkbox"
+        />
+        <label
+          class="language__toggler"
+          for="switch"
+        >
+          <span
+            class="language__ru"
+          >
+            Ru
+          </span>
+          <span
+            class="language__en"
+          >
+            En
+          </span>
+        </label>
       </div>
     </div>
   </header>

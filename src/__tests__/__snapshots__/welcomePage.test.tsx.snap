@@ -28,7 +28,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
           <span>
             GraphQL
           </span>
-           — это возможность использовать всю мощь
+            — this is the ability to harness all the power
           <span>
              GraphQL
           </span>
@@ -37,10 +37,10 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
         <span
           class="welcome__description"
         >
-          сделай запрос в свою собственную вселенную
+          make a request into your own universe
         </span>
         <p>
-          Задача состоит в том, чтобы реализовать playground/IDE для работы с запросами GraphQL. GraphQL - это язык запросов, используемый клиентскими приложениями для обработки данных. GraphQL ассоциируется с таким понятием, как schema, которое позволяет организовать создание, чтение, обновление и удаление данных в приложении. GraphiQL - это инструмент с открытым исходным кодом. Помимо самого ide для работы с запросами GraphQL, реализованы возможности авторизации, чтобы предоставить доступ к инструменту только авторизованным пользователям.
+          The task is to implement a playground/IDE for working with GraphQL queries. GraphQL is a query language used by client applications to handle data. GraphQL is associated with the concept of a schema that allows organizing the creation, reading, updating, and deleting of data in the application. GraphiQL is an open-source tool. In addition to the IDE itself for working with GraphQL queries, authorization capabilities are implemented to grant access to the tool only to authorized users. 
         </p>
       </div>
     </div>
@@ -53,7 +53,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
         <h2
           class="plus__title title-animation "
         >
-          Преимущества
+          Advantages
         </h2>
         <div
           class="plus__description"
@@ -62,40 +62,40 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
             class="plus__item "
           >
             <h3>
-              Эффективность
+              Efficiency
             </h3>
             <p>
-              Клиенты получают именно те данные, которые им нужны, ни больше, ни меньше
+              Clients receive exactly the data they need, no more, no less.
             </p>
           </div>
           <div
             class="plus__item "
           >
             <h3>
-              Гибкость
+              Flexibility
             </h3>
             <p>
-              Клиенты могут запрашивать несколько ресурсов в одном запросе
+              Clients can request multiple resources in a single query.
             </p>
           </div>
           <div
             class="plus__item "
           >
             <h3>
-              Управление версиями
+              Version Control
             </h3>
             <p>
-              В контроле версий нет необходимости
+              No need for version control.
             </p>
           </div>
           <div
             class="plus__item "
           >
             <h3>
-              Строгая типизация
+              Strict Typing
             </h3>
             <p>
-              Проверка типов на уровне запроса
+              Type checking at the query level.
             </p>
           </div>
         </div>
@@ -107,7 +107,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
         <button
           class="button"
         >
-          Перейти в редактор
+          Go to the editor
         </button>
       </a>
     </div>
@@ -120,7 +120,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
         <h2
           class="about__title title-animation "
         >
-          Вы получаете!
+          You get it!
         </h2>
         <div
           class="container"
@@ -132,7 +132,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               class="about__images "
             >
               <img
-                alt="Удобный редактор"
+                alt="Convenient Editor"
                 class="about__img"
                 src="test-file-stub"
               />
@@ -143,10 +143,10 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               <h3
                 class="about__subtitle"
               >
-                Удобный редактор
+                Convenient Editor
               </h3>
               <p>
-                Это легковесная и интерактивная среда разработки GraphQL в браузере, которая предлагает интуитивно понятный интерфейс, что облегчает исследование и экспериментирование с GraphQL API.
+                This is a lightweight and interactive GraphQL development environment in the browser, offering an intuitive interface that facilitates exploring and experimenting with GraphQL API.
               </p>
               <div
                 class="about__number"
@@ -162,7 +162,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               class="about__images "
             >
               <img
-                alt="Изменяемый заголовок"
+                alt="Customizable Header"
                 class="about__img"
                 src="test-file-stub"
               />
@@ -173,10 +173,10 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               <h3
                 class="about__subtitle"
               >
-                Изменяемый заголовок
+                Customizable Header
               </h3>
               <p>
-                Вы можете параметризовать свои запросы, делая их более динамичными и многократно используемыми.
+                You can parameterize your queries, making them more dynamic and reusable.
               </p>
               <div
                 class="about__number"
@@ -192,7 +192,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               class="about__images "
             >
               <img
-                alt="Переменные"
+                alt="Variables"
                 class="about__img"
                 src="test-file-stub"
               />
@@ -203,10 +203,10 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               <h3
                 class="about__subtitle"
               >
-                Переменные
+                Variables
               </h3>
               <p>
-                Вместо хардкодинга значений непосредственно в запросе вы можете определить переменные и передавать их значения во время выполнения.
+                Instead of hardcoding values directly into the query, you can define variables and pass their values during execution.
               </p>
               <div
                 class="about__number"
@@ -222,7 +222,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               class="about__images "
             >
               <img
-                alt="Изменение Api"
+                alt="API Modification"
                 class="about__img"
                 src="test-file-stub"
               />
@@ -233,10 +233,10 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               <h3
                 class="about__subtitle"
               >
-                Изменение Api
+                API Modification
               </h3>
               <p>
-                Можно использовать различные API.
+                Various APIs can be used.
               </p>
               <div
                 class="about__number"
@@ -252,7 +252,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               class="about__images "
             >
               <img
-                alt="Интерактивная документация"
+                alt="Interactive Documentation"
                 class="about__img"
                 src="test-file-stub"
               />
@@ -263,10 +263,10 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               <h3
                 class="about__subtitle"
               >
-                Интерактивная документация
+                Interactive Documentation
               </h3>
               <p>
-                Изучите документацию схемы, включая типы, поля и аргументы, предоставляющие полезную информацию при составлении ваших запросов.
+                Explore schema documentation, including types, fields, and arguments, providing useful information while composing your queries.
               </p>
               <div
                 class="about__number"
@@ -306,10 +306,10 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
           <h2
             class="dog__title title-animation "
           >
-            Давайте делать что-нибудь вместе!
+            Let's do something together!
           </h2>
           <p>
-            Попробуйте в использовании наш редактор.
+            Try using our editor.
           </p>
           <div
             class="dog__buttons"
@@ -321,11 +321,11 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               <button
                 class="button button-transparent"
               >
-                Перейти в редактор
+                Go to the editor
               </button>
             </a>
             <a>
-              Познакомиться с командой
+              Meet the team
             </a>
           </div>
         </div>
@@ -351,7 +351,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
             <h3
               class="team__name"
             >
-              Анастасия
+              Anastasiia
             </h3>
             <h4
               class="team__role"
@@ -363,7 +363,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               href="https://github.com/nyurasheva"
               rel="noreferrer"
               target="_blank"
-              title="Анастасия GitHub"
+              title="Anastasiia GitHub"
             >
               <span
                 aria-label="github"
@@ -392,26 +392,26 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               <li
                 class=""
               >
-                Приветствие
+                Welcome
               </li>
               <li
                 class=""
               >
-                Дизайн
+                Disain
               </li>
               <li
                 class=""
               >
-                Редактор
+                Editor
               </li>
               <li
                 class=""
               >
-                Подвал
+                Footer
               </li>
             </ul>
             <img
-              alt="Анастасия"
+              alt="Anastasiia"
               class="team__photo"
               src="test-file-stub"
             />
@@ -422,7 +422,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
             <h3
               class="team__name"
             >
-              Александр
+              Aleksandr
             </h3>
             <h4
               class="team__role"
@@ -434,7 +434,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               href="https://github.com/forsyterun"
               rel="noreferrer"
               target="_blank"
-              title="Александр GitHub"
+              title="Aleksandr GitHub"
             >
               <span
                 aria-label="github"
@@ -463,11 +463,11 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               <li
                 class=""
               >
-                Схема
+                Shema
               </li>
             </ul>
             <img
-              alt="Александр"
+              alt="Aleksandr"
               class="team__photo"
               src="test-file-stub"
             />
@@ -478,7 +478,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
             <h3
               class="team__name"
             >
-              Екатерина
+              Katsiaryna
             </h3>
             <h4
               class="team__role"
@@ -487,10 +487,10 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
             </h4>
             <a
               class="team__github"
-              href="https://github.com/Katsiaryna"
+              href="https://github.com/massaracsh7"
               rel="noreferrer"
               target="_blank"
-              title="Екатерина GitHub"
+              title="Katsiaryna GitHub"
             >
               <span
                 aria-label="github"
@@ -511,7 +511,7 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
                   />
                 </svg>
               </span>
-              Katsiaryna
+              massaracsh7
             </a>
             <ul
               class="team__contribution-list team3"
@@ -519,16 +519,16 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               <li
                 class=""
               >
-                Регистрация
+                Registration
               </li>
               <li
                 class=""
               >
-                Вход
+                Login
               </li>
             </ul>
             <img
-              alt="Екатерина"
+              alt="Katsiaryna"
               class="team__photo"
               src="test-file-stub"
             />

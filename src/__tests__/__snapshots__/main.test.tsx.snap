@@ -3,9 +3,11 @@
 exports[`main component should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="main"
+    class="container main"
   >
-    <h1>
+    <h1
+      class="main__title"
+    >
       GraphiQL Editor
     </h1>
     <div
@@ -29,7 +31,7 @@ exports[`main component should match snapshot 1`] = `
       <div
         class="button"
       >
-        Отправить
+        Submit
       </div>
     </div>
     <div
@@ -41,7 +43,7 @@ exports[`main component should match snapshot 1`] = `
         <div
           class="headers__label"
         >
-          Заголовок запроса:
+          Headers:
         </div>
         <input
           class="headers__input"
@@ -52,7 +54,7 @@ exports[`main component should match snapshot 1`] = `
       <div
         class="button"
       >
-        Отправить
+        Submit
       </div>
     </div>
     <div
@@ -64,7 +66,7 @@ exports[`main component should match snapshot 1`] = `
         <div
           class="variables__label"
         >
-          Переменные:
+          Variables:
         </div>
         <input
           class="variables__input"
@@ -75,7 +77,7 @@ exports[`main component should match snapshot 1`] = `
       <div
         class="button"
       >
-        Применить
+        Submit
       </div>
     </div>
     <div
@@ -89,133 +91,14 @@ exports[`main component should match snapshot 1`] = `
         >
           <div
             class="editor__query "
-          >
-            <div
-              class="editor__header"
-            >
-              <div
-                class="editor__title"
-              >
-                Запрос
-              </div>
-            </div>
-            <div
-              class="editor__content"
-            >
-              <div
-                class="editor__numbers"
-              >
-                <p>
-                  1
-                </p>
-                <p>
-                  2
-                </p>
-                <p>
-                  3
-                </p>
-                <p>
-                  4
-                </p>
-                <p>
-                  5
-                </p>
-                <p>
-                  6
-                </p>
-                <p>
-                  7
-                </p>
-                <p>
-                  8
-                </p>
-                <p>
-                  9
-                </p>
-                <p>
-                  10
-                </p>
-                <p>
-                  11
-                </p>
-                <p>
-                  12
-                </p>
-                <p>
-                  13
-                </p>
-                <p>
-                  14
-                </p>
-                <p>
-                  15
-                </p>
-                <p>
-                  16
-                </p>
-              </div>
-              <div
-                class="editor__text"
-              >
-                <textarea
-                  class="editor__query"
-                  rows="16"
-                >
-                  query {
-  characters(page: 2, filter: { name: "rick" }) {
-    info {
-      count
-    }
-    results {
-      name
-    }
-  }
-location(id: 1) {
-  id
-}
-episodesByIds(ids: [1, 2]) {
-  id
-}
-}
-                </textarea>
-              </div>
-              <div
-                class="button"
-              >
-                Применить
-              </div>
-            </div>
-          </div>
+          />
         </div>
         <div
           class="editor__right"
         >
           <div
             class="editor__response"
-          >
-            <div
-              class="editor__header"
-            >
-              <div
-                class="editor__title"
-              >
-                Ответ
-              </div>
-            </div>
-            <div
-              class="editor__content"
-            >
-              <div
-                class="editor__text"
-              >
-                <pre
-                  style="text-align: left;"
-                >
-                    
-                </pre>
-              </div>
-            </div>
-          </div>
+          />
         </div>
       </div>
     </div>
@@ -237,6 +120,7 @@ episodesByIds(ids: [1, 2]) {
       </div>
       <button
         class="docs-button"
+        disabled=""
       >
         Docs
       </button>
