@@ -32,7 +32,7 @@ const useGetDocsFromApi = () => {
 
         setQuery(res);
       } catch (error) {
-        console.log('error get docs');
+        console.info('error get docs');
       }
     };
 
