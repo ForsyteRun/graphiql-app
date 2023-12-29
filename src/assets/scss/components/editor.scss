@@ -47,6 +47,10 @@
     overflow: hidden;
     margin: 0;
 
+    @include media('s') {
+      flex-direction: column;
+    }
+
     * {
       font-family: menlo, monospace;
       font-size: 1rem;
@@ -59,10 +63,15 @@
   &__left,
   &__right {
     display: flex;
+    width: 50%;
     flex-direction: column;
     flex: 1;
     border-left: solid 1px #2b2b2b;
     border-bottom: solid 1px #2b2b2b;
+
+    @include media('s') {
+      width: 100%;
+    }
   }
 
   &__left {
@@ -76,12 +85,46 @@
     }
 
     .editor__text {
-      padding: 6px 10px 10px 0;
+      padding: 0;
 
-      .ͼo .cm-gutters {
+      .cm-gutters {
         background-color: #181818;
         color: #99999a;
-        width: 8%;
+        width: 6%;
+        justify-content: flex-end;
+
+        @include media('xxl') {
+          width: 8%;
+        }
+
+        @include media('l') {
+          width: 10%;
+        }
+
+        @include media('m') {
+          width: 12%;
+        }
+
+        @include media('s') {
+          width: 6%;
+        }
+
+        @include media('xs') {
+          width: 8%;
+        }
+
+        @include media('xxs') {
+          width: 12%;
+        }
+      }
+
+      .cm-activeLineGutter {
+        background-color: #181818;
+        color: $links;
+      }
+
+      .cm-content {
+        padding-top: 10px;
       }
 
       .cm-focused {
@@ -107,7 +150,7 @@
   }
 
   &__content {
-    @include flex($align: stretch);
+    @include flex($align: stretch, $justify: stretch);
     background: #1f1f1f;
     color: #739db3;
     flex: 1 0 auto;
@@ -123,13 +166,38 @@
     height: 100%;
     line-height: 150%;
     text-align: right;
-    width: calc(8% - 1px);
+    width: 6%;
+
+    @include media('xxl') {
+      width: 8%;
+    }
+
+    @include media('l') {
+      width: 10%;
+    }
+
+    @include media('m') {
+      width: 12%;
+    }
+
+    @include media('s') {
+      width: 6%;
+    }
+
+    @include media('xs') {
+      width: 8%;
+    }
+
+    @include media('xxs') {
+      width: 12%;
+    }
   }
 
   &__text {
     @include flexColumn($align: stretch);
     width: 100%;
     padding: 10px;
+    overflow-x: auto;
   }
 
   &__query {
@@ -165,6 +233,6 @@
   &__color:hover {
     min-width: 30px;
     height: 30px;
-    background: url(/src/assets/svg/colors.svg) no-repeat center center/cover;
+    background: url(/src/assets/svg/format.svg) no-repeat center center/cover;
   }
 }
