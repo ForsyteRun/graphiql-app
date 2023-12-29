@@ -84,7 +84,6 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
               <p key={num + 1}>{num + 1}</p>
             ))}
         </div>
-
         <div className="editor__text">
           {sectionData.query.label === title ? (
             <div className="editor__query">

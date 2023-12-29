@@ -17,14 +17,14 @@ const developersRu: DevelopersData[] = [
     image: alexPhoto,
     role: Role.lead,
     github: 'forsyterun',
-    contribution: ['Схема'],
+    contribution: ['Описание', 'Схема', 'Видео', 'Тесты'],
   },
   {
     name: 'Екатерина',
     image: katyaPhoto,
     role: Role.developer,
     github: 'massaracsh7',
-    contribution: ['Регистрация', 'Вход'],
+    contribution: ['Заголовки', 'Запрос', 'Переменные', 'Авторизация', 'АПИ'],
   },
 ];
 
@@ -34,21 +34,21 @@ const developersEn: DevelopersData[] = [
     image: nastyaPhoto,
     role: Role.developer,
     github: 'nyurasheva',
-    contribution: ['Welcome', 'Disain', 'Editor', 'Footer'],
+    contribution: ['Welcome', 'Design', 'Editor', 'Footer'],
   },
   {
     name: 'Aleksandr',
     image: alexPhoto,
     role: Role.lead,
     github: 'forsyterun',
-    contribution: ['Shema'],
+    contribution: ['Readme', 'Docs', 'Video', 'Tests'],
   },
   {
     name: 'Katsiaryna',
     image: katyaPhoto,
     role: Role.developer,
     github: 'massaracsh7',
-    contribution: ['Registration', 'Login'],
+    contribution: ['Headers', 'Query', 'Variables', 'Endpoint', 'Auth'],
   },
 ];
 

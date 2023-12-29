@@ -93,11 +93,11 @@
     }
 
     @include media('xs') {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
 
     @include media('xxs') {
-      font-size: 1.2rem;
+      font-size: 1.05rem;
     }
   }
 
@@ -131,7 +131,7 @@
     }
 
     @include media('xxs') {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
 
     span {
@@ -149,7 +149,7 @@
     @include flexColumn($align: flex-start);
     position: absolute;
     top: 35%;
-    left: -50%;
+    left: -35%;
     gap: 0.5rem;
     list-style: none;
     padding: 0;
@@ -158,19 +158,31 @@
       left: -40%;
     }
 
+    @include media('xs') {
+      left: -55%;
+    }
+
     &.team2 {
-      left: -10%;
+      left: -18%;
+
+      @include media('s') {
+        left: -25%;
+      }
+
+      @include media('xxs') {
+        left: -32%;
+      }
     }
 
     &.team3 {
       left: 100%;
 
       @include media('s') {
-        left: 90%;
+        left: 95%;
       }
 
       @include media('xs') {
-        left: 81%;
+        left: 88%;
       }
     }
 
@@ -184,8 +196,9 @@
       font-size: 0.8rem;
       padding: 0.5rem 0.5rem;
       border-left: 5px solid #f321b0;
-      margin: 10px 0;
+      margin: 8px 0;
       transition: transform 2s ease;
+      z-index: 2;
 
       @include media('s') {
         font-size: 0.85rem;
@@ -216,6 +229,10 @@
         }
 
         &:nth-child(4) {
+          transform: rotate(344deg);
+        }
+
+        &:nth-child(5) {
           transform: rotate(360deg);
         }
       }
