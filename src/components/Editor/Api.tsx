@@ -9,10 +9,12 @@ const Api = () => {
 
   const { api } = useAppSelector((state) => state.request);
   const [value, setValue] = useState(api);
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleSubmit = () => {
     dispatch(setApi(value));
     dispatch(setQuery(`query { }`));
+    setShowMessage(false);
   };
 
   return (
@@ -24,12 +26,18 @@ const Api = () => {
           placeholder="введите api"
           name="api"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => {
+            setValue(e.target.value);
+            setShowMessage(true);
+          }}
         />
       </div>
       <div className="button" onClick={handleSubmit}>
         {translations.submit}
       </div>
+      {showMessage && (
+        <div className="attention-message">{translations.attentionApi}</div>
+      )}
     </div>
   );
 };

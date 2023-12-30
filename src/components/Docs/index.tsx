@@ -5,6 +5,7 @@ import useClickOutside from '../../hooks/useClickOutside';
 import useGetDocsFromApi from '../../hooks/useGetDocsFromApi';
 import useSchema from '../../hooks/useSchema';
 import { FieldSchema } from './components';
+import { Localization } from '../../context/LocalContext';
 
 const Docs = memo(() => {
   const {
@@ -25,6 +26,7 @@ const Docs = memo(() => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+  const { translations } = Localization();
 
   return (
     <aside ref={ref} className={classNames({ openAside: open })}>
@@ -36,7 +38,7 @@ const Docs = memo(() => {
         onClick={() => setOpen(!open)}
         disabled={!rootSchema}
       >
-        Docs
+        {translations.docsLink}
       </button>
     </aside>
   );
