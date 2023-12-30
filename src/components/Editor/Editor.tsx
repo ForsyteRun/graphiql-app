@@ -15,14 +15,10 @@ const Editor = () => {
     <div className="editor">
       <div className="editor__wrapper">
         <div className="editor__left">
-          <div className="editor__query ">
-            <EditorSection title={sectionData.query.label} />
-          </div>
+          <EditorSection title={sectionData.query.label} />
         </div>
         <div className="editor__right">
-          <div className="editor__response">
-            <EditorSection title={sectionData.response.label} />
-          </div>
+          <EditorSection title={sectionData.response.label} />
         </div>
       </div>
     </div>

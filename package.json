@@ -49,6 +49,7 @@
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
+    "@uiw/react-codemirror": "^4.21.21",
     "@vitejs/plugin-react": "^4.2.1",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",

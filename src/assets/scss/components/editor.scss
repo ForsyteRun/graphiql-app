@@ -41,11 +41,15 @@
   padding-bottom: 30px;
 
   &__wrapper {
-    @include flex($justify: space-between, $align: baseline, $wrap: wrap);
+    @include flex($justify: space-between, $align: stretch, $wrap: wrap);
     border: solid 10px #0d0c18;
     border-radius: 4px;
     overflow: hidden;
     margin: 0;
+
+    @include media('s') {
+      flex-direction: column;
+    }
 
     * {
       font-family: menlo, monospace;
@@ -59,15 +63,73 @@
   &__left,
   &__right {
     display: flex;
+    width: 50%;
     flex-direction: column;
     flex: 1;
     border-left: solid 1px #2b2b2b;
     border-bottom: solid 1px #2b2b2b;
+
+    @include media('s') {
+      width: 100%;
+    }
   }
 
   &__left {
     .editor__content {
-      background: #1f1f1f47;
+      background: #282c34;
+    }
+
+    .editor__numbers {
+      position: absolute;
+      left: 0;
+    }
+
+    .editor__text {
+      padding: 0;
+
+      .cm-gutters {
+        background-color: #181818;
+        color: #99999a;
+        width: 6%;
+        justify-content: flex-end;
+
+        @include media('xxl') {
+          width: 8%;
+        }
+
+        @include media('l') {
+          width: 10%;
+        }
+
+        @include media('m') {
+          width: 12%;
+        }
+
+        @include media('s') {
+          width: 6%;
+        }
+
+        @include media('xs') {
+          width: 8%;
+        }
+
+        @include media('xxs') {
+          width: 12%;
+        }
+      }
+
+      .cm-activeLineGutter {
+        background-color: #181818;
+        color: $links;
+      }
+
+      .cm-content {
+        padding-top: 10px;
+      }
+
+      .cm-focused {
+        outline: none;
+      }
     }
   }
 
@@ -88,7 +150,7 @@
   }
 
   &__content {
-    @include flex($align: stretch);
+    @include flex($align: stretch, $justify: stretch);
     background: #1f1f1f;
     color: #739db3;
     flex: 1 0 auto;
@@ -96,25 +158,52 @@
   }
 
   &__numbers {
-    @include flexColumn();
+    @include flexColumn($align: stretch);
     color: #999;
     background: #181818;
     font-family: menlo, monospace;
-    padding: 10px 10px;
+    padding: 10px;
     height: 100%;
     line-height: 150%;
     text-align: right;
+    width: 6%;
+
+    @include media('xxl') {
+      width: 8%;
+    }
+
+    @include media('l') {
+      width: 10%;
+    }
+
+    @include media('m') {
+      width: 12%;
+    }
+
+    @include media('s') {
+      width: 6%;
+    }
+
+    @include media('xs') {
+      width: 8%;
+    }
+
+    @include media('xxs') {
+      width: 12%;
+    }
   }
 
   &__text {
     @include flexColumn($align: stretch);
     width: 100%;
+    padding: 10px;
+    overflow-x: auto;
   }
 
   &__query {
     height: 100%;
     border: none;
-    background: #2c2e2f;
+    background: #282c34;
     text-align: left;
     color: $background;
 
@@ -144,6 +233,6 @@
   &__color:hover {
     min-width: 30px;
     height: 30px;
-    background: url(/src/assets/svg/colors.svg) no-repeat center center/cover;
+    background: url(/src/assets/svg/format.svg) no-repeat center center/cover;
   }
 }
