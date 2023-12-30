@@ -3,16 +3,16 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from '../store/store';
-import Header from '../layout/Header';
 import { LocalizationProvider } from '../context/LocalContext';
+import { Login } from '../pages';
 
-describe('Header component', () => {
-  it('should match Welcome Page snapshot', () => {
+describe('Login component', () => {
+  it('should match Login Page snapshot', () => {
     const { asFragment } = render(
       <LocalizationProvider>
         <Provider store={store}>
           <BrowserRouter>
-            <Header />
+            <Login />
           </BrowserRouter>
         </Provider>
       </LocalizationProvider>

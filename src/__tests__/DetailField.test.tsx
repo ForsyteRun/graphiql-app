@@ -3,16 +3,22 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from '../store/store';
-import Header from '../layout/Header';
 import { LocalizationProvider } from '../context/LocalContext';
+import { DetailedField } from '../components/Docs/components';
+import { GraphQLScalarType } from 'graphql';
 
-describe('Header component', () => {
-  it('should match Welcome Page snapshot', () => {
+const dataScalar = new GraphQLScalarType({
+  name: 'Data',
+  description: 'description',
+});
+
+describe('DetailField component', () => {
+  it('should match DetailField Page snapshot', () => {
     const { asFragment } = render(
       <LocalizationProvider>
         <Provider store={store}>
           <BrowserRouter>
-            <Header />
+            <DetailedField value={dataScalar} />
           </BrowserRouter>
         </Provider>
       </LocalizationProvider>

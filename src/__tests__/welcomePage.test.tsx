@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Welcome } from '../pages';
+import { LocalizationProvider } from '../context/LocalContext';
 
 const intersectionObserverMock = () => ({
   observe: () => null,
@@ -17,9 +18,11 @@ window.IntersectionObserver = jest
 describe('Welcome Page', () => {
   it('should be equal Welcome Page snapshot', () => {
     const { asFragment } = render(
-      <BrowserRouter>
-        <Welcome />
-      </BrowserRouter>
+      <LocalizationProvider>
+        <BrowserRouter>
+          <Welcome />
+        </BrowserRouter>
+      </LocalizationProvider>
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -27,9 +30,11 @@ describe('Welcome Page', () => {
 
   it('should has tree images of developers', () => {
     render(
-      <BrowserRouter>
-        <Welcome />
-      </BrowserRouter>
+      <LocalizationProvider>
+        <BrowserRouter>
+          <Welcome />
+        </BrowserRouter>
+      </LocalizationProvider>
     );
 
     const imageElements = screen.getAllByRole('img');
@@ -39,9 +44,11 @@ describe('Welcome Page', () => {
 
   it('should has tree names of developers', () => {
     render(
-      <BrowserRouter>
-        <Welcome />
-      </BrowserRouter>
+      <LocalizationProvider>
+        <BrowserRouter>
+          <Welcome />
+        </BrowserRouter>
+      </LocalizationProvider>
     );
 
     const imageElements = screen.getAllByRole('heading', { level: 3 });

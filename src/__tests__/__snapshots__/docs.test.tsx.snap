@@ -20,6 +20,7 @@ exports[`Docs component should match Docs snapshot with data 1`] = `
     </div>
     <button
       class="docs-button"
+      disabled=""
     >
       Docs
     </button>
@@ -47,6 +48,7 @@ exports[`Docs component should match Docs snapshot without data 1`] = `
     </div>
     <button
       class="docs-button"
+      disabled=""
     >
       Docs
     </button>

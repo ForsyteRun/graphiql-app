@@ -6,7 +6,6 @@ import '@testing-library/jest-dom';
 import requestSlice, {
   fetchQuery,
   setApi,
-  setHeaders,
   setQuery,
   setResponse,
   setVariables,
@@ -69,17 +68,6 @@ describe('requestSlice', () => {
     expect(response).toEqual('hello');
   });
 
-  it('should be able to dispatch new headers', () => {
-    const result = store.dispatch(
-      setHeaders({ 'Content-Type': 'application/json' })
-    );
-
-    expect(result.type).toBe('request/setHeaders');
-
-    const { headers } = store.getState().request;
-    expect(headers).toEqual({ 'Content-Type': 'application/json' });
-  });
-
   it('sets fetching true when fetchQuery is pending', () => {
     const initialState = {
       api: 'https://rickandmortyapi.com/graphql',
@@ -110,6 +98,7 @@ describe('requestSlice', () => {
     expect(state).toEqual({
       api: 'https://rickandmortyapi.com/graphql',
       query: 'query',
+      info: '',
       response: undefined,
       variables: 'variables',
       headers: { 'Content-Type': 'application/json' },
@@ -135,7 +124,8 @@ describe('requestSlice', () => {
     expect(state).toEqual({
       api: 'https://rickandmortyapi.com/graphql',
       query: 'query',
-      response: 'response',
+      info: '',
+      response: ' ',
       variables: 'variables',
       headers: { 'Content-Type': 'application/json' },
     });

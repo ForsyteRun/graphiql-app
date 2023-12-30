@@ -3,16 +3,16 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from '../store/store';
-import Header from '../layout/Header';
 import { LocalizationProvider } from '../context/LocalContext';
+import { LogOut } from '../components/Logout';
 
-describe('Header component', () => {
-  it('should match Welcome Page snapshot', () => {
+describe('logOut component', () => {
+  it('should match logOut Page snapshot', () => {
     const { asFragment } = render(
       <LocalizationProvider>
         <Provider store={store}>
           <BrowserRouter>
-            <Header />
+            <LogOut />
           </BrowserRouter>
         </Provider>
       </LocalizationProvider>
