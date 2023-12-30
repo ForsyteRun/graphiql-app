@@ -34,7 +34,7 @@ const Headers = () => {
         {translations.submit}
       </div>
       {showMessage && (
-        <div className="attention-message">Attention!Submitting Headers...</div>
+        <div className="attention-message">{translations.attentionHeaders}</div>
       )}
     </div>
   );

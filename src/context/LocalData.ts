@@ -37,6 +37,9 @@ export const translationsData: Translations = {
     plusTitle: 'Advantages',
     plusBtn: 'Go to the editor',
     mainTitle: 'GraphiQL Editor',
+    attentionApi: 'Attention! Submitting API...',
+    attentionHeaders: 'Attention!Submitting Headers...',
+    attentionVariables: 'Attention! Submitting Variables...',
   },
   ru: {
     en: 'Англ',
@@ -73,5 +76,8 @@ export const translationsData: Translations = {
     plusTitle: 'Преимущества',
     plusBtn: 'Перейти в редактор',
     mainTitle: 'GraphiQL Редактор',
+    attentionApi: 'Внимание! Отправка API...',
+    attentionHeaders: 'Внимание! Отправка заголовков...',
+    attentionVariables: 'Внимание! Отправка переменных...',
   },
 };
