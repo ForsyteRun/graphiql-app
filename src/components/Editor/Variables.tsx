@@ -8,10 +8,12 @@ const Variables = () => {
   const { translations, language } = Localization();
   const { variables } = useAppSelector((state) => state.request);
   const [value, setValue] = useState(variables);
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleSubmit = () => {
     dispatch(setVariables(value));
     dispatch(setInfo(language));
+    setShowMessage(false);
   };
 
   return (
@@ -22,12 +24,20 @@ const Variables = () => {
           className="variables__input"
           name="variables"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => {
+            setValue(e.target.value);
+            setShowMessage(true);
+          }}
         />
       </div>
       <div className="button" onClick={handleSubmit}>
         {translations.submit}
       </div>
+      {showMessage && (
+        <div className="attention-message">
+          Attention! Submitting Variables...
+        </div>
+      )}
     </div>
   );
 };
