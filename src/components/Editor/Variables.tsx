@@ -35,7 +35,7 @@ const Variables = () => {
       </div>
       {showMessage && (
         <div className="attention-message">
-          Attention! Submitting Variables...
+          {translations.attentionVariables}
         </div>
       )}
     </div>

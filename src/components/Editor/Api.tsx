@@ -36,7 +36,7 @@ const Api = () => {
         {translations.submit}
       </div>
       {showMessage && (
-        <div className="attention-message">Attention! Submitting API...</div>
+        <div className="attention-message">{translations.attentionApi}</div>
       )}
     </div>
   );
