@@ -40,6 +40,7 @@ export const translationsData: Translations = {
     attentionApi: 'Attention! Submitting API...',
     attentionHeaders: 'Attention!Submitting Headers...',
     attentionVariables: 'Attention! Submitting Variables...',
+    docsLink: 'Docs',
   },
   ru: {
     en: 'Англ',
@@ -79,5 +80,6 @@ export const translationsData: Translations = {
     attentionApi: 'Внимание! Отправка API...',
     attentionHeaders: 'Внимание! Отправка заголовков...',
     attentionVariables: 'Внимание! Отправка переменных...',
+    docsLink: 'Схема',
   },
 };
