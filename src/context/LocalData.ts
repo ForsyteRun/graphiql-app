@@ -4,7 +4,7 @@ import { Translations } from './types';
 export const translationsData: Translations = {
   en: {
     en: 'En',
-    ru: 'Ru',
+    ru: '',
     welcome: 'Welcome',
     main: 'Main',
     registration: 'Registration',
@@ -43,7 +43,7 @@ export const translationsData: Translations = {
     docsLink: 'Docs',
   },
   ru: {
-    en: 'Англ',
+    en: '',
     ru: 'Рус',
     welcome: 'Приветствие',
     main: 'Главная',
