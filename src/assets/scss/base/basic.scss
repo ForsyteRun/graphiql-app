@@ -46,11 +46,11 @@ main {
   width: 100%;
   flex-grow: 1;
   background: $background-grey;
-  min-height: calc(100vh - 13rem);
+  // min-height: calc(100vh - 13rem);
 
-  @include media('s') {
-    min-height: calc(100vh - 10rem);
-  }
+  // @include media('s') {
+  //   min-height: calc(100vh - 10rem);
+  // }
 }
 
 body,
@@ -185,14 +185,14 @@ textarea {
   }
 }
 
-#root {
+.wrapper {
+  @include flexColumn($align: inherit);
   position: relative;
   margin: 0 auto;
   text-align: center;
   background: $background-dark;
-  @include flexColumn($align: inherit);
   width: 100vw;
-  // min-height: 100vh;
+  min-height: 100svh;
   box-sizing: border-box;
 }
 
