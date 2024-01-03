@@ -60,7 +60,7 @@ const Header = () => {
   }, [isAuth, translations.login, translations.registration]);
 
   return (
-    <header className="header container">
+    <header className="header">
       <div className="header__logo">
         <Logo />
       </div>
