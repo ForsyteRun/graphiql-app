@@ -4,13 +4,13 @@ import Footer from './Footer';
 
 function NavigationLayout() {
   return (
-    <>
+    <div className="wrapper">
       <Header />
       <main className="content">
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
