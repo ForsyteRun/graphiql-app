@@ -38,6 +38,7 @@ body {
   color: $text-color;
   min-width: 320px;
   min-height: 100vh;
+  height: 100svh;
   overflow-x: hidden;
 }
 
@@ -45,6 +46,11 @@ main {
   width: 100%;
   flex-grow: 1;
   background: $background-grey;
+  min-height: calc(100vh - 13rem);
+
+  @include media('s') {
+    min-height: calc(100vh - 10rem);
+  }
 }
 
 body,
@@ -180,12 +186,13 @@ textarea {
 }
 
 #root {
+  position: relative;
   margin: 0 auto;
   text-align: center;
   background: $background-dark;
   @include flexColumn($align: inherit);
   width: 100vw;
-  min-height: 100vh;
+  // min-height: 100vh;
   box-sizing: border-box;
 }
 
