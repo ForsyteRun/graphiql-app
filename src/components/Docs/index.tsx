@@ -15,6 +15,7 @@ const Docs = memo(() => {
 
   const ref = useRef(null);
   const { open, setOpen } = useClickOutside(ref);
+  const { translations } = Localization();
 
   useEffect(() => {
     setRootSchema(null);
@@ -26,7 +27,6 @@ const Docs = memo(() => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
-  const { translations } = Localization();
 
   return (
     <aside ref={ref} className={classNames({ openAside: open })}>

@@ -1,8 +1,10 @@
+import { Localization } from '../../context/LocalContext';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import { Member } from './Member';
 
 const Team = () => {
   const { isVisible, titleRef } = useIntersectionObserver();
+  const { translations } = Localization();
 
   return (
     <div className={`team ${isVisible ? 'visible' : ''}`} ref={titleRef}>
@@ -12,7 +14,7 @@ const Team = () => {
             isVisible ? 'visible' : ''
           }`}
         >
-          Наша команда
+          {translations.ourTeam}
         </h2>
         <div className="team__list">
           <Member />
