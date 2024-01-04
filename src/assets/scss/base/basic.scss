@@ -39,18 +39,12 @@ body {
   min-width: 320px;
   min-height: 100vh;
   height: 100svh;
-  overflow-x: hidden;
 }
 
 main {
   width: 100%;
   flex-grow: 1;
   background: $background-grey;
-  // min-height: calc(100vh - 13rem);
-
-  // @include media('s') {
-  //   min-height: calc(100vh - 10rem);
-  // }
 }
 
 body,
