@@ -63,6 +63,18 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
     setValue(query);
   }, [query]);
 
+  useEffect(() => {
+    const formatInitialQuery = () => {
+      try {
+        const formattedCode = formatCode(initialQuery);
+        dispatch(setQuery(formattedCode));
+      } catch (error) {
+        console.error('Ошибка форматирования кода:', error);
+      }
+    };
+    formatInitialQuery();
+  }, [dispatch]);
+
   return (
     <>
       <div className="editor__header">
