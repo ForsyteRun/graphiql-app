@@ -2,16 +2,22 @@
 
 .header {
   position: sticky;
+  @include flex();
   width: 100%;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
+  height: 8rem;
   background: $background-dark;
+  transition: $transition;
+
+  &.sticky {
+    background: #1e1e1e;
+  }
 
   &__content {
     @include flex($justify: space-between);
-    height: 8rem;
     gap: 20px;
     padding: 0 20px;
   }

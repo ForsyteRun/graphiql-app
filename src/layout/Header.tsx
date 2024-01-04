@@ -8,13 +8,14 @@ import {
 } from '../constants/route';
 import { LogOut } from '../components/Logout';
 import { useAppSelector } from '../store/types';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Localization } from '../context/LocalContext';
 import { AuthState } from '../utils/AuthState';
 
 const Header = () => {
   AuthState();
   const { isAuth } = useAppSelector((state) => state.user);
+  const [isSticky, setIsSticky] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const { translations, language, changeLanguage } = Localization();
 
@@ -59,9 +60,23 @@ const Header = () => {
     }
   }, [isAuth, translations.login, translations.registration]);
 
+  useEffect(() => {
+    console.log('1');
+    const handleScroll = () => {
+      console.log('2');
+      setIsSticky(window.scrollY >= 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="header">
-      <div className="header__content container">
+    <header className={`header ${isSticky ? 'sticky' : ''}`}>
+      <div className={`header__content container`}>
         <div className="header__logo">
           <Logo />
         </div>
