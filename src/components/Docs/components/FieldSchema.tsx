@@ -100,7 +100,7 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
     <>
       <button
         type="button"
-        style={{ border: '1px solid red' }}
+        className="button button-transparent"
         onClick={getLastHistorySchema}
       >
         Go up
