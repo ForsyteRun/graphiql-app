@@ -10,9 +10,8 @@ import {
   GraphQLType,
 } from 'graphql/type';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { IRootSchema } from '../../../types/interface';
+import { IFieldSchema, IRootSchema } from '../../../types/interface';
 import { isGetFieldsType } from '../../../types/types';
-import { IFieldSchema } from '../types/interfaces';
 import DetailedField from './DetailedField';
 import NextField from './NextField';
 import { useAppSelector } from '../../../store/types';

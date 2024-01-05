@@ -1,7 +1,7 @@
 import { GraphQLLeafType } from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { isNonNull } from '../types/types';
 import { memo, useCallback } from 'react';
+import { isNonNull } from '../../../types/types';
 
 const DetailedField = memo(({ value }: { value: GraphQLLeafType }) => {
   const { name, description } = value;

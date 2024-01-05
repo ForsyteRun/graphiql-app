@@ -8,8 +8,8 @@ import {
 } from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { ReactNode, memo, useCallback } from 'react';
-import { INextField } from '../types/interfaces';
 import getArgsTypes from '../utils/getArgsTypes';
+import { INextField } from '../../../types/interface';
 
 const isGraphQLField = (
   value: GraphQLField<unknown, unknown>
