@@ -56,3 +56,9 @@ export interface DataType {
 export interface User {
   isAuth: boolean;
 }
+
+export interface CustomSectionProps {
+  title: string;
+  attentionTranslation: string;
+  initialActionValue: string;
+}
