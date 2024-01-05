@@ -82,10 +82,15 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
         {sectionData.query.label === title && (
           <div className="editor__buttons">
             <div
-              className="editor__color button"
+              className="editor__format button"
               onClick={handleFormatCode}
+              title="Форматировать код"
             ></div>
-            <div className="editor__play button" onClick={handleSubmit}></div>
+            <div
+              className="editor__play button"
+              onClick={handleSubmit}
+              title="Отправить запрос"
+            ></div>
           </div>
         )}
       </div>

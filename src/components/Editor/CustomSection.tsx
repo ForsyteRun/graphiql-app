@@ -20,6 +20,7 @@ const CustomSection: React.FC<CustomSectionProps> = ({
   const [value, setValue] = useState(initialActionValue);
   const [showMessage, setShowMessage] = useState(false);
   const [inputVisible, setInputVisible] = useState(false);
+  const [isBodyOpen, setIsBodyOpen] = useState(false);
 
   const handleSubmit = () => {
     switch (title) {
@@ -42,12 +43,16 @@ const CustomSection: React.FC<CustomSectionProps> = ({
 
   const handleLabelClick = () => {
     setInputVisible((prevState) => !prevState);
+    setIsBodyOpen(!isBodyOpen);
   };
 
   return (
     <div className={`${title}`}>
       <div className={`${title}__wrapper`}>
-        <div className={`${title}__label`} onClick={handleLabelClick}>
+        <div
+          className={`${title}__label${isBodyOpen ? ' open' : ''}`}
+          onClick={handleLabelClick}
+        >
           {translations[title]}
         </div>
         {inputVisible && (
