@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import { AUTH_ROUTE } from '../constants/route';
+import { WELCOME_ROUTE } from '../constants/route';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/firebase';
 import { Loader } from './Loader';
@@ -11,7 +11,7 @@ const AuthRequired = ({ children }: { children: JSX.Element }) => {
     return <Loader />;
   }
   if (!user) {
-    return <Navigate to={AUTH_ROUTE} state={{ from: location }} replace />;
+    return <Navigate to={WELCOME_ROUTE} state={{ from: location }} replace />;
   }
   return children;
 };
