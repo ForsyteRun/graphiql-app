@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import getArgsTypes from '../../components/Docs/utils/getArgsTypes';
 import {
   GraphQLScalarTypeExtensions,
   ScalarTypeDefinitionNode,
@@ -8,6 +7,7 @@ import {
 } from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { JSXElementConstructor, ReactElement } from 'react';
+import getArgsTypes from '../../utils/getArgsTypes';
 
 const MockData = {
   description:
