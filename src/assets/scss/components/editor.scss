@@ -12,6 +12,9 @@
   margin: 0 0 20px;
   color: $background;
   position: relative;
+  background: #1f1f1f;
+  padding: 10px;
+  border: solid 1px #2b2b2b;
 
   &__wrapper {
     @include flexColumn($align: stretch);
@@ -45,7 +48,7 @@
     &:after {
       content: '';
       position: absolute;
-      top: 70%;
+      top: 60%;
       margin-left: 6px;
       transform: translateY(-50%);
       border-width: 5px;
@@ -54,7 +57,7 @@
     }
 
     &.open:after {
-      top: 5%;
+      top: 15%;
       border-color: transparent transparent #9ffffc transparent;
     }
   }
