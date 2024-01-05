@@ -2,10 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { IQuery } from '../types/interface';
 import { getIntrospectionQuery } from 'graphql';
 import { useAppSelector } from '../store/types';
-// https://countries.trevorblades.com
-// https://beta.pokeapi.co/graphql/v1beta
-// 'https://rickandmortyapi.com/graphql'
-// 'https://graphqlzero.almansi.me/api'
+
 const useGetDocsFromApi = () => {
   const [query, setQuery] = useState<IQuery>({ data: null });
   const { api } = useAppSelector((state) => state.request);
@@ -37,7 +34,6 @@ const useGetDocsFromApi = () => {
     };
 
     fetchDocs();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [api]);
 
   return { query };

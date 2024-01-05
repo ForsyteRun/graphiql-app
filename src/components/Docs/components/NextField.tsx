@@ -29,7 +29,6 @@ const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
         {nameValue}
       </div>
     ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [fieldName, fieldType]
   );
 
@@ -63,7 +62,6 @@ const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
       }
       return null;
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [fieldType]
   );
 
@@ -90,7 +88,6 @@ const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
 
       return null;
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [fieldType]
   );
 
