@@ -66,7 +66,7 @@ export interface CustomSectionProps {
 }
 
 export interface IFieldSchema {
-  schema: Maybe<IRootSchema>;
+  schema: Maybe<IRootSchema> | null;
   setRootSchema: (value: IRootSchema) => void;
 }
 
