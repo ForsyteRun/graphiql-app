@@ -37,35 +37,30 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
       setHistory({ state: modifyHistory });
       setIsDescription(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history.state]);
 
-  const handleClick = useCallback(
-    (value: GraphQLType) => {
-      if (isGetFieldsType(value)) {
-        const data = value.getFields();
+  const handleClick = useCallback((value: GraphQLType) => {
+    if (isGetFieldsType(value)) {
+      const data = value.getFields();
 
-        const modiFyData: IRootSchema = {
-          fields: { ...data } as
-            | GraphQLInputFieldMap
-            | GraphQLFieldMap<unknown, unknown>,
-        };
+      const modiFyData: IRootSchema = {
+        fields: { ...data } as
+          | GraphQLInputFieldMap
+          | GraphQLFieldMap<unknown, unknown>,
+      };
 
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if ('name' in value) {
-        const modiFyData: IRootSchema = {
-          fields: {
-            [value.name]: { ...value } as unknown as GraphQLInputField,
-          },
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(true);
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+      setRootSchema(modiFyData);
+      setIsDescription(false);
+    } else if ('name' in value) {
+      const modiFyData: IRootSchema = {
+        fields: {
+          [value.name]: { ...value } as unknown as GraphQLInputField,
+        },
+      };
+      setRootSchema(modiFyData);
+      setIsDescription(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (!schema) {
@@ -88,7 +83,6 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
         });
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [schema]);
 
   useEffect(() => {
