@@ -41,6 +41,22 @@
     text-align: left;
     color: #9ffffb;
     cursor: pointer;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 70%;
+      margin-left: 6px;
+      transform: translateY(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #9ffffc transparent transparent transparent;
+    }
+
+    &.open:after {
+      top: 5%;
+      border-color: transparent transparent #9ffffc transparent;
+    }
   }
 }
 
@@ -51,7 +67,6 @@
     @include flex($justify: space-between, $align: stretch, $wrap: wrap);
     border: solid 10px #0d0c18;
     border-radius: 4px;
-    overflow: hidden;
     margin: 0;
 
     @include media('s') {
@@ -162,6 +177,8 @@
     color: #739db3;
     flex: 1 0 auto;
     position: relative;
+    overflow-y: auto;
+    max-height: 45svh;
   }
 
   &__numbers {
@@ -236,8 +253,8 @@
     background: url(/src/assets/svg/play.svg) no-repeat center center/cover;
   }
 
-  &__color,
-  &__color:hover {
+  &__format,
+  &__format:hover {
     min-width: 30px;
     height: 30px;
     background: url(/src/assets/svg/format.svg) no-repeat center center/cover;
