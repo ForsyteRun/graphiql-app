@@ -61,9 +61,7 @@ const Header = () => {
   }, [isAuth, translations.login, translations.registration]);
 
   useEffect(() => {
-    console.log('1');
     const handleScroll = () => {
-      console.log('2');
       setIsSticky(window.scrollY >= 100);
     };
 

@@ -7,7 +7,10 @@ export const schema = object({
     .required('Email is required'),
   password: string()
     .min(8, 'Password must be at least 8 characters long')
-    .matches(/^(?=.*[a-zA-Z])/, 'Password must contain at least one letter')
+    .matches(
+      /^(?=.*[a-zA-ZÀ-ÿА-яΑ-ω])/,
+      'Password must contain at least one letter'
+    )
     .matches(/^(?=.*[0-9])/, 'Password must contain at least one number')
     .matches(
       /^(?=.*[!@#$%^&*])/,
@@ -29,7 +32,7 @@ export const schemaRu = object({
   password: string()
     .min(8, 'Пароль должен содержать не менее 8 символов')
     .matches(
-      /^(?=.*[a-zA-Z])/,
+      /^(?=.*[a-zA-ZÀ-ÿА-яΑ-ω])/,
       'Пароль должен содержать как минимум одну букву'
     )
     .matches(/^(?=.*[0-9])/, 'Пароль должен содержать как минимум одну цифру')
@@ -52,7 +55,10 @@ export const schemaLogin = object({
     .required('Email is required'),
   password: string()
     .min(8, 'Password must be at least 8 characters long')
-    .matches(/^(?=.*[a-zA-Z])/, 'Password must contain at least one letter')
+    .matches(
+      /^(?=.*[a-zA-ZÀ-ÿА-яΑ-ω])/,
+      'Password must contain at least one letter'
+    )
     .matches(/^(?=.*[0-9])/, 'Password must contain at least one number')
     .matches(
       /^(?=.*[!@#$%^&*])/,
@@ -71,7 +77,7 @@ export const schemaLoginRu = object({
   password: string()
     .min(8, 'Пароль должен содержать не менее 8 символов')
     .matches(
-      /^(?=.*[a-zA-Z])/,
+      /^(?=.*[a-zA-ZÀ-ÿА-яΑ-ω])/,
       'Пароль должен содержать как минимум одну букву'
     )
     .matches(/^(?=.*[0-9])/, 'Пароль должен содержать как минимум одну цифру')
