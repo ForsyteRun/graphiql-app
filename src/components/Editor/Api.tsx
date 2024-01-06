@@ -7,7 +7,7 @@ const Api = () => {
   return (
     <CustomSection
       title="api"
-      attentionTranslation="attentionVariables"
+      attentionTranslation="attentionApi"
       initialActionValue={api}
     />
   );
