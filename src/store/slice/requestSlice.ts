@@ -72,10 +72,14 @@ const requestSlice = createSlice({
       state.info = action.payload;
     },
     setHeaders: (state, action) => {
-      const num = action.payload.lastIndexOf(':');
-      const key = action.payload.slice(0, num);
-      const value = action.payload.slice(num + 1).trim();
-      state.headers = { 'Content-Type': 'application/json', [key]: value };
+      if ((action.payload = ' ')) {
+        state.headers = { 'Content-Type': 'application/json' };
+      } else {
+        const num = action.payload.lastIndexOf(':');
+        const key = action.payload.slice(0, num);
+        const value = action.payload.slice(num + 1).trim();
+        state.headers = { 'Content-Type': 'application/json', [key]: value };
+      }
     },
   },
   extraReducers: (builder) => {

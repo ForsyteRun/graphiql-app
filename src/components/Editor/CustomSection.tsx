@@ -29,10 +29,12 @@ const CustomSection: React.FC<CustomSectionProps> = ({
         break;
       case 'variables':
         dispatch(setVariables(value));
+        dispatch(setHeaders(' '));
         break;
       case 'api':
         dispatch(setApi(value));
         dispatch(setQuery(`query { }`));
+        dispatch(setHeaders(' '));
         break;
       default:
         break;
