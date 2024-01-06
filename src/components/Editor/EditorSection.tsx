@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { fetchQuery } from '../../store/slice/requestSlice';
+import { fetchQuery, setHeaders } from '../../store/slice/requestSlice';
 import {
   initialQuery,
   sectionDataRu,
@@ -36,6 +36,7 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const handleSubmit = () => {
     dispatch(setQuery(value));
     dispatch(setInfo(language));
+    dispatch(setHeaders(' '));
   };
 
   const sectionData = useMemo(() => {

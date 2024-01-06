@@ -39,7 +39,7 @@ export const translationsData: Translations = {
     plusBtn: 'Go to the editor',
     mainTitle: 'GraphiQL Editor',
     attentionApi: 'Attention! Submitting API...',
-    attentionHeaders: 'Attention!Submitting Headers...',
+    attentionHeaders: 'Attention! Submitting Headers...',
     attentionVariables: 'Attention! Submitting Variables...',
     docsLink: 'Docs',
     ourTeam: 'Our team',
