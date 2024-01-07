@@ -6,7 +6,7 @@ import {
   setQuery,
   setVariables,
 } from '../../store/slice/requestSlice';
-import { useAppDispatch } from '../../store/types';
+import { useAppDispatch, useAppSelector } from '../../store/types';
 import { Localization } from '../../context/LocalContext';
 import { CustomSectionProps } from '../../types/interface';
 
@@ -15,6 +15,7 @@ const CustomSection: React.FC<CustomSectionProps> = ({
   attentionTranslation,
   initialActionValue,
 }) => {
+  const { api } = useAppSelector((state) => state.request);
   const dispatch = useAppDispatch();
   const { translations, language } = Localization();
   const [value, setValue] = useState(initialActionValue);
@@ -32,8 +33,10 @@ const CustomSection: React.FC<CustomSectionProps> = ({
         dispatch(setHeaders(' '));
         break;
       case 'api':
+        if (value !== api) {
+          dispatch(setQuery(`query { }`));
+        }
         dispatch(setApi(value));
-        dispatch(setQuery(`query { }`));
         dispatch(setHeaders(' '));
         break;
       default:
