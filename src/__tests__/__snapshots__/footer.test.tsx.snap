@@ -18,21 +18,45 @@ exports[`Footer component should be equal Welcome Page snapshot 1`] = `
           class="footer__svg"
         />
       </a>
-      <a
-        class="footer__gh-link"
-        href="https://github.com/ForsyteRun/graphiql-app/"
-        rel="noreferrer"
-        target="_blank"
+      <div
+        class="footer__gh"
       >
-        <svg
-          class="footer__svg"
-        />
-      </a>
+        <a
+          class="footer__gh-link"
+          href="https://github.com/nyurasheva"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <svg
+            class="footer__svg"
+          />
+        </a>
+        <a
+          class="footer__gh-link"
+          href="https://github.com/forsyterun"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <svg
+            class="footer__svg"
+          />
+        </a>
+        <a
+          class="footer__gh-link"
+          href="https://github.com/massaracsh7"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <svg
+            class="footer__svg"
+          />
+        </a>
+      </div>
       <div
         class="footer__year-link"
       >
         <span>
-          @Copyright 2023
+          @Copyright 2024
         </span>
          
         <a
