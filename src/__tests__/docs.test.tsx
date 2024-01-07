@@ -22,11 +22,13 @@ describe('Docs component', () => {
   });
   it('should match Docs snapshot with data', () => {
     const { asFragment } = render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <Docs />
-        </BrowserRouter>
-      </Provider>
+      <LocalizationProvider>
+        <Provider store={store}>
+          <BrowserRouter>
+            <Docs />
+          </BrowserRouter>
+        </Provider>
+      </LocalizationProvider>
     );
 
     expect(asFragment()).toMatchSnapshot();

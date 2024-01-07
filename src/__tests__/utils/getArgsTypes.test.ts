@@ -34,7 +34,7 @@ describe('getArgsTypes fn', () => {
       result as ReactElement<string, string | JSXElementConstructor<string>>
     );
 
-    const renderedResult = screen.getByText(':Int');
+    const renderedResult = screen.getByText('Int');
 
     expect(renderedResult).toBeInTheDocument();
   });
