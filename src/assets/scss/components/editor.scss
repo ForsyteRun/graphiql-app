@@ -203,8 +203,6 @@
     text-align: right;
     width: 6%;
     flex-shrink: 0;
-    // position: sticky;
-    // left: 0;
 
     @include media('xxl') {
       width: 8%;
@@ -254,6 +252,7 @@
     text-align: left;
     background: #1f1f1f;
     padding: 10px;
+    position: absolute;
   }
 
   &__buttons {
