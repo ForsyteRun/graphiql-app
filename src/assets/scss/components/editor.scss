@@ -61,6 +61,14 @@
       border-color: transparent transparent #9ffffc transparent;
     }
   }
+
+  .attention-message {
+    top: 15%;
+
+    @include media('xs') {
+      font-size: 0.8rem;
+    }
+  }
 }
 
 .editor {
