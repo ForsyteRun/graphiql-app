@@ -176,12 +176,12 @@
 
   &__content {
     @include flex($align: stretch, $justify: stretch);
-    background: #1f1f1f;
     color: #739db3;
     flex: 1 0 auto;
     position: relative;
-    overflow-y: auto;
-    max-height: 45svh;
+    height: 45svh;
+    background: #181818;
+    overflow: auto;
   }
 
   &__numbers {
@@ -194,6 +194,9 @@
     line-height: 150%;
     text-align: right;
     width: 6%;
+    flex-shrink: 0;
+    // position: sticky;
+    // left: 0;
 
     @include media('xxl') {
       width: 8%;
@@ -223,8 +226,7 @@
   &__text {
     @include flexColumn($align: stretch);
     width: 100%;
-    padding: 10px;
-    overflow-x: auto;
+    background: #1f1f1f;
   }
 
   &__query {
@@ -242,6 +244,8 @@
 
   &__response {
     text-align: left;
+    background: #1f1f1f;
+    padding: 10px;
   }
 
   &__buttons {
@@ -268,9 +272,8 @@
   position: absolute;
   z-index: 10;
   right: 10%;
-  bottom: 20%;
+  bottom: 15%;
   color: $error;
-  font-size: 0.8rem;
 
   @include media('xl') {
     bottom: -30%;
