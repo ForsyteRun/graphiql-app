@@ -38,7 +38,7 @@ body {
   color: $text-color;
   min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden;
+  height: 100svh;
 }
 
 main {
@@ -179,13 +179,14 @@ textarea {
   }
 }
 
-#root {
+.wrapper {
+  @include flexColumn($align: inherit);
+  position: relative;
   margin: 0 auto;
   text-align: center;
   background: $background-dark;
-  @include flexColumn($align: inherit);
   width: 100vw;
-  min-height: 100vh;
+  min-height: 100svh;
   box-sizing: border-box;
 }
 

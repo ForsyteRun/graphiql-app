@@ -8,8 +8,8 @@ import {
 } from 'graphql';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { ReactNode, memo, useCallback } from 'react';
-import { INextField } from '../types/interfaces';
-import getArgsTypes from '../utils/getArgsTypes';
+import { INextField } from '../../../types/interface';
+import getArgsTypes from '../../../utils/getArgsTypes';
 
 const isGraphQLField = (
   value: GraphQLField<unknown, unknown>
@@ -21,7 +21,7 @@ const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
   const renderField = useCallback(
     (nameValue: string, typeValue: GraphQLOutputType) => (
       <div
-        style={{ color: 'orange', cursor: 'pointer' }}
+        className="fieldSchema__title-content"
         onClick={() => {
           handleClick(typeValue);
         }}
@@ -29,7 +29,6 @@ const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
         {nameValue}
       </div>
     ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [fieldName, fieldType]
   );
 
@@ -40,7 +39,7 @@ const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
       return (
         <>
           <div
-            style={{ color: 'blue', cursor: 'pointer' }}
+            className="fieldSchema__subtitle"
             onClick={() => {
               handleClick(obj);
             }}
@@ -63,7 +62,6 @@ const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
       }
       return null;
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [fieldType]
   );
 
@@ -90,18 +88,19 @@ const NextField = memo(({ fieldName, fieldType, handleClick }: INextField) => {
 
       return null;
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [fieldType]
   );
 
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div className="fieldSchema__title">
         {renderField(fieldName, fieldType as GraphQLOutputType)}
         {renderArgs(fieldType as GraphQLField<unknown, unknown>)}
         {renderType(fieldType as GraphQLOutputType)}
       </div>
-      <p>{(fieldType as GraphQLObjectType)?.description as Maybe<string>}</p>
+      <p className="fieldSchema__description">
+        {(fieldType as GraphQLObjectType)?.description as Maybe<string>}
+      </p>
     </>
   );
 });

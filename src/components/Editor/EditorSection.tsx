@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { fetchQuery } from '../../store/slice/requestSlice';
+import { fetchQuery, setHeaders } from '../../store/slice/requestSlice';
 import {
   initialQuery,
   sectionDataRu,
@@ -36,6 +36,7 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
   const handleSubmit = () => {
     dispatch(setQuery(value));
     dispatch(setInfo(language));
+    dispatch(setHeaders(' '));
   };
 
   const sectionData = useMemo(() => {
@@ -63,6 +64,18 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
     setValue(query);
   }, [query]);
 
+  useEffect(() => {
+    const formatInitialQuery = () => {
+      try {
+        const formattedCode = formatCode(initialQuery);
+        dispatch(setQuery(formattedCode));
+      } catch (error) {
+        console.error('Ошибка форматирования кода:', error);
+      }
+    };
+    formatInitialQuery();
+  }, [dispatch]);
+
   return (
     <>
       <div className="editor__header">
@@ -70,10 +83,15 @@ const EditorSection: React.FC<EditorSectionProps> = ({ title }) => {
         {sectionData.query.label === title && (
           <div className="editor__buttons">
             <div
-              className="editor__color button"
+              className="editor__format button"
               onClick={handleFormatCode}
+              title="Форматировать код"
             ></div>
-            <div className="editor__play button" onClick={handleSubmit}></div>
+            <div
+              className="editor__play button"
+              onClick={handleSubmit}
+              title="Отправить запрос"
+            ></div>
           </div>
         )}
       </div>

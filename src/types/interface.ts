@@ -1,10 +1,12 @@
 import {
+  GraphQLField,
   GraphQLFieldMap,
   GraphQLObjectType,
   GraphQLOutputType,
+  GraphQLType,
   IntrospectionQuery,
 } from 'graphql';
-import { RootFieldType } from './types';
+import { Maybe, RootFieldType } from './types';
 
 export interface DataForm extends DataLogin {
   confirmPassword: string;
@@ -55,4 +57,21 @@ export interface DataType {
 
 export interface User {
   isAuth: boolean;
+}
+
+export interface CustomSectionProps {
+  title: string;
+  attentionTranslation: string;
+  initialActionValue: string;
+}
+
+export interface IFieldSchema {
+  schema: Maybe<IRootSchema> | null;
+  setRootSchema: (value: IRootSchema) => void;
+}
+
+export interface INextField {
+  handleClick: (value: GraphQLType) => void;
+  fieldName: string;
+  fieldType: GraphQLOutputType | GraphQLField<unknown, unknown>;
 }

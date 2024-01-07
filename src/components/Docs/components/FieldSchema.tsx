@@ -10,9 +10,8 @@ import {
   GraphQLType,
 } from 'graphql/type';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { IRootSchema } from '../../../types/interface';
+import { IFieldSchema, IRootSchema } from '../../../types/interface';
 import { isGetFieldsType } from '../../../types/types';
-import { IFieldSchema } from '../types/interfaces';
 import DetailedField from './DetailedField';
 import NextField from './NextField';
 import { useAppSelector } from '../../../store/types';
@@ -38,35 +37,30 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
       setHistory({ state: modifyHistory });
       setIsDescription(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history.state]);
 
-  const handleClick = useCallback(
-    (value: GraphQLType) => {
-      if (isGetFieldsType(value)) {
-        const data = value.getFields();
+  const handleClick = useCallback((value: GraphQLType) => {
+    if (isGetFieldsType(value)) {
+      const data = value.getFields();
 
-        const modiFyData: IRootSchema = {
-          fields: { ...data } as
-            | GraphQLInputFieldMap
-            | GraphQLFieldMap<unknown, unknown>,
-        };
+      const modiFyData: IRootSchema = {
+        fields: { ...data } as
+          | GraphQLInputFieldMap
+          | GraphQLFieldMap<unknown, unknown>,
+      };
 
-        setRootSchema(modiFyData);
-        setIsDescription(false);
-      } else if ('name' in value) {
-        const modiFyData: IRootSchema = {
-          fields: {
-            [value.name]: { ...value } as unknown as GraphQLInputField,
-          },
-        };
-        setRootSchema(modiFyData);
-        setIsDescription(true);
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+      setRootSchema(modiFyData);
+      setIsDescription(false);
+    } else if ('name' in value) {
+      const modiFyData: IRootSchema = {
+        fields: {
+          [value.name]: { ...value } as unknown as GraphQLInputField,
+        },
+      };
+      setRootSchema(modiFyData);
+      setIsDescription(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (!schema) {
@@ -89,7 +83,6 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
         });
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [schema]);
 
   useEffect(() => {
@@ -100,7 +93,7 @@ const FieldSchema = memo(({ schema, setRootSchema }: IFieldSchema) => {
     <>
       <button
         type="button"
-        style={{ border: '1px solid red' }}
+        className="button button-transparent"
         onClick={getLastHistorySchema}
       >
         Go up

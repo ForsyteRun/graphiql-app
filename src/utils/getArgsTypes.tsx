@@ -7,12 +7,12 @@ const getArgsTypes = (
 ): ReactNode => {
   if ('name' in type) {
     return (
-      <span
-        style={{ color: 'blue', cursor: 'pointer' }}
-        onClick={() => handleClick(type)}
-      >
-        :{type.name}
-      </span>
+      <>
+        :
+        <span className="fieldSchema__type" onClick={() => handleClick(type)}>
+          {type.name}
+        </span>
+      </>
     );
   } else if ('ofType' in type) {
     return getArgsTypes(type.ofType, handleClick);

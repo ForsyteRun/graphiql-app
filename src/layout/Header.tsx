@@ -8,13 +8,14 @@ import {
 } from '../constants/route';
 import { LogOut } from '../components/Logout';
 import { useAppSelector } from '../store/types';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Localization } from '../context/LocalContext';
 import { AuthState } from '../utils/AuthState';
 
 const Header = () => {
   AuthState();
   const { isAuth } = useAppSelector((state) => state.user);
+  const [isSticky, setIsSticky] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const { translations, language, changeLanguage } = Localization();
 
@@ -59,40 +60,56 @@ const Header = () => {
     }
   }, [isAuth, translations.login, translations.registration]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY >= 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="header container">
-      <div className="header__logo">
-        <Logo />
-      </div>
-      <div className="header__links">
-        <NavLink to={WELCOME_ROUTE} className="link">
-          {translations.welcome}
-        </NavLink>
-        {viewMainLink}
-      </div>
-      <div className="header__buttons">
-        <span className="header__buttons-icon" onClick={toggleMenu}></span>
-        <div className={`header__buttons-list ${menuVisible ? 'active' : ''}`}>
-          {viewButtons}
+    <header className={`header ${isSticky ? 'sticky' : ''}`}>
+      <div className={`header__content container`}>
+        <div className="header__logo">
+          <Logo />
         </div>
-        <div className="language">
-          <input
-            type="checkbox"
-            id="switch"
-            className="language__input"
-            defaultChecked={language === 'ru'}
-            onChange={(e) => {
-              if (e.target.checked) {
-                handleLanguageChange('ru');
-              } else {
-                handleLanguageChange('en');
-              }
-            }}
-          />
-          <label htmlFor="switch" className="language__toggler">
-            <span className="language__ru">{translations.ru}</span>
-            <span className="language__en">{translations.en}</span>
-          </label>
+        <div className="header__links">
+          <NavLink to={WELCOME_ROUTE} className="link">
+            {translations.welcome}
+          </NavLink>
+          {viewMainLink}
+        </div>
+        <div className="header__buttons">
+          <span className="header__buttons-icon" onClick={toggleMenu}></span>
+          <div
+            className={`header__buttons-list ${menuVisible ? 'active' : ''}`}
+          >
+            {viewButtons}
+          </div>
+          <div className="language">
+            <input
+              type="checkbox"
+              id="switch"
+              className="language__input"
+              defaultChecked={language === 'ru'}
+              onChange={(e) => {
+                if (e.target.checked) {
+                  handleLanguageChange('ru');
+                } else {
+                  handleLanguageChange('en');
+                }
+              }}
+            />
+            <label htmlFor="switch" className="language__toggler">
+              <span className="language__ru">{translations.ru}</span>
+              <span className="language__en">{translations.en}</span>
+            </label>
+          </div>
         </div>
       </div>
     </header>
