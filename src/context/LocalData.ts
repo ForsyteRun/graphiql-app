@@ -15,7 +15,7 @@ export const translationsData: Translations = {
     registerText: 'Already have an account? Then just click ',
     loginTitle: 'Sign in',
     loginSubtitle: 'Not registered?',
-    loginText: '"Creating an account will take no more than a minute ',
+    loginText: 'Creating an account will take no more than a minute ',
     notfoundText: 'Error',
     notfoundTitle: 'Sorry! We could not find what you were looking for. ',
     notfoundInfo: 'The page was not found.',
