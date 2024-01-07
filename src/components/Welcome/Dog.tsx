@@ -21,14 +21,19 @@ const Dog = () => {
           >
             {translations.dogTitle}
           </h2>
-          <p>{translations.dogText}</p>
+          <p>
+            {translations.dogText1}
+            <a href="https://rs.school/react/" target="_blank" rel="noreferrer">
+              RS School.
+            </a>
+          </p>
+          <p>{translations.dogText2}</p>
           <div className="dog__buttons">
             <NavLink to={MAIN_ROUTE}>
               <button className="button button-transparent">
                 {translations.dogBtn}
               </button>
             </NavLink>
-            <a>{translations.dogLink}</a>
           </div>
         </div>
       </div>

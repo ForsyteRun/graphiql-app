@@ -48,7 +48,7 @@
       position: relative;
       margin-top: 2px;
 
-      @include media('xxs') {
+      @include media('xs') {
         min-width: auto;
       }
 
@@ -82,7 +82,7 @@
         );
         margin-left: 10px;
 
-        @include media('xxs') {
+        @include media('xs') {
           display: none;
         }
       }
