@@ -5,19 +5,19 @@ import { useAppSelector } from '../store/types';
 
 const useGetDocsFromApi = () => {
   const [query, setQuery] = useState<IQuery>({ data: null });
-  const { api } = useAppSelector((state) => state.request);
+  const { api, headers } = useAppSelector((state) => state.request);
 
   const getDocsData = useCallback(
     async <T extends string>(query: T): Promise<IQuery> => {
       const response: Response = await fetch(api, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...headers },
         body: JSON.stringify({ query }),
       });
 
       return response.json();
     },
-    [api]
+    [api, headers]
   );
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const useGetDocsFromApi = () => {
     };
 
     fetchDocs();
-  }, [api]);
+  }, [api, headers]);
 
   return { query };
 };
