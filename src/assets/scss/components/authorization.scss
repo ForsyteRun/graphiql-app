@@ -53,6 +53,10 @@
       &.error {
         span {
           color: $error;
+
+          @include media('l') {
+            font-size: 0.8rem;
+          }
         }
 
         input {
