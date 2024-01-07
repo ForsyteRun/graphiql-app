@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FieldName } from '../types/types';
-import { schema, IForm } from '../utils/schema';
+import { schema, IForm, schemaRu } from '../utils/schema';
 import { registerWithEmailAndPassword } from '../firebase/firebase';
 import { toastForNoConnection, toastSignUp } from '../utils/toasts';
 import {
@@ -31,7 +31,7 @@ const RegistrationForm: React.FC = () => {
     formState: { errors },
   } = useForm<IForm>({
     mode: 'onChange',
-    resolver: yupResolver(schema),
+    resolver: yupResolver(language === 'en' ? schema : schemaRu),
   });
 
   const onRenderError = (error: FirebaseError) => {
