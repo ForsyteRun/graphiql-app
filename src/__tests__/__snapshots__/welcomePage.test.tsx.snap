@@ -309,7 +309,17 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
             Let's do something together!
           </h2>
           <p>
-            Try using our editor.
+            Try to use our editor created thanks to the course 
+            <a
+              href="https://rs.school/react/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              RS School.
+            </a>
+          </p>
+          <p>
+            By taking courses, you get: free training, technological materials, a mentor, new friends, a certificate and much more.
           </p>
           <div
             class="dog__buttons"
@@ -323,9 +333,6 @@ exports[`Welcome Page should be equal Welcome Page snapshot 1`] = `
               >
                 Go to the editor
               </button>
-            </a>
-            <a>
-              Meet the team
             </a>
           </div>
         </div>
